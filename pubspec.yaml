@@ -1,0 +1,24 @@
+name: RandomLunch
+description: Randomize where to eat lunch
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  font_awesome_flutter: any
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true 
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+        - asset: fonts/Raleway-Thin.ttf
+          style: italic
