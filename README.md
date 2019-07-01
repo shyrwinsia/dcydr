@@ -1,2 +1,3 @@
-# random-lunch
-Random lunch picker for victims of paralysis analysis
+# random-list
+
+Random list picker for victims of paralysis analysis
