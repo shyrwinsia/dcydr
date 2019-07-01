@@ -1,5 +1,5 @@
-name: RandomLunch
-description: Randomize where to eat lunch
+name: RandoomPickr
+description: Randomize picker for victims of analysis paralysis
 version: 1.0.0+1
 
 environment:
