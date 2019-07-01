@@ -15,12 +15,12 @@ class _HomePageState extends State<HomePage> {
   List<RandomList> _lists = new List();
 
   _HomePageState() {
-    _lists.add(new RandomList("Parks", IconType.Place));
-    _lists.add(new RandomList("My board games", IconType.Object));
-    _lists.add(new RandomList("Dinner options", IconType.Food));
-    _lists.add(new RandomList("Next pet to buy", IconType.Animal));
-    _lists.add(new RandomList("Songs to play in gigs", IconType.Music));
-    _lists.add(new RandomList("Generic list", IconType.Generic));
+    _lists.add(new RandomList("Favorite Parks", IconType.Place));
+    _lists.add(new RandomList("Next pet", IconType.Animal));
+
+    RandomList _generic = new RandomList("Some things", IconType.Object);
+    _generic.add(RandomListItem("One Item!"));
+    _lists.add(_generic);
 
     RandomList _placesToEat = new RandomList("Lunch", IconType.Food);
     _placesToEat.add(RandomListItem("Slave Food"));
@@ -50,6 +50,17 @@ class _HomePageState extends State<HomePage> {
     _people.add(RandomListItem("KK"));
     _people.add(RandomListItem("Peter"));
     _lists.add(_people);
+
+    RandomList _scrum = new RandomList("Story Points", IconType.Generic);
+    _scrum.add(RandomListItem("0.5"));
+    _scrum.add(RandomListItem("1"));
+    _scrum.add(RandomListItem("2"));
+    _scrum.add(RandomListItem("3"));
+    _scrum.add(RandomListItem("5"));
+    _scrum.add(RandomListItem("8"));
+    _scrum.add(RandomListItem("13"));
+    _scrum.add(RandomListItem("20"));
+    _lists.add(_scrum);
   }
 
   void _moveToListPage(list) {

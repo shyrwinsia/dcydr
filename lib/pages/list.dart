@@ -43,11 +43,13 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
 
   _pickAnItem() {
     List<RandomListItem> items = widget._list.getActiveItems();
-
+    // TODO Store old picks up to 2 so it will not keep repeating
     setState(() {
       items.length > 0
-          ? _pick = items.elementAt(rng.nextInt(items.length)).getName()
-          : _pick = "Nothing to pick";
+          ? items.length > 1
+              ? _pick = items.elementAt(rng.nextInt(items.length)).getName()
+              : _pick = "Cant pick from only one choice\n¯\\_(ツ)_/¯"
+          : _pick = "Nothing to pick (◔_◔)";
     });
   }
 
@@ -64,15 +66,13 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: 16.0),
-              child: Text(
-                "Randoom Pick:",
-              ),
-            ),
             Text(
-              _pick,
-              style: Theme.of(context).textTheme.display2,
+              _pick == ""
+                  ? "Press button to randoomly pick from " +
+                      widget._list.getName()
+                  : _pick,
+              textAlign: TextAlign.center,
+              style: _pick == "" ? null : Theme.of(context).textTheme.display3,
             ),
           ],
         ),
