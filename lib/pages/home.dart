@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   _HomePageState() {
     _lists.add(new RandomList("Favorite Parks", IconType.Place));
     _lists.add(new RandomList("Next pet", IconType.Animal));
+    _lists.add(new RandomList("Playlists", IconType.Music));
 
     RandomList _generic = new RandomList("Some things", IconType.Object);
     _generic.add(RandomListItem("One Item!"));

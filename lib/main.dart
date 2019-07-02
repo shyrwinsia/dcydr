@@ -9,7 +9,7 @@ class RandoomPickr extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Randoom Pickr',
-      theme: ThemeData(primarySwatch: Colors.blueGrey, fontFamily: 'Raleway'),
+      theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Raleway'),
       home: HomePage(title: 'Randoom Pickr'),
     );
   }

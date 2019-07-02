@@ -55,19 +55,40 @@ class RandomList {
   Icon getIcon() {
     switch (_icon) {
       case IconType.Person:
-        return Icon(FontAwesomeIcons.userAlt);
+        return Icon(
+          FontAwesomeIcons.userAlt,
+          color: Colors.lightBlue,
+        );
       case IconType.Object:
-        return Icon(FontAwesomeIcons.box);
+        return Icon(
+          FontAwesomeIcons.box,
+          color: Colors.brown,
+        );
       case IconType.Place:
-        return Icon(FontAwesomeIcons.mapMarker);
+        return Icon(
+          FontAwesomeIcons.mapMarker,
+          color: Colors.red,
+        );
       case IconType.Food:
-        return Icon(FontAwesomeIcons.cheese);
+        return Icon(
+          FontAwesomeIcons.utensils,
+          color: Colors.green,
+        );
       case IconType.Animal:
-        return Icon(FontAwesomeIcons.cat);
+        return Icon(
+          FontAwesomeIcons.cat,
+          color: Colors.orange,
+        );
       case IconType.Music:
-        return Icon(FontAwesomeIcons.music);
+        return Icon(
+          FontAwesomeIcons.music,
+          color: Colors.purple,
+        );
       default:
-        return Icon(FontAwesomeIcons.tag);
+        return Icon(
+          FontAwesomeIcons.tag,
+          color: Colors.grey,
+        );
     }
   }
 }

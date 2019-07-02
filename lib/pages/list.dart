@@ -14,6 +14,7 @@ class RandomListsWidget extends StatefulWidget {
 
 class _RandomListsWidgetState extends State<RandomListsWidget> {
   String _pick = "";
+  var _opacity = 0.0;
   var rng = Random();
 
   void _moveToListPage() {
@@ -50,6 +51,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
               ? _pick = items.elementAt(rng.nextInt(items.length)).getName()
               : _pick = "Cant pick from only one choice\n¯\\_(ツ)_/¯"
           : _pick = "Nothing to pick (◔_◔)";
+      _opacity = _opacity == 0.0 ? 1.0 : 0.0;
     });
   }
 
@@ -66,13 +68,18 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              _pick == ""
-                  ? "Press button to randoomly pick from " +
-                      widget._list.getName()
-                  : _pick,
-              textAlign: TextAlign.center,
-              style: _pick == "" ? null : Theme.of(context).textTheme.display3,
+            AnimatedOpacity(
+              duration: Duration(milliseconds: 200),
+              opacity: _opacity,
+              child: Text(
+                _pick == ""
+                    ? "Press button to randoomly pick from " +
+                        widget._list.getName()
+                    : _pick,
+                textAlign: TextAlign.center,
+                style:
+                    _pick == "" ? null : Theme.of(context).textTheme.display3,
+              ),
             ),
           ],
         ),
