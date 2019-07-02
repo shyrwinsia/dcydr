@@ -19,9 +19,25 @@ class _HomePageState extends State<HomePage> {
     _lists.add(new RandomList("Next pet", IconType.Animal));
     _lists.add(new RandomList("Playlists", IconType.Music));
 
-    RandomList _generic = new RandomList("Some things", IconType.Object);
-    _generic.add(RandomListItem("One Item!"));
+    RandomList _dice = new RandomList("Die Roll", IconType.Generic);
+    _dice.add(RandomListItem("1"));
+    _dice.add(RandomListItem("2"));
+    _dice.add(RandomListItem("3"));
+    _dice.add(RandomListItem("4"));
+    _dice.add(RandomListItem("5"));
+    _dice.add(RandomListItem("6"));
+    _lists.add(_dice);
+
+    RandomList _generic = new RandomList("Coin Flip", IconType.Generic);
+    _generic.add(RandomListItem("Head"));
+    _generic.add(RandomListItem("Tail"));
     _lists.add(_generic);
+
+    RandomList _rps = new RandomList("Rock-Paper-Scissors", IconType.Game);
+    _rps.add(RandomListItem("Rock"));
+    _rps.add(RandomListItem("Paper"));
+    _rps.add(RandomListItem("Scissors"));
+    _lists.add(_rps);
 
     RandomList _placesToEat = new RandomList("Lunch", IconType.Food);
     _placesToEat.add(RandomListItem("Slave Food"));

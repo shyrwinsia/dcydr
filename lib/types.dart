@@ -84,13 +84,18 @@ class RandomList {
           FontAwesomeIcons.music,
           color: Colors.purple,
         );
+      case IconType.Game:
+        return Icon(
+          FontAwesomeIcons.gamepad,
+          color: Colors.indigo,
+        );
       default:
         return Icon(
-          FontAwesomeIcons.tag,
+          FontAwesomeIcons.random,
           color: Colors.grey,
         );
     }
   }
 }
 
-enum IconType { Person, Object, Place, Food, Animal, Music, Generic }
+enum IconType { Person, Object, Place, Food, Animal, Music, Game, Generic }

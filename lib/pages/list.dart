@@ -1,10 +1,12 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:RandoomPickr/types.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 
 class RandomListsWidget extends StatefulWidget {
-  RandomList _list;
+  final RandomList _list;
 
   RandomListsWidget(this._list);
 
@@ -14,7 +16,7 @@ class RandomListsWidget extends StatefulWidget {
 
 class _RandomListsWidgetState extends State<RandomListsWidget> {
   String _pick = "";
-  var _opacity = 0.0;
+  Queue _pastPick = new Queue();
   var rng = Random();
 
   void _moveToListPage() {
@@ -51,9 +53,52 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
               ? _pick = items.elementAt(rng.nextInt(items.length)).getName()
               : _pick = "Cant pick from only one choice\n¯\\_(ツ)_/¯"
           : _pick = "Nothing to pick (◔_◔)";
-      _opacity = _opacity == 0.0 ? 1.0 : 0.0;
     });
   }
+
+  // _pickAnItem() {
+  //   List<RandomListItem> items = widget._list.getActiveItems();
+  //   String _p;
+  //   var _ppLength;
+
+  //   if (items.length > 0) {
+  //     if (items.length > 1) {
+  //       _ppLength =
+  //           (items.length - _pastPick.length) > 3 ? 3 : items.length - 2;
+  //       if (_pastPick.length > 0) {
+  //         List _pastPickList = _pastPick.toList();
+  //         // realign past picks to the current pool
+  //         // past picks should be pool size - 2 or 3 whichever is higher
+
+  //         for (int i = 0; i < _ppLength; i++) _pastPick.removeFirst();
+
+  //         // remove all past picks
+  //         _pastPickList.forEach((i) {
+  //           items.removeWhere((it) => it.getName() == i.getName());
+  //         });
+  //       }
+
+  //       // pick
+  //       RandomListItem r = items.elementAt(rng.nextInt(items.length));
+
+  //       // dont make it go more than 3
+  //       // this prevents 3 consecutive picks
+  //       if (_pastPick.length > _ppLength) _pastPick.removeFirst();
+
+  //       // add to pick queue if there are more items than 3
+  //       if (_pastPick.length < items.length - 2) _pastPick.addLast(r);
+  //       _p = r.getName();
+  //     } else
+  //       _p = "Cant pick from only one choice\n¯\\_(ツ)_/¯";
+  //   } else {
+  //     _p = "Nothing to pick (◔_◔)";
+  //   }
+
+  //   // TODO Store old picks up to 2 so it will not keep repeating
+  //   setState(() {
+  //     _pick = _p;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +113,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            AnimatedOpacity(
-              duration: Duration(milliseconds: 200),
-              opacity: _opacity,
+            FadeIn(
               child: Text(
                 _pick == ""
                     ? "Press button to randoomly pick from " +
@@ -93,8 +136,58 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   }
 }
 
+class FadeIn extends StatefulWidget {
+  final Widget child;
+
+  FadeIn({@required this.child});
+
+  @override
+  createState() => _FadeInState();
+}
+
+class _FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 100),
+    );
+
+    _animation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(FadeIn oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _controller.forward(from: 0.0);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _controller.forward();
+    return FadeTransition(
+      opacity: _animation,
+      child: widget.child,
+    );
+  }
+}
+
 class CustomSwitchTile extends StatefulWidget {
-  RandomListItem _item;
+  final RandomListItem _item;
 
   CustomSwitchTile(this._item);
 
@@ -103,8 +196,6 @@ class CustomSwitchTile extends StatefulWidget {
 }
 
 class _CustomSwitchTileState extends State<CustomSwitchTile> {
-  bool _v = false;
-
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
@@ -115,7 +206,6 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
       value: widget._item.isSelected(),
       onChanged: (value) => {
             setState(() {
-              _v = value;
               widget._item.setSelected(value);
             })
           },
