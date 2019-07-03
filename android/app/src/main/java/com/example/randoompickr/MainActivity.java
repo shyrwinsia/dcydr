@@ -1,4 +1,4 @@
-package com.example.random_lunch;
+package com.example.randoompickr;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

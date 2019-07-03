@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:RandoomPickr/types.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,7 +14,7 @@ class RandomListsWidget extends StatefulWidget {
 
 class _RandomListsWidgetState extends State<RandomListsWidget> {
   String _pick = "";
-  Queue _pastPick = new Queue();
+  // Queue _pastPick = new Queue();
   var rng = Random();
 
   void _moveToListPage() {
@@ -51,7 +49,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
       items.length > 0
           ? items.length > 1
               ? _pick = items.elementAt(rng.nextInt(items.length)).getName()
-              : _pick = "Cant pick from only one choice\n¯\\_(ツ)_/¯"
+              : _pick = "Can't randomly pick from only one choice\n¯\\_(ツ)_/¯"
           : _pick = "Nothing to pick (◔_◔)";
     });
   }
@@ -93,8 +91,6 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   //   } else {
   //     _p = "Nothing to pick (◔_◔)";
   //   }
-
-  //   // TODO Store old picks up to 2 so it will not keep repeating
   //   setState(() {
   //     _pick = _p;
   //   });
