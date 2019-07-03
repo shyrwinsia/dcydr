@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:RandoomPickr/types.dart';
+import 'package:Choosr/types.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 
@@ -112,8 +112,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
             FadeIn(
               child: Text(
                 _pick == ""
-                    ? "Press button to randoomly pick from " +
-                        widget._list.getName()
+                    ? "Press button to choose from " + widget._list.getName()
                     : _pick,
                 textAlign: TextAlign.center,
                 style:
@@ -151,7 +150,7 @@ class _FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 100),
+      duration: Duration(milliseconds: 200),
     );
 
     _animation = Tween(

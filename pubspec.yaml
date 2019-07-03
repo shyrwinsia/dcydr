@@ -1,9 +1,9 @@
-name: RandoomPickr
+name: Choosr
 description: Randomize picker for victims of analysis paralysis
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: '>=2.2.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-  uses-material-design: true 
+  uses-material-design: true
   fonts:
     - family: Raleway
       fonts:

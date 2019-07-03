@@ -89,13 +89,40 @@ class RandomList {
           FontAwesomeIcons.gamepad,
           color: Colors.indigo,
         );
+      case IconType.Activity:
+        return Icon(
+          FontAwesomeIcons.running,
+          color: Colors.deepPurple,
+        );
+      case IconType.Transport:
+        return Icon(
+          FontAwesomeIcons.rocket,
+          color: Colors.deepOrange,
+        );
+      case IconType.Random:
+        return Icon(
+          FontAwesomeIcons.diceFive,
+          color: Colors.blueGrey,
+        );
       default:
         return Icon(
-          FontAwesomeIcons.random,
-          color: Colors.grey,
+          FontAwesomeIcons.clipboardList,
+          color: Colors.black87,
         );
     }
   }
 }
 
-enum IconType { Person, Object, Place, Food, Animal, Music, Game, Generic }
+enum IconType {
+  Person,
+  Object,
+  Place,
+  Food,
+  Animal,
+  Music,
+  Game,
+  Activity,
+  Transport,
+  Random,
+  Generic,
+}

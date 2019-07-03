@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:RandoomPickr/types.dart';
-import 'package:RandoomPickr/pages/list.dart';
+import 'package:Choosr/types.dart';
+import 'package:Choosr/pages/list.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,11 +15,7 @@ class _HomePageState extends State<HomePage> {
   List<RandomList> _lists = new List();
 
   _HomePageState() {
-    _lists.add(new RandomList("Favorite Parks", IconType.Place));
-    _lists.add(new RandomList("Next pet", IconType.Animal));
-    _lists.add(new RandomList("Playlists", IconType.Music));
-
-    RandomList _dice = new RandomList("Die Roll", IconType.Generic);
+    RandomList _dice = new RandomList("Die Roll", IconType.Random);
     _dice.add(RandomListItem("1"));
     _dice.add(RandomListItem("2"));
     _dice.add(RandomListItem("3"));
@@ -28,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     _dice.add(RandomListItem("6"));
     _lists.add(_dice);
 
-    RandomList _generic = new RandomList("Coin Flip", IconType.Generic);
+    RandomList _generic = new RandomList("Coin Flip", IconType.Random);
     _generic.add(RandomListItem("Head"));
     _generic.add(RandomListItem("Tail"));
     _lists.add(_generic);
@@ -39,7 +35,20 @@ class _HomePageState extends State<HomePage> {
     _rps.add(RandomListItem("Scissors"));
     _lists.add(_rps);
 
-    RandomList _placesToEat = new RandomList("Lunch", IconType.Food);
+    _lists.add(new RandomList("Favorite Food", IconType.Food));
+    _lists.add(new RandomList("Next pet", IconType.Animal));
+    _lists.add(new RandomList("Playlists", IconType.Music));
+    _lists.add(new RandomList("Stuff", IconType.Object));
+    _lists.add(new RandomList("Hobbies", IconType.Activity));
+
+    RandomList _transport =
+        new RandomList("Transportation", IconType.Transport);
+    _transport.add(RandomListItem("Walk"));
+    _transport.add(RandomListItem("Bus"));
+    _transport.add(RandomListItem("Train"));
+    _lists.add(_transport);
+
+    RandomList _placesToEat = new RandomList("Where to eat", IconType.Place);
     _placesToEat.add(RandomListItem("Slave Food"));
     _placesToEat.add(RandomListItem("Korean one-North"));
     _placesToEat.add(RandomListItem("Koufu one-North"));
@@ -104,7 +113,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Randoom Pickr"),
+        title: new Text("Choosr"),
       ),
       body: ListView(children: divided),
       floatingActionButton: FloatingActionButton(

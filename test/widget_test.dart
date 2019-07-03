@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:RandoomPickr/main.dart';
+import 'package:Choosr/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Smoke Test: Check if it loads', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(RandoomPickr());
+    await tester.pumpWidget(Choosr());
 
     // Verify random picker rendered correctly
-    expect(find.text('Randoom Pickr'), findsOneWidget);
+    expect(find.text('Choosr'), findsOneWidget);
   });
 }

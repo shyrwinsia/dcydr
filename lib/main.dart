@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:RandoomPickr/pages/home.dart';
+import 'package:Choosr/pages/home.dart';
 
-void main() => runApp(RandoomPickr());
+void main() => runApp(Choosr());
 
-class RandoomPickr extends StatelessWidget {
+class Choosr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Randoom Pickr',
+      title: 'Choosr',
       theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Raleway'),
-      home: HomePage(title: 'Randoom Pickr'),
+      home: HomePage(title: 'Choosr'),
     );
   }
 }

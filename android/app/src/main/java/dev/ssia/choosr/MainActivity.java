@@ -1,4 +1,4 @@
-package com.example.randoompickr;
+package dev.ssia.choosr;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
