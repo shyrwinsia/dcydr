@@ -16,35 +16,42 @@ Let Choosr help you!
 
 ### No more indecision
 
-Choosr helps victims of paralysis analysis by picking a random choice from a list that you customize. You can add as many as you like for every situation and choose icons to match your list.
+Choosr helps victims of paralysis analysis by picking a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
 
 ![Screen 1](img/screen1.png)
 
 ### Fit for every situation
 
-When picking for specific occasions, you can also restrict Choosr by disabling some choices. No need remove and enter them back again.
+When picking for specific occasions, like maybe its a Sunday and some of your favorite restaurants in the list are closed. You can restrict Choosr by disabling some choices. No need remove and add them back again.
 
 ![Screen 3](img/screen3.png)
 
-### Free yourself
+### Clean and straightforward interface
 
-Deciding takes a lot of mental effort. So don't waste those brain power deciding on those small mundane things. Save them for your bigger decisions. For those other trivial things, let Choosr choose for you.
+Unlike other randomizing apps, Choosr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just press the button.
 
 ![Screen 2](img/screen2.png)
+
+### Save them brain juices
+
+Decisions, no matter how small, take mental effort. Studies have repeatedly shown that we humans have very limited amounts of it. So don't waste brain power deciding on those small mundane things. Save them for your bigger decisions! For your other trivial decisions, let Choosr choose for you.
 
 ## Get it
 
 - [Android Play Store]()
 - [iOS App Store]()
 
-## Side Note
+## Disclaimer
 
-Just a side-project so its not perfect. It's free (as in free lunch and free speech) so don't complain.
+I am not liable for any disastrous consequences that may have resulted from the suggestions of the app.
 
-Built with Flutter.
+## Notes
+
+Just a side-project so it's not perfect. It's free (as in free lunch and free speech) so don't complain.
 
 ## Uses
 
+- Flutter
 - Material Design
 - Icons: Font Awesome
 - Font: Raleway
