@@ -10,6 +10,11 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   font_awesome_flutter: any
+  sembast: ^1.15.1
+  path_provider: ^0.5.0+1
+  # Used for BLoC state management
+  flutter_bloc: ^0.9.1
+  equatable: ^0.2.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

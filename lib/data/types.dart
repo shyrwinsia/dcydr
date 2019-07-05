@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // Datatype
@@ -24,36 +25,35 @@ class RandomListItem {
 }
 
 class RandomList {
-  String _name;
-  IconType _icon;
-  List<RandomListItem> _items;
+  int id;
+  final String name;
+  final IconType icon;
+  final List<RandomListItem> items = new List();
 
-  RandomList(this._name, this._icon) {
-    this._items = new List();
-  }
+  RandomList({@required this.name, @required this.icon});
 
   getName() {
-    return this._name;
+    return this.name;
   }
 
   getActiveItems() {
-    return this._items.where((i) => i.isSelected()).toList();
+    return this.items.where((i) => i.isSelected()).toList();
   }
 
   getItems() {
-    return this._items;
+    return this.items;
   }
 
   add(RandomListItem item) {
-    this._items.add(item);
+    this.items.add(item);
   }
 
   remove(RandomListItem item) {
-    this._items.remove(item);
+    this.items.remove(item);
   }
 
   Icon getIcon() {
-    switch (_icon) {
+    switch (this.icon) {
       case IconType.Person:
         return Icon(
           FontAwesomeIcons.userAlt,
@@ -110,6 +110,18 @@ class RandomList {
           color: Colors.black87,
         );
     }
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': this.name,
+      'iconType': this.icon
+      // add the list here too?
+    };
+  }
+
+  static RandomList fromMap(Map<String, dynamic> map) {
+    return RandomList(name: map['name'], icon: map['icon']);
   }
 }
 

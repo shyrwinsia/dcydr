@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Choosr/types.dart';
+import 'package:Choosr/data/types.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 

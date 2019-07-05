@@ -52,9 +52,11 @@ Just a side-project so it's not perfect. It's free (as in free lunch and free sp
 ## Uses
 
 - Flutter
+- Flutter BLoC
 - Material Design
 - Icons: Font Awesome
 - Font: Raleway
+- Database: Sembast
 
 ## Running from Source
 
