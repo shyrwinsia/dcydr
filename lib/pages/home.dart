@@ -46,17 +46,20 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           } else if (state is RandomListLoaded) {
-            return ListView.builder(
-              itemCount: state.randomList.length,
-              itemBuilder: (context, index) {
-                final displayRandomList = state.randomList[index];
-                return ListTile(
-                  leading: displayRandomList.getIcon(),
-                  title: Text(displayRandomList.getName(),
-                      style: TextStyle(fontSize: 18.0)),
-                );
-              },
-            );
+            if (state.randomList.length < 1) {
+              return Text("nope");
+            } else
+              return ListView.builder(
+                itemCount: state.randomList.length,
+                itemBuilder: (context, index) {
+                  final displayRandomList = state.randomList[index];
+                  return ListTile(
+                    leading: displayRandomList.getIcon(),
+                    title: Text(displayRandomList.getName(),
+                        style: TextStyle(fontSize: 18.0)),
+                  );
+                },
+              );
           }
         });
   }

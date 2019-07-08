@@ -27,7 +27,7 @@ class RandomListItem {
 class RandomList {
   int id;
   final String name;
-  final IconType icon;
+  final String icon;
   final List<RandomListItem> items = new List();
 
   RandomList({@required this.name, @required this.icon});
@@ -54,52 +54,52 @@ class RandomList {
 
   Icon getIcon() {
     switch (this.icon) {
-      case IconType.Person:
+      case "Person":
         return Icon(
           FontAwesomeIcons.userAlt,
           color: Colors.lightBlue,
         );
-      case IconType.Object:
+      case "Object":
         return Icon(
           FontAwesomeIcons.box,
           color: Colors.brown,
         );
-      case IconType.Place:
+      case "Place":
         return Icon(
           FontAwesomeIcons.mapMarker,
           color: Colors.red,
         );
-      case IconType.Food:
+      case "Food":
         return Icon(
           FontAwesomeIcons.utensils,
           color: Colors.green,
         );
-      case IconType.Animal:
+      case "Animal":
         return Icon(
           FontAwesomeIcons.cat,
           color: Colors.orange,
         );
-      case IconType.Music:
+      case "Music":
         return Icon(
           FontAwesomeIcons.music,
           color: Colors.purple,
         );
-      case IconType.Game:
+      case "Game":
         return Icon(
           FontAwesomeIcons.gamepad,
           color: Colors.indigo,
         );
-      case IconType.Activity:
+      case "Activity":
         return Icon(
           FontAwesomeIcons.running,
           color: Colors.deepPurple,
         );
-      case IconType.Transport:
+      case "Transport":
         return Icon(
           FontAwesomeIcons.rocket,
           color: Colors.deepOrange,
         );
-      case IconType.Random:
+      case "Random":
         return Icon(
           FontAwesomeIcons.diceFive,
           color: Colors.blueGrey,
@@ -115,7 +115,7 @@ class RandomList {
   Map<String, dynamic> toMap() {
     return {
       'name': this.name,
-      'iconType': this.icon
+      'icon': this.icon
       // add the list here too?
     };
   }
@@ -123,18 +123,4 @@ class RandomList {
   static RandomList fromMap(Map<String, dynamic> map) {
     return RandomList(name: map['name'], icon: map['icon']);
   }
-}
-
-enum IconType {
-  Person,
-  Object,
-  Place,
-  Food,
-  Animal,
-  Music,
-  Game,
-  Activity,
-  Transport,
-  Random,
-  Generic,
 }

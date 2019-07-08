@@ -21,9 +21,11 @@ class RandomListBloc extends Bloc<RandomListEvent, RandomListState> {
     } else if (event is AddRandomList) {
       // Add list
       await _randomListDao.insert(RandomListGenerator.generate());
+      yield* _reloadRandomList();
     } else if (event is UpdateRandomList) {
       final newRandomList = RandomListGenerator.generate();
       newRandomList.id = event.randomList.id;
+      yield* _reloadRandomList();
     } else if (event is DeleteRandomList) {
       await _randomListDao.delete(event.randomList);
       yield* _reloadRandomList();
@@ -38,6 +40,6 @@ class RandomListBloc extends Bloc<RandomListEvent, RandomListState> {
 
 class RandomListGenerator {
   static RandomList generate() {
-    return new RandomList(name: "YEY", icon: IconType.Person);
+    return new RandomList(name: "YEY", icon: "Activity");
   }
 }
