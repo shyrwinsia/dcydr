@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:Choosr/bloc/bloc.dart';
 import 'package:Choosr/data/types.dart';
 import 'package:Choosr/pages/list.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -12,6 +13,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<RandomList> _lists = new List();
+  RandomListBloc _randomListBloc;
+
+  @override
+  void initState() {
+   super.initState();
+   _randomListBloc = BlocProvider.of<RandomListBloc>(context);
+   _randomListBloc.dispatch(LoadRandomList());
+  }
 
   _HomePageState();
 
@@ -43,15 +52,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(children: divided),
       floatingActionButton: FloatingActionButton(
-        onPressed: _pickAPlace,
+        onPressed: () { _randomListBloc.dispatch() },
         tooltip: 'Add new list',
         child: Icon(FontAwesomeIcons.plus),
       ),
     );
   }
-
-  _pickAPlace() {}
-}
 
 // TODO Clean this code
 // move the list to the front page
