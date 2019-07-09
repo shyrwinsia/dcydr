@@ -40,6 +40,6 @@ class RandomListBloc extends Bloc<RandomListEvent, RandomListState> {
 
 class RandomListGenerator {
   static RandomList generate() {
-    return new RandomList(name: "YEY", icon: "Activity");
+    return new RandomList(name: "Sample List", icon: "Person");
   }
 }

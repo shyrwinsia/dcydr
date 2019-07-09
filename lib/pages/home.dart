@@ -1,8 +1,8 @@
-import 'package:Choosr/data/types.dart';
+import 'package:Choosr/bloc/bloc.dart';
+import 'package:Choosr/pages/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:Choosr/bloc/bloc.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -61,6 +61,9 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 18.0),
                 ),
                 trailing: _renderMenuButton(displayRandomList),
+                onTap: () {
+                  _moveToListPage(displayRandomList);
+                },
               );
             },
           );
@@ -76,10 +79,6 @@ class _HomePageState extends State<HomePage> {
           _randomListBloc.dispatch(DeleteRandomList(randomList));
         }
       },
-      icon: Icon(
-        FontAwesomeIcons.ellipsisV,
-        color: Colors.black26,
-      ),
       itemBuilder: (BuildContext context) =>
           <PopupMenuEntry<RandomListActions>>[
             const PopupMenuItem<RandomListActions>(
@@ -92,5 +91,10 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
     );
+  }
+
+  void _moveToListPage(list) {
+    Navigator.of(context).push(new MaterialPageRoute(
+        builder: (context) => new RandomListsWidget(list)));
   }
 }
