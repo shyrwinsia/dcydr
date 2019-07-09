@@ -1,3 +1,4 @@
+import 'package:Choosr/data/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,6 +10,8 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
+enum RandomListActions { EDIT, DELETE }
 
 class _HomePageState extends State<HomePage> {
   RandomListBloc _randomListBloc;
@@ -39,26 +42,55 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildRandomListWidget() {
     return BlocBuilder(
-        bloc: _randomListBloc,
-        builder: (BuildContext context, RandomListState state) {
-          if (state is RandomListLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is RandomListLoaded) {
-            return ListView.separated(
-              separatorBuilder: (context, index) => Divider(),
-              itemCount: state.randomList.length,
-              itemBuilder: (context, index) {
-                final displayRandomList = state.randomList[index];
-                return ListTile(
-                  leading: displayRandomList.getIcon(),
-                  title: Text(displayRandomList.getName(),
-                      style: TextStyle(fontSize: 18.0)),
-                );
-              },
-            );
-          }
-        });
+      bloc: _randomListBloc,
+      builder: (BuildContext context, RandomListState state) {
+        if (state is RandomListLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is RandomListLoaded) {
+          return ListView.separated(
+            separatorBuilder: (context, index) => Divider(),
+            itemCount: state.randomList.length,
+            itemBuilder: (context, index) {
+              final displayRandomList = state.randomList[index];
+              return ListTile(
+                leading: displayRandomList.getIcon(),
+                title: Text(
+                  displayRandomList.getName(),
+                  style: TextStyle(fontSize: 18.0),
+                ),
+                trailing: _renderMenuButton(displayRandomList),
+              );
+            },
+          );
+        }
+      },
+    );
+  }
+
+  Widget _renderMenuButton(RandomList randomList) {
+    return PopupMenuButton<RandomListActions>(
+      onSelected: (RandomListActions result) {
+        if (result == RandomListActions.DELETE) {
+          _randomListBloc.dispatch(DeleteRandomList(randomList));
+        }
+      },
+      icon: Icon(
+        FontAwesomeIcons.ellipsisV,
+        color: Colors.black26,
+      ),
+      itemBuilder: (BuildContext context) =>
+          <PopupMenuEntry<RandomListActions>>[
+            const PopupMenuItem<RandomListActions>(
+              value: RandomListActions.EDIT,
+              child: Text('Edit'),
+            ),
+            const PopupMenuItem<RandomListActions>(
+              value: RandomListActions.DELETE,
+              child: Text('Delete'),
+            ),
+          ],
+    );
   }
 }
