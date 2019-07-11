@@ -29,15 +29,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Choosr"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(FontAwesomeIcons.plus),
+            onPressed: () {
+              _randomListBloc.dispatch(AddRandomList());
+            },
+          ),
+        ],
       ),
       body: _buildRandomListWidget(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _randomListBloc.dispatch(AddRandomList());
-        },
-        tooltip: 'Add new list',
-        child: Icon(FontAwesomeIcons.plus),
-      ),
     );
   }
 
