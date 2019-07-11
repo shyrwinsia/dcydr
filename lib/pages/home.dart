@@ -1,4 +1,5 @@
 import 'package:Choosr/bloc/bloc.dart';
+import 'package:Choosr/data/types.dart';
 import 'package:Choosr/pages/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,6 +78,10 @@ class _HomePageState extends State<HomePage> {
       onSelected: (RandomListActions result) {
         if (result == RandomListActions.DELETE) {
           _randomListBloc.dispatch(DeleteRandomList(randomList));
+        } else if (result == RandomListActions.EDIT) {
+          _randomListBloc.dispatch(UpdateRandomList(randomList));
+        } else {
+          Error();
         }
       },
       itemBuilder: (BuildContext context) =>
