@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:Choosr/data/types.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
+import 'package:Choosr/bloc/bloc.dart';
+import 'package:Choosr/data/types.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RandomListsWidget extends StatefulWidget {
   final RandomList _list;
@@ -13,9 +15,16 @@ class RandomListsWidget extends StatefulWidget {
 }
 
 class _RandomListsWidgetState extends State<RandomListsWidget> {
+  RandomListBloc _randomListBloc;
   String _pick = "";
   // Queue _pastPick = new Queue();
   var rng = Random();
+
+  @override
+  void initState() {
+    super.initState();
+    _randomListBloc = BlocProvider.of<RandomListBloc>(context);
+  }
 
   void _moveToListPage() {
     Navigator.of(context)
@@ -54,55 +63,24 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
     });
   }
 
-  // _pickAnItem() {
-  //   List<RandomListItem> items = widget._list.getActiveItems();
-  //   String _p;
-  //   var _ppLength;
-
-  //   if (items.length > 0) {
-  //     if (items.length > 1) {
-  //       _ppLength =
-  //           (items.length - _pastPick.length) > 3 ? 3 : items.length - 2;
-  //       if (_pastPick.length > 0) {
-  //         List _pastPickList = _pastPick.toList();
-  //         // realign past picks to the current pool
-  //         // past picks should be pool size - 2 or 3 whichever is higher
-
-  //         for (int i = 0; i < _ppLength; i++) _pastPick.removeFirst();
-
-  //         // remove all past picks
-  //         _pastPickList.forEach((i) {
-  //           items.removeWhere((it) => it.getName() == i.getName());
-  //         });
-  //       }
-
-  //       // pick
-  //       RandomListItem r = items.elementAt(rng.nextInt(items.length));
-
-  //       // dont make it go more than 3
-  //       // this prevents 3 consecutive picks
-  //       if (_pastPick.length > _ppLength) _pastPick.removeFirst();
-
-  //       // add to pick queue if there are more items than 3
-  //       if (_pastPick.length < items.length - 2) _pastPick.addLast(r);
-  //       _p = r.getName();
-  //     } else
-  //       _p = "Cant pick from only one choice\n¯\\_(ツ)_/¯";
-  //   } else {
-  //     _p = "Nothing to pick (◔_◔)";
-  //   }
-  //   setState(() {
-  //     _pick = _p;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget._list.getName()),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.list), onPressed: _moveToListPage),
+          IconButton(
+              icon: Icon(FontAwesomeIcons.solidEdit),
+              onPressed: _moveToListPage),
+          IconButton(
+            icon: Icon(FontAwesomeIcons.trash),
+            onPressed: () {
+              _randomListBloc.dispatch(DeleteRandomList(this.widget._list));
+              Navigator.of(context).pop();
+            },
+          ),
+          IconButton(
+              icon: Icon(FontAwesomeIcons.list), onPressed: _moveToListPage),
         ],
       ),
       body: Center(
@@ -207,3 +185,45 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
     );
   }
 }
+
+// _pickAnItem() {
+//   List<RandomListItem> items = widget._list.getActiveItems();
+//   String _p;
+//   var _ppLength;
+
+//   if (items.length > 0) {
+//     if (items.length > 1) {
+//       _ppLength =
+//           (items.length - _pastPick.length) > 3 ? 3 : items.length - 2;
+//       if (_pastPick.length > 0) {
+//         List _pastPickList = _pastPick.toList();
+//         // realign past picks to the current pool
+//         // past picks should be pool size - 2 or 3 whichever is higher
+
+//         for (int i = 0; i < _ppLength; i++) _pastPick.removeFirst();
+
+//         // remove all past picks
+//         _pastPickList.forEach((i) {
+//           items.removeWhere((it) => it.getName() == i.getName());
+//         });
+//       }
+
+//       // pick
+//       RandomListItem r = items.elementAt(rng.nextInt(items.length));
+
+//       // dont make it go more than 3
+//       // this prevents 3 consecutive picks
+//       if (_pastPick.length > _ppLength) _pastPick.removeFirst();
+
+//       // add to pick queue if there are more items than 3
+//       if (_pastPick.length < items.length - 2) _pastPick.addLast(r);
+//       _p = r.getName();
+//     } else
+//       _p = "Cant pick from only one choice\n¯\\_(ツ)_/¯";
+//   } else {
+//     _p = "Nothing to pick (◔_◔)";
+//   }
+//   setState(() {
+//     _pick = _p;
+//   });
+// }
