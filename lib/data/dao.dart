@@ -1,5 +1,5 @@
-import 'package:Choosr/data/database.dart';
-import 'package:Choosr/data/types.dart';
+import 'package:choosr/data/database.dart';
+import 'package:choosr/data/types.dart';
 import 'package:sembast/sembast.dart';
 
 class RandomListDao {
@@ -25,8 +25,7 @@ class RandomListDao {
     final recordSnapshots = await _randomListStore.find(await _db);
 
     return recordSnapshots.map((snapshot) {
-      final list = RandomList.fromMap(snapshot.value);
-      list.id = snapshot.key;
+      final list = RandomList.fromMap(snapshot.key, snapshot.value);
       return list;
     }).toList();
   }

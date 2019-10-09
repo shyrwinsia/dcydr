@@ -1,8 +1,6 @@
 import 'dart:math';
-import 'package:Choosr/bloc/bloc.dart';
-import 'package:Choosr/data/types.dart';
+import 'package:choosr/data/types.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RandomListsWidget extends StatefulWidget {
@@ -15,7 +13,6 @@ class RandomListsWidget extends StatefulWidget {
 }
 
 class _RandomListsWidgetState extends State<RandomListsWidget> {
-  RandomListBloc _randomListBloc;
   String _pick = "";
   // Queue _pastPick = new Queue();
   var rng = Random();
@@ -23,7 +20,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   @override
   void initState() {
     super.initState();
-    _randomListBloc = BlocProvider.of<RandomListBloc>(context);
+    // _randomListBloc = BlocProvider.of<RandomListBloc>(context);
   }
 
   void _moveToListPage() {
@@ -57,7 +54,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
     setState(() {
       items.length > 0
           ? items.length > 1
-              ? _pick = items.elementAt(rng.nextInt(items.length)).getName()
+              ? _pick = items.elementAt(rng.nextInt(items.length)).name
               : _pick = "Can't randomly pick from only one choice\n¯\\_(ツ)_/¯"
           : _pick = "Nothing to pick (◔_◔)";
     });
@@ -75,7 +72,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
           IconButton(
             icon: Icon(FontAwesomeIcons.trash),
             onPressed: () {
-              _randomListBloc.dispatch(DeleteRandomList(this.widget._list));
+              // _randomListBloc.dispatch(DeleteRandomList(this.widget._list));
               Navigator.of(context).pop();
             },
           ),
@@ -173,15 +170,15 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
   Widget build(BuildContext context) {
     return SwitchListTile(
       title: Text(
-        widget._item.getName(),
+        widget._item.name,
         style: TextStyle(fontSize: 18.0),
       ),
-      value: widget._item.isSelected(),
+      value: widget._item.selected,
       onChanged: (value) => {
-            setState(() {
-              widget._item.setSelected(value);
-            })
-          },
+        setState(() {
+          widget._item.selected = value;
+        })
+      },
     );
   }
 }

@@ -1,43 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// Datatype
-class RandomListItem {
-  String _name;
-  bool _selected = true;
-
-  RandomListItem(String name) {
-    this._name = name;
-  }
-
-  setSelected(bool selected) {
-    this._selected = selected;
-  }
-
-  getName() {
-    return this._name;
-  }
-
-  isSelected() {
-    return this._selected;
-  }
-}
-
+// Datatypes
 class RandomList {
-  int id;
+  final num id;
   final String name;
   final String icon;
-  final List<RandomListItem> items = new List();
+  final List<RandomListItem> items;
 
-  RandomList({@required this.name, @required this.icon});
+  RandomList({
+    @required this.id,
+    @required this.name,
+    @required this.icon,
+    @required this.items,
+  });
 
   getName() {
     return this.name;
   }
 
   getActiveItems() {
-    return this.items.where((i) => i.isSelected()).toList();
+    return this.items.where((i) => i.selected).toList();
   }
 
   getItems() {
@@ -52,75 +35,94 @@ class RandomList {
     this.items.remove(item);
   }
 
-  Icon getIcon() {
-    switch (this.icon) {
-      case "Person":
-        return Icon(
-          FontAwesomeIcons.userAlt,
-          color: Colors.lightBlue,
-        );
-      case "Object":
-        return Icon(
-          FontAwesomeIcons.box,
-          color: Colors.brown,
-        );
-      case "Place":
-        return Icon(
-          FontAwesomeIcons.mapMarker,
-          color: Colors.red,
-        );
-      case "Food":
-        return Icon(
-          FontAwesomeIcons.utensils,
-          color: Colors.green,
-        );
-      case "Animal":
-        return Icon(
-          FontAwesomeIcons.cat,
-          color: Colors.orange,
-        );
-      case "Music":
-        return Icon(
-          FontAwesomeIcons.music,
-          color: Colors.purple,
-        );
-      case "Game":
-        return Icon(
-          FontAwesomeIcons.gamepad,
-          color: Colors.indigo,
-        );
-      case "Activity":
-        return Icon(
-          FontAwesomeIcons.running,
-          color: Colors.deepPurple,
-        );
-      case "Transport":
-        return Icon(
-          FontAwesomeIcons.rocket,
-          color: Colors.deepOrange,
-        );
-      case "Random":
-        return Icon(
-          FontAwesomeIcons.diceFive,
-          color: Colors.blueGrey,
-        );
-      default:
-        return Icon(
-          FontAwesomeIcons.clipboardList,
-          color: Colors.black87,
-        );
-    }
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'name': this.name,
-      'icon': this.icon
-      // add the list here too?
+      'icon': this.icon,
     };
   }
 
-  static RandomList fromMap(Map<String, dynamic> map) {
-    return RandomList(name: map['name'], icon: map['icon']);
+  factory RandomList.fromMap(int key, Map<String, dynamic> map) {
+    return RandomList(
+      id: key,
+      name: map['name'],
+      icon: map['icon'],
+      items: RandomList.createItemsFromMap(map['items']),
+    );
+  }
+
+  static List<RandomListItem> createItemsFromMap(List map) {
+    return map.map((f) => RandomListItem.fromMap(f));
   }
 }
+
+class RandomListItem {
+  final String name;
+  bool selected = true;
+
+  RandomListItem({@required this.name, this.selected});
+
+  factory RandomListItem.fromMap(Map<String, dynamic> map) {
+    return RandomListItem(name: map['name'], selected: map['selected']);
+  }
+}
+
+// Icon getIcon() {
+//   switch (this.icon) {
+//     case "person":
+//       return Icon(
+//         FontAwesomeIcons.userAlt,
+//         color: Colors.lightBlue,
+//       );
+//     case "object":
+//       return Icon(
+//         FontAwesomeIcons.box,
+//         color: Colors.brown,
+//       );
+//     case "place":
+//       return Icon(
+//         FontAwesomeIcons.mapMarker,
+//         color: Colors.red,
+//       );
+//     case "food":
+//       return Icon(
+//         FontAwesomeIcons.utensils,
+//         color: Colors.green,
+//       );
+//     case "animal":
+//       return Icon(
+//         FontAwesomeIcons.cat,
+//         color: Colors.orange,
+//       );
+//     case "music":
+//       return Icon(
+//         FontAwesomeIcons.music,
+//         color: Colors.purple,
+//       );
+//     case "game":
+//       return Icon(
+//         FontAwesomeIcons.gamepad,
+//         color: Colors.indigo,
+//       );
+//     case "activity":
+//       return Icon(
+//         FontAwesomeIcons.running,
+//         color: Colors.deepPurple,
+//       );
+//     case "transport":
+//       return Icon(
+//         FontAwesomeIcons.rocket,
+//         color: Colors.deepOrange,
+//       );
+//     case "random":
+//       return Icon(
+//         FontAwesomeIcons.diceFive,
+//         color: Colors.blueGrey,
+//       );
+//     default:
+//       return Icon(
+//         FontAwesomeIcons.clipboardList,
+//         color: Colors.black87,
+//       );
+//   }
+// }
