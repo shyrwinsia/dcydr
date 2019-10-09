@@ -6,7 +6,7 @@ void main() => runApp(Choosr());
 class Choosr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Choosr',
       theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Raleway'),
