@@ -95,7 +95,7 @@ class RandomList {
       default:
         return Icon(
           FontAwesomeIcons.clipboardList,
-          color: Colors.black87,
+          color: Colors.black38,
         );
     }
   }

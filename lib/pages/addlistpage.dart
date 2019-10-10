@@ -21,12 +21,22 @@ class _AddListPageState extends State<AddListPage> {
     return ListView(
       padding: EdgeInsets.symmetric(
         vertical: 24,
-        horizontal: 32,
+        horizontal: 24,
       ),
       children: <Widget>[
         Row(
           children: <Widget>[
             InkWell(
+              child: Card(
+                elevation: 3,
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    FontAwesomeIcons.clipboardList,
+                    color: Colors.black38,
+                  ),
+                ),
+              ),
               onTap: () {
                 showDialog(
                   context: context,
@@ -50,7 +60,7 @@ class _AddListPageState extends State<AddListPage> {
                             _createCategoryInkwell(
                               'Generic',
                               FontAwesomeIcons.clipboardList,
-                              Colors.black87,
+                              Colors.black38,
                             ),
                             _createCategoryInkwell('People',
                                 FontAwesomeIcons.userAlt, Colors.lightBlue),
@@ -106,19 +116,9 @@ class _AddListPageState extends State<AddListPage> {
                   },
                 );
               },
-              child: Card(
-                elevation: 3,
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Icon(
-                    FontAwesomeIcons.clipboardList,
-                    color: Colors.black87,
-                  ),
-                ),
-              ),
             ),
             SizedBox(
-              width: 8,
+              width: 12,
             ),
             Flexible(
               child: TextField(
@@ -130,18 +130,15 @@ class _AddListPageState extends State<AddListPage> {
           ],
         ),
         SizedBox(
-          height: 32,
+          height: 24,
         ),
-        Text(
-          'List items',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: 8,
-        ),
-        RaisedButton(
+        RaisedButton.icon(
+          icon: Icon(
+            FontAwesomeIcons.plus,
+            size: 12,
+          ),
           onPressed: () {},
-          child: Text('Add item'),
+          label: Text('Add list item'),
         )
       ],
     );
@@ -157,19 +154,22 @@ class _AddListPageState extends State<AddListPage> {
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 8,
-          vertical: 16,
+          vertical: 12,
         ),
         child: Row(
           children: [
             Icon(
               iconData,
-              size: 16,
+              size: 18,
               color: color,
             ),
             SizedBox(
-              width: 24,
+              width: 18,
             ),
-            Text(category),
+            Text(
+              category,
+              style: TextStyle(fontSize: 14),
+            ),
           ],
         ),
       ),
