@@ -7,15 +7,11 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  String _icon;
-  List<String> _icons = ["Places"];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Add List'),
+        title: Text('Create new list'),
       ),
       body: _createForm(),
     );
@@ -23,51 +19,160 @@ class _AddListPageState extends State<AddListPage> {
 
   Widget _createForm() {
     return ListView(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.symmetric(
+        vertical: 24,
+        horizontal: 32,
+      ),
       children: <Widget>[
-        TextFormField(
-          decoration: InputDecoration(
-            labelText: 'Title',
-          ),
-        ),
-        FormField(
-          builder: (FormFieldState state) {
-            return InputDecorator(
-              decoration: InputDecoration(
-                labelText: 'Type',
-              ),
-              isEmpty: _icon == '',
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                  value: _icon,
-                  isDense: true,
-                  onChanged: (String newValue) {
-                    setState(() {
-                      _icon = newValue;
-                      state.didChange(newValue);
-                    });
-                  },
-                  items: _icons.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            FontAwesomeIcons.mapMarker,
-                            color: Colors.red,
-                          ),
-                          SizedBox(width: 16),
-                          Text(value),
-                        ],
+        Row(
+          children: <Widget>[
+            InkWell(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Container(
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Text(
+                              'Choose a category',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            _createCategoryInkwell(
+                              'Generic',
+                              FontAwesomeIcons.clipboardList,
+                              Colors.black87,
+                            ),
+                            _createCategoryInkwell('People',
+                                FontAwesomeIcons.userAlt, Colors.lightBlue),
+                            _createCategoryInkwell(
+                              'Objects',
+                              FontAwesomeIcons.box,
+                              Colors.brown,
+                            ),
+                            _createCategoryInkwell(
+                              'Places',
+                              FontAwesomeIcons.mapMarker,
+                              Colors.red,
+                            ),
+                            _createCategoryInkwell(
+                              'Food',
+                              FontAwesomeIcons.utensils,
+                              Colors.green,
+                            ),
+                            _createCategoryInkwell(
+                              'Animals',
+                              FontAwesomeIcons.cat,
+                              Colors.orange,
+                            ),
+                            _createCategoryInkwell(
+                              'Music',
+                              FontAwesomeIcons.music,
+                              Colors.purple,
+                            ),
+                            _createCategoryInkwell(
+                              'Games',
+                              FontAwesomeIcons.gamepad,
+                              Colors.indigo,
+                            ),
+                            _createCategoryInkwell(
+                              'Activities',
+                              FontAwesomeIcons.running,
+                              Colors.deepPurple,
+                            ),
+                            _createCategoryInkwell(
+                              'Transporation',
+                              FontAwesomeIcons.rocket,
+                              Colors.deepOrange,
+                            ),
+                            _createCategoryInkwell(
+                              'Random',
+                              FontAwesomeIcons.diceFive,
+                              Colors.blueGrey,
+                            ),
+                          ],
+                        ),
                       ),
                     );
-                  }).toList(),
+                  },
+                );
+              },
+              child: Card(
+                elevation: 3,
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    FontAwesomeIcons.clipboardList,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
-            );
-          },
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Flexible(
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter list name',
+                ),
+              ),
+            ),
+          ],
         ),
+        SizedBox(
+          height: 32,
+        ),
+        Text(
+          'List items',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        RaisedButton(
+          onPressed: () {},
+          child: Text('Add item'),
+        )
       ],
+    );
+  }
+
+  Widget _createCategoryInkwell(
+    String category,
+    IconData iconData,
+    Color color,
+  ) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 16,
+        ),
+        child: Row(
+          children: [
+            Icon(
+              iconData,
+              size: 16,
+              color: color,
+            ),
+            SizedBox(
+              width: 24,
+            ),
+            Text(category),
+          ],
+        ),
+      ),
     );
   }
 }

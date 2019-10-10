@@ -9,8 +9,14 @@ class Choosr extends StatelessWidget {
     return MaterialApp(
       title: 'Choosr',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
         fontFamily: 'Raleway',
+        brightness: Brightness.light,
+        primarySwatch: Colors.teal,
+      ),
+      darkTheme: ThemeData(
+        fontFamily: 'Raleway',
+        brightness: Brightness.dark,
+        primarySwatch: Colors.teal,
       ),
       home: HomePage(),
     );

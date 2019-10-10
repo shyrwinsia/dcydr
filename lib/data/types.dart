@@ -6,13 +6,13 @@ import 'package:meta/meta.dart';
 class RandomList {
   final num id;
   final String name;
-  final String icon;
+  final String type;
   final List<RandomListItem> items;
 
   RandomList({
     @required this.id,
     @required this.name,
-    @required this.icon,
+    @required this.type,
     @required this.items,
   });
 
@@ -23,7 +23,7 @@ class RandomList {
   Map<String, dynamic> toMap() {
     return {
       'name': this.name,
-      'icon': this.icon,
+      'type': this.type,
     };
   }
 
@@ -31,7 +31,7 @@ class RandomList {
     return RandomList(
       id: key,
       name: map['name'],
-      icon: map['icon'],
+      type: map['type'],
       items: RandomList.createItemsFromMap(map['items']),
     );
   }
@@ -40,8 +40,8 @@ class RandomList {
     return map.map((f) => RandomListItem.fromMap(f));
   }
 
-  Icon get iconWidget {
-    switch (this.icon) {
+  Icon get icon {
+    switch (this.type.toLowerCase()) {
       case "person":
         return Icon(
           FontAwesomeIcons.userAlt,

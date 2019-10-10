@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       ..add(RandomList(
         id: 2,
         name: 'Teammates',
-        icon: 'person',
+        type: 'person',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       ..add(RandomList(
         id: 2,
         name: 'Dice',
-        icon: 'random',
+        type: 'random',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       ..add(RandomList(
         id: 2,
         name: 'Hand',
-        icon: 'game',
+        type: 'game',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
     final Iterable<ListTile> tiles = list.map(
       (r) {
         return ListTile(
-          leading: r.iconWidget,
+          leading: r.icon,
           title: Text(
             r.name,
           ),
