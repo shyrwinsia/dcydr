@@ -26,7 +26,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   void _moveToListPage() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      List<RandomListItem> _items = widget._list.getItems();
+      List<RandomListItem> _items = widget._list.items;
 
       final Iterable<CustomSwitchTile> tiles = _items.map(
         (RandomListItem item) {
@@ -41,7 +41,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
 
       return Scaffold(
         appBar: AppBar(
-          title: Text(widget._list.getName() + ' choices'),
+          title: Text(widget._list.name + ' choices'),
         ),
         body: ListView(children: divided),
       );
@@ -49,7 +49,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   }
 
   _pickAnItem() {
-    List<RandomListItem> items = widget._list.getActiveItems();
+    List<RandomListItem> items = widget._list.active;
     // TODO Store old picks up to 2 so it will not keep repeating
     setState(() {
       items.length > 0
@@ -64,7 +64,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._list.getName()),
+        title: Text(widget._list.name),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.solidEdit),
@@ -87,7 +87,7 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
             FadeIn(
               child: Text(
                 _pick == ""
-                    ? "Press button to choose from " + widget._list.getName()
+                    ? "Press button to choose from " + widget._list.name
                     : _pick,
                 textAlign: TextAlign.center,
                 style:
