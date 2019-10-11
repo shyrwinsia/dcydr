@@ -18,7 +18,9 @@ class _AddListPageState extends State<AddListPage> {
         title: Text('Create new list'),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: Icon(FontAwesomeIcons.solidSave),
           )
         ],
@@ -29,10 +31,7 @@ class _AddListPageState extends State<AddListPage> {
 
   Widget _buildForm() {
     return ListView(
-      padding: EdgeInsets.symmetric(
-        vertical: 24,
-        horizontal: 24,
-      ),
+      padding: EdgeInsets.all(24),
       children: <Widget>[
         Row(
           children: <Widget>[

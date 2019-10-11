@@ -20,32 +20,34 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   @override
   void initState() {
     super.initState();
-    // _randomListBloc = BlocProvider.of<RandomListBloc>(context);
   }
 
   void _moveToListPage() {
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      List<RandomListItem> _items = widget._list.items;
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          List<RandomListItem> _items = widget._list.items;
 
-      final Iterable<CustomSwitchTile> tiles = _items.map(
-        (RandomListItem item) {
-          return CustomSwitchTile(item);
+          final Iterable<CustomSwitchTile> tiles = _items.map(
+            (RandomListItem item) {
+              return CustomSwitchTile(item);
+            },
+          );
+
+          final List<Widget> divided = ListTile.divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(widget._list.name + ' choices'),
+            ),
+            body: ListView(children: divided),
+          );
         },
-      );
-
-      final List<Widget> divided = ListTile.divideTiles(
-        context: context,
-        tiles: tiles,
-      ).toList();
-
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(widget._list.name + ' choices'),
-        ),
-        body: ListView(children: divided),
-      );
-    }));
+      ),
+    );
   }
 
   _pickAnItem() {
