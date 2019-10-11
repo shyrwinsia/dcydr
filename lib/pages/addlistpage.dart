@@ -8,13 +8,20 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  String _category = 'generic';
+  String _type = 'generic';
+  List _items = List();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Create new list'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(FontAwesomeIcons.solidSave),
+          )
+        ],
       ),
       body: _buildForm(),
     );
@@ -31,10 +38,10 @@ class _AddListPageState extends State<AddListPage> {
           children: <Widget>[
             InkWell(
               child: Card(
-                elevation: 3,
+                elevation: 1,
                 child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: RandomList.iconFromType(_category),
+                  padding: EdgeInsets.all(16),
+                  child: RandomList.iconFromType(_type),
                 ),
               ),
               onTap: () {
@@ -59,29 +66,39 @@ class _AddListPageState extends State<AddListPage> {
           ],
         ),
         SizedBox(
-          height: 24,
+          height: 16,
         ),
-        RaisedButton.icon(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: _buildListItems(),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        FlatButton.icon(
           icon: Icon(
             FontAwesomeIcons.plus,
             size: 12,
           ),
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return _buildAddItemDialog();
+              },
+            );
+          },
           label: Text('Add list item'),
         )
       ],
     );
   }
 
-  Widget _buildCategoryInkwell(
-    String category,
-    IconData iconData,
-    Color color,
-  ) {
+  Widget _buildCategoryInkwell(RandomListType type) {
     return InkWell(
       onTap: () {
         setState(() {
-          _category = category.toLowerCase();
+          _type = type.name;
         });
         Navigator.pop(context);
       },
@@ -91,17 +108,17 @@ class _AddListPageState extends State<AddListPage> {
           vertical: 12,
         ),
         child: Row(
-          children: [
+          children: <Widget>[
             Icon(
-              iconData,
+              type.icon,
               size: 18,
-              color: color,
+              color: type.color,
             ),
             SizedBox(
               width: 18,
             ),
             Text(
-              category,
+              type.name,
               style: TextStyle(fontSize: 14),
             ),
           ],
@@ -125,66 +142,110 @@ class _AddListPageState extends State<AddListPage> {
               ),
             ),
             SizedBox(
-              height: 16,
+              height: 24,
             ),
-            _buildCategoryInkwell(
-              'Generic',
-              FontAwesomeIcons.clipboardList,
-              Colors.black38,
-            ),
-            _buildCategoryInkwell(
-              'People',
-              FontAwesomeIcons.userAlt,
-              Colors.lightBlue,
-            ),
-            _buildCategoryInkwell(
-              'Objects',
-              FontAwesomeIcons.box,
-              Colors.brown,
-            ),
-            _buildCategoryInkwell(
-              'Places',
-              FontAwesomeIcons.mapMarker,
-              Colors.red,
-            ),
-            _buildCategoryInkwell(
-              'Food',
-              FontAwesomeIcons.utensils,
-              Colors.green,
-            ),
-            _buildCategoryInkwell(
-              'Animals',
-              FontAwesomeIcons.cat,
-              Colors.orange,
-            ),
-            _buildCategoryInkwell(
-              'Music',
-              FontAwesomeIcons.music,
-              Colors.purple,
-            ),
-            _buildCategoryInkwell(
-              'Games',
-              FontAwesomeIcons.gamepad,
-              Colors.indigo,
-            ),
-            _buildCategoryInkwell(
-              'Activities',
-              FontAwesomeIcons.running,
-              Colors.deepPurple,
-            ),
-            _buildCategoryInkwell(
-              'Transporation',
-              FontAwesomeIcons.rocket,
-              Colors.deepOrange,
-            ),
-            _buildCategoryInkwell(
-              'Random',
-              FontAwesomeIcons.diceFive,
-              Colors.blueGrey,
+            Column(
+              children: RandomListTypes.types
+                  .map(
+                    (type) => _buildCategoryInkwell(type),
+                  )
+                  .toList(),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildAddItemDialog() {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              'Add list item',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            TextField(
+              controller: addItemTextController,
+              decoration: InputDecoration(
+                hintText: 'Enter item name',
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FlatButton(
+                  child: Text('Cancel'),
+                  onPressed: () {
+                    addItemTextController.text = '';
+                    Navigator.pop(context);
+                  },
+                ),
+                RaisedButton(
+                  child: Text('Add'),
+                  onPressed: () => setState(
+                    () {
+                      _items.add(addItemTextController.text);
+                      addItemTextController.text = '';
+                      Navigator.pop(context);
+                    },
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  _buildListItems() {
+    return _items
+        .map(
+          (f) => Card(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(f),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _items.remove(f);
+                      });
+                    },
+                    icon: Icon(
+                      FontAwesomeIcons.trash,
+                      size: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        )
+        .toList();
+  }
+
+  final addItemTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    addItemTextController.dispose();
+    super.dispose();
   }
 }
