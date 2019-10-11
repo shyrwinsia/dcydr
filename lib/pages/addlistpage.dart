@@ -1,3 +1,4 @@
+import 'package:choosr/data/types.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -7,17 +8,19 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
+  String _category = 'generic';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Create new list'),
       ),
-      body: _createForm(),
+      body: _buildForm(),
     );
   }
 
-  Widget _createForm() {
+  Widget _buildForm() {
     return ListView(
       padding: EdgeInsets.symmetric(
         vertical: 24,
@@ -31,88 +34,14 @@ class _AddListPageState extends State<AddListPage> {
                 elevation: 3,
                 child: Padding(
                   padding: EdgeInsets.all(8),
-                  child: Icon(
-                    FontAwesomeIcons.clipboardList,
-                    color: Colors.black38,
-                  ),
+                  child: RandomList.iconFromType(_category),
                 ),
               ),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: Container(
-                        padding: EdgeInsets.all(8),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Text(
-                              'Choose a category',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            _createCategoryInkwell(
-                              'Generic',
-                              FontAwesomeIcons.clipboardList,
-                              Colors.black38,
-                            ),
-                            _createCategoryInkwell('People',
-                                FontAwesomeIcons.userAlt, Colors.lightBlue),
-                            _createCategoryInkwell(
-                              'Objects',
-                              FontAwesomeIcons.box,
-                              Colors.brown,
-                            ),
-                            _createCategoryInkwell(
-                              'Places',
-                              FontAwesomeIcons.mapMarker,
-                              Colors.red,
-                            ),
-                            _createCategoryInkwell(
-                              'Food',
-                              FontAwesomeIcons.utensils,
-                              Colors.green,
-                            ),
-                            _createCategoryInkwell(
-                              'Animals',
-                              FontAwesomeIcons.cat,
-                              Colors.orange,
-                            ),
-                            _createCategoryInkwell(
-                              'Music',
-                              FontAwesomeIcons.music,
-                              Colors.purple,
-                            ),
-                            _createCategoryInkwell(
-                              'Games',
-                              FontAwesomeIcons.gamepad,
-                              Colors.indigo,
-                            ),
-                            _createCategoryInkwell(
-                              'Activities',
-                              FontAwesomeIcons.running,
-                              Colors.deepPurple,
-                            ),
-                            _createCategoryInkwell(
-                              'Transporation',
-                              FontAwesomeIcons.rocket,
-                              Colors.deepOrange,
-                            ),
-                            _createCategoryInkwell(
-                              'Random',
-                              FontAwesomeIcons.diceFive,
-                              Colors.blueGrey,
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    return _buildCategoryDialog();
                   },
                 );
               },
@@ -144,13 +73,18 @@ class _AddListPageState extends State<AddListPage> {
     );
   }
 
-  Widget _createCategoryInkwell(
+  Widget _buildCategoryInkwell(
     String category,
     IconData iconData,
     Color color,
   ) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        setState(() {
+          _category = category.toLowerCase();
+        });
+        Navigator.pop(context);
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 8,
@@ -169,6 +103,84 @@ class _AddListPageState extends State<AddListPage> {
             Text(
               category,
               style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCategoryDialog() {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              'Choose a category',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            _buildCategoryInkwell(
+              'Generic',
+              FontAwesomeIcons.clipboardList,
+              Colors.black38,
+            ),
+            _buildCategoryInkwell(
+              'People',
+              FontAwesomeIcons.userAlt,
+              Colors.lightBlue,
+            ),
+            _buildCategoryInkwell(
+              'Objects',
+              FontAwesomeIcons.box,
+              Colors.brown,
+            ),
+            _buildCategoryInkwell(
+              'Places',
+              FontAwesomeIcons.mapMarker,
+              Colors.red,
+            ),
+            _buildCategoryInkwell(
+              'Food',
+              FontAwesomeIcons.utensils,
+              Colors.green,
+            ),
+            _buildCategoryInkwell(
+              'Animals',
+              FontAwesomeIcons.cat,
+              Colors.orange,
+            ),
+            _buildCategoryInkwell(
+              'Music',
+              FontAwesomeIcons.music,
+              Colors.purple,
+            ),
+            _buildCategoryInkwell(
+              'Games',
+              FontAwesomeIcons.gamepad,
+              Colors.indigo,
+            ),
+            _buildCategoryInkwell(
+              'Activities',
+              FontAwesomeIcons.running,
+              Colors.deepPurple,
+            ),
+            _buildCategoryInkwell(
+              'Transporation',
+              FontAwesomeIcons.rocket,
+              Colors.deepOrange,
+            ),
+            _buildCategoryInkwell(
+              'Random',
+              FontAwesomeIcons.diceFive,
+              Colors.blueGrey,
             ),
           ],
         ),

@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       ..add(RandomList(
         id: 2,
         name: 'Teammates',
-        type: 'person',
+        type: 'people',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       ..add(RandomList(
         id: 2,
         name: 'Dice',
-        type: 'random',
+        type: 'places',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       ..add(RandomList(
         id: 2,
         name: 'Hand',
-        type: 'game',
+        type: 'games',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],

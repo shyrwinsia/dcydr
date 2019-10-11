@@ -40,19 +40,19 @@ class RandomList {
     return map.map((f) => RandomListItem.fromMap(f));
   }
 
-  Icon get icon {
-    switch (this.type.toLowerCase()) {
-      case "person":
+  static Icon iconFromType(String type) {
+    switch (type) {
+      case "people":
         return Icon(
           FontAwesomeIcons.userAlt,
           color: Colors.lightBlue,
         );
-      case "object":
+      case "objects":
         return Icon(
           FontAwesomeIcons.box,
           color: Colors.brown,
         );
-      case "place":
+      case "places":
         return Icon(
           FontAwesomeIcons.mapMarker,
           color: Colors.red,
@@ -62,7 +62,7 @@ class RandomList {
           FontAwesomeIcons.utensils,
           color: Colors.green,
         );
-      case "animal":
+      case "animals":
         return Icon(
           FontAwesomeIcons.cat,
           color: Colors.orange,
@@ -72,17 +72,17 @@ class RandomList {
           FontAwesomeIcons.music,
           color: Colors.purple,
         );
-      case "game":
+      case "games":
         return Icon(
           FontAwesomeIcons.gamepad,
           color: Colors.indigo,
         );
-      case "activity":
+      case "activities":
         return Icon(
           FontAwesomeIcons.running,
           color: Colors.deepPurple,
         );
-      case "transport":
+      case "transportation":
         return Icon(
           FontAwesomeIcons.rocket,
           color: Colors.deepOrange,
@@ -98,6 +98,10 @@ class RandomList {
           color: Colors.black38,
         );
     }
+  }
+
+  Icon get icon {
+    return RandomList.iconFromType(this.type);
   }
 }
 
