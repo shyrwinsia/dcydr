@@ -1,6 +1,6 @@
 import 'package:choosr/data/types.dart';
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AddListPage extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _AddListPageState extends State<AddListPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(FontAwesomeIcons.solidSave),
+            icon: Icon(FlatIcons.save),
           )
         ],
       ),
@@ -76,7 +76,7 @@ class _AddListPageState extends State<AddListPage> {
         ),
         FlatButton.icon(
           icon: Icon(
-            FontAwesomeIcons.plus,
+            FlatIcons.add,
             size: 12,
           ),
           onPressed: () {
@@ -227,7 +227,7 @@ class _AddListPageState extends State<AddListPage> {
                       });
                     },
                     icon: Icon(
-                      FontAwesomeIcons.trash,
+                      FlatIcons.trash,
                       size: 16,
                     ),
                   ),

@@ -8,8 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
   font_awesome_flutter: any
+  flat_icons_flutter: ^1.0.2
   sembast: ^1.15.1
   path_provider: ^0.5.0+1
   # Used for BLoC state management
@@ -22,8 +22,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: Raleway
+    - family: GothamPro
       fonts:
-        - asset: fonts/Raleway-Regular.ttf
-        - asset: fonts/Raleway-Thin.ttf
-          style: italic
+        - asset: fonts/GothamPro-Regular.otf
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.otf

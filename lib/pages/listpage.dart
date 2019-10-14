@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:choosr/data/types.dart';
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -68,18 +69,15 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
       appBar: AppBar(
         title: Text(widget._list.name),
         actions: <Widget>[
+          IconButton(icon: Icon(FlatIcons.edit), onPressed: _moveToListPage),
           IconButton(
-              icon: Icon(FontAwesomeIcons.solidEdit),
-              onPressed: _moveToListPage),
-          IconButton(
-            icon: Icon(FontAwesomeIcons.trash),
+            icon: Icon(FlatIcons.trash),
             onPressed: () {
               // _randomListBloc.dispatch(DeleteRandomList(this.widget._list));
               Navigator.of(context).pop();
             },
           ),
-          IconButton(
-              icon: Icon(FontAwesomeIcons.list), onPressed: _moveToListPage),
+          IconButton(icon: Icon(FlatIcons.list), onPressed: _moveToListPage),
         ],
       ),
       body: Center(

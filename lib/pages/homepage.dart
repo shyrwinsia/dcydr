@@ -1,7 +1,7 @@
 import 'package:choosr/data/types.dart';
 import 'package:choosr/pages/addlistpage.dart';
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   final List _list = List<RandomList>();
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _navigateToAddRandomListPage(context),
         tooltip: 'Add new list',
-        child: Icon(FontAwesomeIcons.plus),
+        child: Icon(FlatIcons.add),
       ),
     );
   }

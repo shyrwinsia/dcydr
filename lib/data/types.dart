@@ -1,5 +1,5 @@
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:meta/meta.dart';
 
 // Datatypes
@@ -44,67 +44,67 @@ class RandomList {
     switch (type.toLowerCase()) {
       case 'people':
         return Icon(
-          FontAwesomeIcons.userAlt,
+          FlatIcons.user,
           color: Colors.lightBlue,
           size: 20,
         );
       case 'objects':
         return Icon(
-          FontAwesomeIcons.box,
+          FlatIcons.user,
           color: Colors.brown,
           size: 20,
         );
       case 'places':
         return Icon(
-          FontAwesomeIcons.mapMarker,
+          FlatIcons.pin,
           color: Colors.red,
           size: 20,
         );
       case 'food':
         return Icon(
-          FontAwesomeIcons.utensils,
+          FlatIcons.user,
           color: Colors.green,
           size: 20,
         );
       case 'animals':
         return Icon(
-          FontAwesomeIcons.cat,
+          FlatIcons.user,
           color: Colors.orange,
           size: 20,
         );
       case 'music':
         return Icon(
-          FontAwesomeIcons.music,
+          FlatIcons.user,
           color: Colors.purple,
           size: 20,
         );
       case 'games':
         return Icon(
-          FontAwesomeIcons.gamepad,
+          FlatIcons.user,
           color: Colors.indigo,
           size: 20,
         );
       case 'activities':
         return Icon(
-          FontAwesomeIcons.running,
+          FlatIcons.user,
           color: Colors.deepPurple,
           size: 20,
         );
       case 'transportation':
         return Icon(
-          FontAwesomeIcons.rocket,
+          FlatIcons.user,
           color: Colors.deepOrange,
           size: 20,
         );
       case 'random':
         return Icon(
-          FontAwesomeIcons.diceFive,
+          FlatIcons.user,
           color: Colors.blueGrey,
           size: 20,
         );
       default:
         return Icon(
-          FontAwesomeIcons.clipboardList,
+          FlatIcons.user,
           color: Colors.teal,
           size: 20,
         );
@@ -120,57 +120,57 @@ class RandomListTypes {
   static final List types = List<RandomListType>()
     ..add(RandomListType(
       name: 'People',
-      icon: FontAwesomeIcons.userAlt,
+      icon: FlatIcons.user,
       color: Colors.lightBlue,
     ))
     ..add(RandomListType(
       name: 'Objects',
-      icon: FontAwesomeIcons.box,
+      icon: FlatIcons.user,
       color: Colors.brown,
     ))
     ..add(RandomListType(
       name: 'Places',
-      icon: FontAwesomeIcons.mapMarker,
+      icon: FlatIcons.user,
       color: Colors.red,
     ))
     ..add(RandomListType(
       name: 'Food',
-      icon: FontAwesomeIcons.utensils,
+      icon: FlatIcons.user,
       color: Colors.green,
     ))
     ..add(RandomListType(
       name: 'Animals',
-      icon: FontAwesomeIcons.cat,
+      icon: FlatIcons.user,
       color: Colors.orange,
     ))
     ..add(RandomListType(
       name: 'Music',
-      icon: FontAwesomeIcons.music,
+      icon: FlatIcons.user,
       color: Colors.purple,
     ))
     ..add(RandomListType(
       name: 'Games',
-      icon: FontAwesomeIcons.gamepad,
+      icon: FlatIcons.user,
       color: Colors.indigo,
     ))
     ..add(RandomListType(
       name: 'Activities',
-      icon: FontAwesomeIcons.running,
+      icon: FlatIcons.user,
       color: Colors.deepPurple,
     ))
     ..add(RandomListType(
       name: 'Transportation',
-      icon: FontAwesomeIcons.rocket,
+      icon: FlatIcons.user,
       color: Colors.deepOrange,
     ))
     ..add(RandomListType(
       name: 'Random',
-      icon: FontAwesomeIcons.diceFive,
+      icon: FlatIcons.user,
       color: Colors.blueGrey,
     ))
     ..add(RandomListType(
       name: 'Generic',
-      icon: FontAwesomeIcons.clipboardList,
+      icon: FlatIcons.user,
       color: Colors.teal,
     ));
 }
