@@ -111,6 +111,10 @@ class HomePage extends StatelessWidget {
             size: 18,
             color: const Color(0x44000000),
           ),
+          onLongPress: () => showDialog(
+            context: context,
+            builder: (BuildContext context) => _successDialog(context),
+          ),
         );
       },
     );
@@ -125,6 +129,60 @@ class HomePage extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) => AddListPage(),
+      ),
+    );
+  }
+
+  Widget _successDialog(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      elevation: 0.0,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(4),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10.0,
+              offset: const Offset(0.0, 10.0),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              dense: true,
+              onTap: () => Navigator.pop(context),
+              leading: Icon(
+                FlatIcons.edit,
+                color: Colors.brown,
+                size: 14,
+              ),
+              title: Text(
+                'Edit list',
+              ),
+            ),
+            ListTile(
+              dense: true,
+              onTap: () => Navigator.pop(context),
+              leading: Icon(
+                FlatIcons.trash,
+                color: Colors.red,
+                size: 14,
+              ),
+              title: Text(
+                'Delete list',
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
