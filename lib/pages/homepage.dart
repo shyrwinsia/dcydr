@@ -2,6 +2,7 @@ import 'package:choosr/data/types.dart';
 import 'package:choosr/pages/addlistpage.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   final List _list = List<RandomList>();
@@ -10,24 +11,64 @@ class HomePage extends StatelessWidget {
     _list
       ..add(RandomList(
         id: 2,
-        name: 'Teammates',
-        type: 'people',
+        name: 'Thingz to buy',
+        type: 'tag',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
       ))
       ..add(RandomList(
         id: 2,
-        name: 'Dice',
-        type: 'places',
+        name: 'Speaking notes',
+        type: 'megaphone',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
       ))
       ..add(RandomList(
         id: 2,
-        name: 'Hand',
-        type: 'games',
+        name: 'Shitty ideas',
+        type: 'idea',
+        items: <RandomListItem>[
+          RandomListItem(name: 'FQ'),
+        ],
+      ))
+      ..add(RandomList(
+        id: 2,
+        name: 'Lunch places',
+        type: 'location',
+        items: <RandomListItem>[
+          RandomListItem(name: 'FQ'),
+        ],
+      ))
+      ..add(RandomList(
+        id: 2,
+        name: 'Stupid things',
+        type: 'star',
+        items: <RandomListItem>[
+          RandomListItem(name: 'FQ'),
+        ],
+      ))
+      ..add(RandomList(
+        id: 2,
+        name: 'Whatever',
+        type: 'diamond',
+        items: <RandomListItem>[
+          RandomListItem(name: 'FQ'),
+        ],
+      ))
+      ..add(RandomList(
+        id: 2,
+        name: 'Generic list',
+        type: 'list',
+        items: <RandomListItem>[
+          RandomListItem(name: 'FQ'),
+        ],
+      ))
+      ..add(RandomList(
+        id: 2,
+        name: 'Team membahs',
+        type: 'user',
         items: <RandomListItem>[
           RandomListItem(name: 'FQ'),
         ],
@@ -37,15 +78,23 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text("Choosr"),
+      appBar: GradientAppBar(
+        backgroundColorStart: const Color(0xff13b6cb),
+        backgroundColorEnd: const Color(0xff2a86cb),
+        centerTitle: true,
+        title: Text("Choosr"),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () => _navigateToAddRandomListPage(context),
+            icon: Icon(
+              FlatIcons.add_3,
+              size: 18,
+            ),
+          )
+        ],
+        elevation: 0,
       ),
       body: _createList(_list, context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _navigateToAddRandomListPage(context),
-        tooltip: 'Add new list',
-        child: Icon(FlatIcons.add),
-      ),
     );
   }
 
@@ -56,6 +105,11 @@ class HomePage extends StatelessWidget {
           leading: r.icon,
           title: Text(
             r.name,
+          ),
+          trailing: Icon(
+            FlatIcons.con_right_arrow_1_a,
+            size: 18,
+            color: const Color(0x44000000),
           ),
         );
       },

@@ -3,7 +3,7 @@ description: Randomize picker for victims of analysis paralysis
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.2.0 <3.0.0'
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,6 +15,7 @@ dependencies:
   # Used for BLoC state management
   flutter_bloc: ^0.21.0
   equatable: ^0.6.0
+  gradient_app_bar: ^0.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

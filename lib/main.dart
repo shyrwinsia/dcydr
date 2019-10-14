@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:choosr/pages/homepage.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(Choosr());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  runApp(Choosr());
+}
 
 class Choosr extends StatelessWidget {
   @override
@@ -9,15 +14,10 @@ class Choosr extends StatelessWidget {
     return MaterialApp(
       title: 'Choosr',
       theme: ThemeData(
-        fontFamily: 'Raleway',
-        brightness: Brightness.light,
-        primarySwatch: Colors.teal,
+        fontFamily: 'Poppins',
+        backgroundColor: const Color(0xfff7f7f9),
       ),
-      darkTheme: ThemeData(
-        fontFamily: 'Raleway',
-        brightness: Brightness.dark,
-        primarySwatch: Colors.teal,
-      ),
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }

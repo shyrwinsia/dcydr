@@ -42,71 +42,59 @@ class RandomList {
 
   static Icon iconFromType(String type) {
     switch (type.toLowerCase()) {
-      case 'people':
+      case 'user':
         return Icon(
           FlatIcons.user,
-          color: Colors.lightBlue,
-          size: 20,
+          color: Colors.blue,
+          size: 18,
         );
-      case 'objects':
+      case 'star':
         return Icon(
-          FlatIcons.user,
-          color: Colors.brown,
-          size: 20,
-        );
-      case 'places':
-        return Icon(
-          FlatIcons.pin,
-          color: Colors.red,
-          size: 20,
-        );
-      case 'food':
-        return Icon(
-          FlatIcons.user,
-          color: Colors.green,
-          size: 20,
-        );
-      case 'animals':
-        return Icon(
-          FlatIcons.user,
+          FlatIcons.star,
           color: Colors.orange,
-          size: 20,
+          size: 18,
         );
-      case 'music':
+      case 'location':
         return Icon(
-          FlatIcons.user,
+          FlatIcons.map_location,
+          color: Colors.red,
+          size: 18,
+        );
+      case 'megaphone':
+        return Icon(
+          FlatIcons.megaphone,
           color: Colors.purple,
-          size: 20,
+          size: 18,
         );
-      case 'games':
+      case 'diamond':
         return Icon(
-          FlatIcons.user,
+          FlatIcons.diamond,
           color: Colors.indigo,
-          size: 20,
+          size: 18,
         );
-      case 'activities':
+      case 'tag':
         return Icon(
-          FlatIcons.user,
-          color: Colors.deepPurple,
-          size: 20,
+          FlatIcons.price_tag,
+          color: Colors.cyan,
+          size: 18,
         );
-      case 'transportation':
+      case 'idea':
         return Icon(
-          FlatIcons.user,
-          color: Colors.deepOrange,
-          size: 20,
+          FlatIcons.idea,
+          color: Colors.amber,
+          size: 18,
         );
-      case 'random':
+      case 'list':
         return Icon(
-          FlatIcons.user,
-          color: Colors.blueGrey,
-          size: 20,
+          FlatIcons.list,
+          color: Colors.teal,
+          size: 18,
         );
       default:
         return Icon(
-          FlatIcons.user,
+          FlatIcons.list,
           color: Colors.teal,
-          size: 20,
+          size: 18,
         );
     }
   }
