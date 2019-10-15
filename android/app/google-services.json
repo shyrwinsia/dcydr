@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "39036283144",
+    "firebase_url": "https://choosr-beta.firebaseio.com",
+    "project_id": "choosr-beta",
+    "storage_bucket": "choosr-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39036283144:android:2e8010b01c3ca7eb9ca4bd",
+        "android_client_info": {
+          "package_name": "dev.ssia.choosr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39036283144-ochtu2hkif0c3lfdc9p0o1ch8ddiaiqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjJRA7AKOxKi7kIPX5TUaCC5MC1K81M2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39036283144-ochtu2hkif0c3lfdc9p0o1ch8ddiaiqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
