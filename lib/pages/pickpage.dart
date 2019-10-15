@@ -194,7 +194,7 @@ class CustomSwitchTile extends StatefulWidget {
   CustomSwitchTile(this._item);
 
   @override
-  _CustomSwitchTileState createState() => new _CustomSwitchTileState();
+  _CustomSwitchTileState createState() => _CustomSwitchTileState();
 }
 
 class _CustomSwitchTileState extends State<CustomSwitchTile> {
@@ -203,7 +203,6 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
     return SwitchListTile(
       title: Text(
         widget._item.name,
-        style: TextStyle(fontSize: 18.0),
       ),
       value: widget._item.selected,
       onChanged: (value) => {
