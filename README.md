@@ -51,11 +51,9 @@ Just a side-project so it's not perfect. It's free (as in free lunch and free sp
 
 ## Uses
 
-- Flutter
-- Flutter BLoC
-- Material Design
-- Icons: Font Awesome
-- Font: Raleway
+- Framework: Flutter
+- Icons: Flat Icons
+- Font: Gotham Pro
 - Database: Sembast
 
 ## Running from Source
