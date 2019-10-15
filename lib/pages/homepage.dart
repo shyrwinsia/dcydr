@@ -11,34 +11,12 @@ class HomePage extends StatelessWidget {
   HomePage() {
     _list
       ..add(RandomList(
-        name: 'Thingz to buy',
-        type: 'tag',
+        name: 'Rock-Paper-Scissors',
+        type: 'star',
         items: <RandomListItem>[
-          RandomListItem(name: 'A', selected: true),
-        ],
-      ))
-      ..add(RandomList(
-        name: 'Speaking notes',
-        type: 'megaphone',
-        items: <RandomListItem>[
-          RandomListItem(name: 'AB', selected: true),
-          RandomListItem(name: 'AC', selected: true),
-          RandomListItem(name: 'AD', selected: true),
-          RandomListItem(name: 'BA', selected: true),
-          RandomListItem(name: 'BB', selected: true),
-          RandomListItem(name: 'BC', selected: true),
-        ],
-      ))
-      ..add(RandomList(
-        name: 'Shitty ideas',
-        type: 'idea',
-        items: <RandomListItem>[
-          RandomListItem(name: 'Kill yourself', selected: true),
-          RandomListItem(name: 'Rob a bank', selected: true),
-          RandomListItem(name: 'Fuck a whore', selected: true),
-          RandomListItem(name: 'Drink gasoline', selected: true),
-          RandomListItem(name: 'Drive off a cliff', selected: true),
-          RandomListItem(name: 'Slap your boss', selected: true),
+          RandomListItem(name: 'Rock', selected: true),
+          RandomListItem(name: 'Paper', selected: true),
+          RandomListItem(name: 'Scissors', selected: true),
         ],
       ))
       ..add(RandomList(
@@ -66,16 +44,38 @@ class HomePage extends StatelessWidget {
         ],
       ))
       ..add(RandomList(
-        name: 'Stupid things',
-        type: 'star',
+        name: 'Impulse buying items',
+        type: 'tag',
         items: <RandomListItem>[
-          RandomListItem(name: 'Dance', selected: true),
-          RandomListItem(name: 'Kick', selected: true),
-          RandomListItem(name: 'Run', selected: true),
+          RandomListItem(name: 'A', selected: true),
         ],
       ))
       ..add(RandomList(
-        name: 'Whatever',
+        name: 'English words',
+        type: 'megaphone',
+        items: <RandomListItem>[
+          RandomListItem(name: 'AB', selected: true),
+          RandomListItem(name: 'AC', selected: true),
+          RandomListItem(name: 'AD', selected: true),
+          RandomListItem(name: 'BA', selected: true),
+          RandomListItem(name: 'BB', selected: true),
+          RandomListItem(name: 'BC', selected: true),
+        ],
+      ))
+      ..add(RandomList(
+        name: 'Innovation ideas',
+        type: 'idea',
+        items: <RandomListItem>[
+          RandomListItem(name: 'Kill yourself', selected: true),
+          RandomListItem(name: 'Rob a bank', selected: true),
+          RandomListItem(name: 'Fuck a whore', selected: true),
+          RandomListItem(name: 'Drink gasoline', selected: true),
+          RandomListItem(name: 'Drive off a cliff', selected: true),
+          RandomListItem(name: 'Slap your boss', selected: true),
+        ],
+      ))
+      ..add(RandomList(
+        name: 'Personal treats',
         type: 'diamond',
         items: <RandomListItem>[
           RandomListItem(name: 'A', selected: true),
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
         ],
       ))
       ..add(RandomList(
-        name: 'Generic list',
+        name: 'Grocery items',
         type: 'list',
         items: <RandomListItem>[
           RandomListItem(name: 'A', selected: true),
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
         ],
       ))
       ..add(RandomList(
-        name: 'Team membahs',
+        name: 'Team members',
         type: 'user',
         items: <RandomListItem>[
           RandomListItem(name: 'A', selected: true),
