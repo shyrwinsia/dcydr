@@ -1,5 +1,6 @@
 import 'package:choosr/data/types.dart';
-import 'package:choosr/pages/addlistpage.dart';
+import 'package:choosr/pages/addpage.dart';
+import 'package:choosr/pages/pickpage.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -10,67 +11,103 @@ class HomePage extends StatelessWidget {
   HomePage() {
     _list
       ..add(RandomList(
-        id: 2,
         name: 'Thingz to buy',
         type: 'tag',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'A', selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Speaking notes',
         type: 'megaphone',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'AB', selected: true),
+          RandomListItem(name: 'AC', selected: true),
+          RandomListItem(name: 'AD', selected: true),
+          RandomListItem(name: 'BA', selected: true),
+          RandomListItem(name: 'BB', selected: true),
+          RandomListItem(name: 'BC', selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Shitty ideas',
         type: 'idea',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'Kill yourself', selected: true),
+          RandomListItem(name: 'Rob a bank', selected: true),
+          RandomListItem(name: 'Fuck a whore', selected: true),
+          RandomListItem(name: 'Drink gasoline', selected: true),
+          RandomListItem(name: 'Drive off a cliff', selected: true),
+          RandomListItem(name: 'Slap your boss', selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Lunch places',
         type: 'location',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: "Slave Food", selected: true),
+          RandomListItem(name: "Korean one-North", selected: true),
+          RandomListItem(name: "Koufu one-North", selected: true),
+          RandomListItem(name: "Subway one-North", selected: true),
+          RandomListItem(name: "Bismillah Biryani", selected: true),
+          RandomListItem(name: "Arkadaş Cafe", selected: true),
+          RandomListItem(name: "Burger King Vivo", selected: true),
+          RandomListItem(name: "Kopitiam Vivo", selected: true),
+          RandomListItem(name: "Texas Vivo", selected: true),
+          RandomListItem(name: "Stuff'd Vivo", selected: true),
+          RandomListItem(name: "Segar Buona Vista", selected: true),
+          RandomListItem(name: "Korean Bouna Vista", selected: true),
+          RandomListItem(name: "Texas Bouna Vista", selected: true),
+          RandomListItem(name: "Burger King NUH", selected: true),
+          RandomListItem(name: "Hawker NUH", selected: true),
+          RandomListItem(name: "Kopitiam NUH", selected: true),
+          RandomListItem(name: "Holland Village", selected: true),
+          RandomListItem(name: "Al Amaan", selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Stupid things',
         type: 'star',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'Dance', selected: true),
+          RandomListItem(name: 'Kick', selected: true),
+          RandomListItem(name: 'Run', selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Whatever',
         type: 'diamond',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'A', selected: true),
+          RandomListItem(name: 'B', selected: true),
+          RandomListItem(name: 'C', selected: true),
+          RandomListItem(name: 'D', selected: true),
+          RandomListItem(name: 'E', selected: true),
+          RandomListItem(name: 'F', selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Generic list',
         type: 'list',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'A', selected: true),
+          RandomListItem(name: 'B', selected: true),
+          RandomListItem(name: 'C', selected: true),
+          RandomListItem(name: 'D', selected: true),
+          RandomListItem(name: 'E', selected: true),
+          RandomListItem(name: 'F', selected: true),
         ],
       ))
       ..add(RandomList(
-        id: 2,
         name: 'Team membahs',
         type: 'user',
         items: <RandomListItem>[
-          RandomListItem(name: 'FQ'),
+          RandomListItem(name: 'A', selected: true),
+          RandomListItem(name: 'B', selected: true),
+          RandomListItem(name: 'C', selected: true),
+          RandomListItem(name: 'D', selected: true),
+          RandomListItem(name: 'E', selected: true),
+          RandomListItem(name: 'F', selected: true),
         ],
       ));
   }
@@ -98,6 +135,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
+// RandomList _placesToEat = new RandomList("Where to eat", IconType.Place);
+
   Widget _createList(List<RandomList> list, BuildContext context) {
     final Iterable<ListTile> tiles = list.map(
       (r) {
@@ -108,13 +147,20 @@ class HomePage extends StatelessWidget {
           ),
           trailing: Icon(
             FlatIcons.con_right_arrow_1_a,
-            size: 18,
             color: const Color(0x44000000),
           ),
-          onLongPress: () => showDialog(
-            context: context,
-            builder: (BuildContext context) => _successDialog(context),
-          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PickPage(r),
+              ),
+            );
+          },
+          // onLongPress: () => showDialog(
+          //   context: context,
+          //   builder: (BuildContext context) => _successDialog(context),
+          // ),
         );
       },
     );
@@ -133,57 +179,57 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _successDialog(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
-      ),
-      elevation: 0.0,
-      backgroundColor: Colors.transparent,
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(4),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10.0,
-              offset: const Offset(0.0, 10.0),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              dense: true,
-              onTap: () => Navigator.pop(context),
-              leading: Icon(
-                FlatIcons.edit,
-                color: Colors.brown,
-                size: 14,
-              ),
-              title: Text(
-                'Edit list',
-              ),
-            ),
-            ListTile(
-              dense: true,
-              onTap: () => Navigator.pop(context),
-              leading: Icon(
-                FlatIcons.trash,
-                color: Colors.red,
-                size: 14,
-              ),
-              title: Text(
-                'Delete list',
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _successDialog(BuildContext context) {
+  //   return Dialog(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(4),
+  //     ),
+  //     elevation: 0.0,
+  //     backgroundColor: Colors.transparent,
+  //     child: Container(
+  //       padding: EdgeInsets.all(16),
+  //       decoration: BoxDecoration(
+  //         color: Colors.white,
+  //         shape: BoxShape.rectangle,
+  //         borderRadius: BorderRadius.circular(4),
+  //         boxShadow: [
+  //           BoxShadow(
+  //             color: Colors.black12,
+  //             blurRadius: 10.0,
+  //             offset: const Offset(0.0, 10.0),
+  //           ),
+  //         ],
+  //       ),
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: <Widget>[
+  //           ListTile(
+  //             dense: true,
+  //             onTap: () => Navigator.pop(context),
+  //             leading: Icon(
+  //               FlatIcons.edit,
+  //               color: Colors.brown,
+  //               size: 14,
+  //             ),
+  //             title: Text(
+  //               'Edit list',
+  //             ),
+  //           ),
+  //           ListTile(
+  //             dense: true,
+  //             onTap: () => Navigator.pop(context),
+  //             leading: Icon(
+  //               FlatIcons.trash,
+  //               color: Colors.red,
+  //               size: 14,
+  //             ),
+  //             title: Text(
+  //               'Delete list',
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 }

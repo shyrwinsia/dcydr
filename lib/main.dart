@@ -15,6 +15,10 @@ class Choosr extends StatelessWidget {
       title: 'Choosr',
       theme: ThemeData(
         fontFamily: 'GothamPro',
+        iconTheme: IconThemeData(
+          size: 18,
+        ),
+        accentColor: const Color(0xff13b6cb),
         backgroundColor: const Color(0xfff7f7f9),
       ),
       debugShowCheckedModeBanner: false,

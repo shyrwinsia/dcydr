@@ -2,18 +2,18 @@ import 'dart:math';
 import 'package:choosr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class RandomListsWidget extends StatefulWidget {
+class PickPage extends StatefulWidget {
   final RandomList _list;
 
-  RandomListsWidget(this._list);
+  PickPage(this._list);
 
   @override
-  _RandomListsWidgetState createState() => _RandomListsWidgetState();
+  _PickPageState createState() => _PickPageState();
 }
 
-class _RandomListsWidgetState extends State<RandomListsWidget> {
+class _PickPageState extends State<PickPage> {
   String _pick = "";
   // Queue _pastPick = new Queue();
   var rng = Random();
@@ -41,8 +41,21 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
           ).toList();
 
           return Scaffold(
-            appBar: AppBar(
+            appBar: GradientAppBar(
+              backgroundColorStart: const Color(0xff13b6cb),
+              backgroundColorEnd: const Color(0xff2a86cb),
+              centerTitle: true,
               title: Text(widget._list.name + ' choices'),
+              leading: IconButton(
+                icon: Icon(
+                  FlatIcons.con_left_arrow_1_a,
+                  size: 18,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              elevation: 0,
             ),
             body: ListView(children: divided),
           );
@@ -66,41 +79,60 @@ class _RandomListsWidgetState extends State<RandomListsWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
+        backgroundColorStart: const Color(0xff13b6cb),
+        backgroundColorEnd: const Color(0xff2a86cb),
+        centerTitle: true,
         title: Text(widget._list.name),
-        actions: <Widget>[
-          IconButton(icon: Icon(FlatIcons.edit), onPressed: _moveToListPage),
-          IconButton(
-            icon: Icon(FlatIcons.trash),
-            onPressed: () {
-              // _randomListBloc.dispatch(DeleteRandomList(this.widget._list));
-              Navigator.of(context).pop();
-            },
+        leading: IconButton(
+          icon: Icon(
+            FlatIcons.con_left_arrow_1_a,
+            size: 18,
           ),
-          IconButton(icon: Icon(FlatIcons.list), onPressed: _moveToListPage),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                FlatIcons.controls_4,
+                size: 18,
+              ),
+              onPressed: _moveToListPage),
+          IconButton(
+            icon: Icon(
+              FlatIcons.more_1,
+              size: 18,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FadeIn(
-              child: Text(
-                _pick == ""
-                    ? "Press button to choose from " + widget._list.name
-                    : _pick,
-                textAlign: TextAlign.center,
-                style:
-                    _pick == "" ? null : Theme.of(context).textTheme.display3,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: FadeIn(
+              child: InkWell(
+                onTap: _pickAnItem,
+                child: Center(
+                  child: Text(
+                    _pick == ""
+                        ? "Tap to choose from " + widget._list.name
+                        : _pick,
+                    textAlign: TextAlign.center,
+                    style: _pick == ""
+                        ? null
+                        : Theme.of(context).textTheme.display2,
+                  ),
+                ),
               ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _pickAnItem,
-        tooltip: 'Pick',
-        child: Icon(FontAwesomeIcons.diceD20),
+          ),
+        ],
       ),
     );
   }
