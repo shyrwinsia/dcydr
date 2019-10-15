@@ -1,4 +1,4 @@
-![logo](img/logo.png)
+![logo](img/logo-small.png)
 
 # Choosr
 
