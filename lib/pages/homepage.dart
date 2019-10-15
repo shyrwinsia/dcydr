@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
           RandomListItem(name: "Koufu one-North", selected: true),
           RandomListItem(name: "Subway one-North", selected: true),
           RandomListItem(name: "Bismillah Biryani", selected: true),
-          RandomListItem(name: "Arkadaş Cafe", selected: true),
+          RandomListItem(name: "Arkadas Cafe", selected: true),
           RandomListItem(name: "Burger King Vivo", selected: true),
           RandomListItem(name: "Kopitiam Vivo", selected: true),
           RandomListItem(name: "Texas Vivo", selected: true),

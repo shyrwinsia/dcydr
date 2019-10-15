@@ -200,14 +200,29 @@ class CustomSwitchTile extends StatefulWidget {
 class _CustomSwitchTileState extends State<CustomSwitchTile> {
   @override
   Widget build(BuildContext context) {
-    return SwitchListTile(
+    return ListTile(
       title: Text(
         widget._item.name,
+        style: widget._item.selected
+            ? null
+            : TextStyle(
+                color: const Color(0x44000000),
+              ),
       ),
-      value: widget._item.selected,
-      onChanged: (value) => {
+      trailing: widget._item.selected
+          ? Icon(
+              FlatIcons.switch_1,
+              color: const Color(0xff2a86cb),
+              size: 24,
+            )
+          : Icon(
+              FlatIcons.switch_,
+              color: const Color(0x44000000),
+              size: 24,
+            ),
+      onTap: () => {
         setState(() {
-          widget._item.selected = value;
+          widget._item.selected = !widget._item.selected;
         })
       },
     );
