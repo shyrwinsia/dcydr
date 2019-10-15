@@ -213,12 +213,12 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
           ? Icon(
               FlatIcons.switch_1,
               color: const Color(0xff2a86cb),
-              size: 24,
+              size: 30,
             )
           : Icon(
               FlatIcons.switch_,
               color: const Color(0x44000000),
-              size: 24,
+              size: 30,
             ),
       onTap: () => {
         setState(() {
