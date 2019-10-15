@@ -3,7 +3,7 @@ description: Randomize picker for victims of analysis paralysis
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: '>=2.2.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -25,7 +25,6 @@ flutter:
   fonts:
     - family: GothamPro
       fonts:
+        - asset: fonts/GothamPro-Light.otf
         - asset: fonts/GothamPro-Regular.otf
-    - family: Poppins
-      fonts:
-        - asset: fonts/Poppins-Regular.otf
+        - weight: 700

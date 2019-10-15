@@ -14,7 +14,7 @@ class Choosr extends StatelessWidget {
     return MaterialApp(
       title: 'Choosr',
       theme: ThemeData(
-        fontFamily: 'Poppins',
+        fontFamily: 'GothamPro',
         backgroundColor: const Color(0xfff7f7f9),
       ),
       debugShowCheckedModeBanner: false,
