@@ -211,15 +211,11 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
       ),
       trailing: widget._item.selected
           ? Icon(
-              FlatIcons.switch_1,
+              FlatIcons.success,
               color: const Color(0xff2a86cb),
               size: 28,
             )
-          : Icon(
-              FlatIcons.switch_,
-              color: const Color(0x44000000),
-              size: 28,
-            ),
+          : null,
       onTap: () => {
         setState(() {
           widget._item.selected = !widget._item.selected;

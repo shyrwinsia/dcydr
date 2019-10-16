@@ -95,58 +95,48 @@ class RandomList {
 class RandomListTypes {
   static final List types = List<RandomListType>()
     ..add(RandomListType(
-      name: 'People',
+      name: 'user',
       icon: FlatIcons.user,
-      color: Colors.lightBlue,
+      color: Colors.blue,
     ))
     ..add(RandomListType(
-      name: 'Objects',
-      icon: FlatIcons.user,
-      color: Colors.brown,
-    ))
-    ..add(RandomListType(
-      name: 'Places',
-      icon: FlatIcons.user,
-      color: Colors.red,
-    ))
-    ..add(RandomListType(
-      name: 'Food',
-      icon: FlatIcons.user,
-      color: Colors.green,
-    ))
-    ..add(RandomListType(
-      name: 'Animals',
-      icon: FlatIcons.user,
+      name: 'star',
+      icon: FlatIcons.star,
       color: Colors.orange,
     ))
     ..add(RandomListType(
-      name: 'Music',
-      icon: FlatIcons.user,
+      name: 'location',
+      icon: FlatIcons.map_location,
+      color: Colors.red,
+    ))
+    ..add(RandomListType(
+      name: 'megaphone',
+      icon: FlatIcons.megaphone,
       color: Colors.purple,
     ))
     ..add(RandomListType(
-      name: 'Games',
-      icon: FlatIcons.user,
+      name: 'diamond',
+      icon: FlatIcons.diamond,
       color: Colors.indigo,
     ))
     ..add(RandomListType(
-      name: 'Activities',
-      icon: FlatIcons.user,
-      color: Colors.deepPurple,
+      name: 'tag',
+      icon: FlatIcons.price_tag,
+      color: Colors.cyan,
     ))
     ..add(RandomListType(
-      name: 'Transportation',
-      icon: FlatIcons.user,
-      color: Colors.deepOrange,
+      name: 'idea',
+      icon: FlatIcons.idea,
+      color: Colors.amber,
     ))
     ..add(RandomListType(
-      name: 'Random',
-      icon: FlatIcons.user,
-      color: Colors.blueGrey,
+      name: 'list',
+      icon: FlatIcons.list,
+      color: Colors.teal,
     ))
     ..add(RandomListType(
-      name: 'Generic',
-      icon: FlatIcons.user,
+      name: 'generic',
+      icon: FlatIcons.list,
       color: Colors.teal,
     ));
 }
