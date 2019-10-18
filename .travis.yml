@@ -5,7 +5,7 @@ matrix:
     - name: Test
       env: COMMAND=test
     - name: Analyze
-      env: COMMAND=analyze
+      env: COMMAND='analyze lib'
 addons:
   apt:
     packages:
