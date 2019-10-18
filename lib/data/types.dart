@@ -74,11 +74,6 @@ class RandomList {
           FlatIcons.idea,
           color: Colors.amber,
         );
-      case 'list':
-        return Icon(
-          FlatIcons.list,
-          color: Colors.teal,
-        );
       default:
         return Icon(
           FlatIcons.list,
@@ -128,11 +123,6 @@ class RandomListTypes {
       name: 'idea',
       icon: FlatIcons.idea,
       color: Colors.amber,
-    ))
-    ..add(RandomListType(
-      name: 'list',
-      icon: FlatIcons.list,
-      color: Colors.teal,
     ))
     ..add(RandomListType(
       name: 'generic',

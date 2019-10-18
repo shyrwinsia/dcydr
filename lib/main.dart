@@ -18,6 +18,7 @@ class Choosr extends StatelessWidget {
         iconTheme: IconThemeData(
           size: 18,
         ),
+        hintColor: const Color(0x22000000),
         accentColor: const Color(0xff2a86cb),
         backgroundColor: const Color(0xfff7f7f9),
       ),

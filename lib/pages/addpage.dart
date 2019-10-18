@@ -1,3 +1,4 @@
+import 'package:choosr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -8,6 +9,9 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
+  List _items = List();
+  String _icon = 'generic';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,26 +49,48 @@ class _AddListPageState extends State<AddListPage> {
   Widget _buildForm() {
     return ListView(
       children: <Widget>[
-        TextField(
-          style: TextStyle(fontSize: 24),
-          decoration: new InputDecoration(
-            contentPadding: EdgeInsets.all(16),
-            hintText: 'Enter name',
-          ),
-        ),
-        SizedBox(height: 24),
-        TextField(
-          decoration: new InputDecoration(
-            hintText: 'Enter item',
-          ),
-        ),
-        SizedBox(height: 12),
         Row(
           children: <Widget>[
-            Text('Hey'),
+            Flexible(
+              child: TextField(
+                style: TextStyle(fontSize: 24),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter list title',
+                  contentPadding: EdgeInsets.all(24),
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return _buildCategoryDialog();
+                  },
+                );
+              },
+              icon: RandomList.iconFromType(_icon),
+            )
           ],
         ),
-        Text('Hey'),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: _buildList(),
+        ),
+        FlatButton.icon(
+          padding: EdgeInsets.all(16),
+          icon: Icon(
+            FlatIcons.add,
+            size: 10,
+          ),
+          label: Text('Add item'),
+          onPressed: () {
+            setState(() {
+              _items.add('');
+            });
+          },
+        ),
       ],
     );
   }
@@ -76,5 +102,75 @@ class _AddListPageState extends State<AddListPage> {
     // Clean up the controller when the widget is disposed.
     addItemTextController.dispose();
     super.dispose();
+  }
+
+  Widget _buildCategoryDialog() {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Choose an icon',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Wrap(
+              children: RandomListTypes.types.map((f) {
+                return IconButton(
+                  padding: EdgeInsets.all(24),
+                  icon: RandomList.iconFromType(f.name),
+                  onPressed: () {
+                    setState(() {
+                      _icon = f.name;
+                    });
+                    Navigator.pop(context);
+                  },
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _buildList() {
+    return _items.map(
+      (f) {
+        return Row(
+          children: <Widget>[
+            Flexible(
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter item name',
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _items.remove(f);
+                });
+              },
+              icon: Icon(
+                FlatIcons.error,
+                size: 18,
+                color: const Color(0x66000000),
+              ),
+            )
+          ],
+        );
+      },
+    ).toList();
   }
 }
