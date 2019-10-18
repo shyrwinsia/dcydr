@@ -1,4 +1,5 @@
 ![logo](img/logo-small.png)
+
 [![Build Status](https://travis-ci.org/shyrwinsia/choosr.svg?branch=master)](https://travis-ci.org/shyrwinsia/choosr)
 [![Coverage Status](https://coveralls.io/repos/github/shyrwinsia/choosr/badge.svg?branch=master)](https://coveralls.io/github/shyrwinsia/choosr?branch=master)
 
