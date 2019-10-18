@@ -119,14 +119,17 @@ class _PickPageState extends State<PickPage> {
               child: InkWell(
                 onTap: _pickAnItem,
                 child: Center(
-                  child: Text(
-                    _pick == ""
-                        ? "Tap to choose from " + widget._list.name
-                        : _pick,
-                    textAlign: TextAlign.center,
-                    style: _pick == ""
-                        ? null
-                        : Theme.of(context).textTheme.display2,
+                  child: Padding(
+                    padding: EdgeInsets.all(40),
+                    child: Text(
+                      _pick == ""
+                          ? "Tap to choose from " + widget._list.name
+                          : _pick,
+                      textAlign: TextAlign.center,
+                      style: _pick == ""
+                          ? null
+                          : Theme.of(context).textTheme.display2,
+                    ),
                   ),
                 ),
               ),
@@ -213,7 +216,6 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
           ? Icon(
               FlatIcons.success,
               color: const Color(0xff2a86cb),
-              size: 28,
             )
           : null,
       onTap: () => {

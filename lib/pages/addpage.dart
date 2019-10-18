@@ -1,6 +1,6 @@
 import 'package:choosr/data/types.dart';
-import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class AddListPage extends StatefulWidget {
@@ -50,18 +50,21 @@ class _AddListPageState extends State<AddListPage> {
     return ListView(
       children: <Widget>[
         Row(
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
             Flexible(
               child: TextField(
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 32),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter list title',
-                  contentPadding: EdgeInsets.all(24),
+                  contentPadding: EdgeInsets.fromLTRB(24, 32, 16, 32),
                 ),
               ),
             ),
             IconButton(
+              padding: EdgeInsets.all(16),
               onPressed: () {
                 showDialog(
                   context: context,
@@ -71,11 +74,12 @@ class _AddListPageState extends State<AddListPage> {
                 );
               },
               icon: RandomList.iconFromType(_icon),
-            )
+            ),
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: _buildList(),
         ),
         FlatButton.icon(
@@ -84,7 +88,10 @@ class _AddListPageState extends State<AddListPage> {
             FlatIcons.add,
             size: 10,
           ),
-          label: Text('Add item'),
+          textColor: Theme.of(context).accentColor,
+          label: Text(
+            'Add item',
+          ),
           onPressed: () {
             setState(() {
               _items.add('');
@@ -107,19 +114,23 @@ class _AddListPageState extends State<AddListPage> {
   Widget _buildCategoryDialog() {
     return Dialog(
       child: Container(
-        padding: EdgeInsets.all(24),
+        padding: EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 40,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Choose an icon',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: EdgeInsets.only(bottom: 24),
+              child: Text(
+                'Choose an icon',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 16,
             ),
             Wrap(
               children: RandomListTypes.types.map((f) {
@@ -157,6 +168,7 @@ class _AddListPageState extends State<AddListPage> {
               ),
             ),
             IconButton(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               onPressed: () {
                 setState(() {
                   _items.remove(f);
@@ -165,7 +177,7 @@ class _AddListPageState extends State<AddListPage> {
               icon: Icon(
                 FlatIcons.error,
                 size: 18,
-                color: const Color(0x66000000),
+                color: Theme.of(context).accentColor,
               ),
             )
           ],
