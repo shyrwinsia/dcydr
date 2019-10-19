@@ -102,12 +102,9 @@ class _AddListPageState extends State<AddListPage> {
     );
   }
 
-  final addItemTextController = TextEditingController();
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    addItemTextController.dispose();
     super.dispose();
   }
 
