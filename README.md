@@ -1,6 +1,7 @@
-![logo](img/logo-small.png)
+![logo](img/logo-with-name.png)
 
-# Choosr 
+# Choosr
+
 [![Build Status](https://travis-ci.org/shyrwinsia/choosr.svg?branch=master)](https://travis-ci.org/shyrwinsia/choosr)
 
 Can't decide...

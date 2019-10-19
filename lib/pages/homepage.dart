@@ -147,7 +147,7 @@ class HomePage extends StatelessWidget {
           ),
           trailing: Icon(
             FlatIcons.con_right_arrow_1_a,
-            color: const Color(0x66000000),
+            color: const Color(0x44000000),
           ),
           onTap: () {
             Navigator.push(

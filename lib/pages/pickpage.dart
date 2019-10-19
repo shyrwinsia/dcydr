@@ -209,7 +209,7 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
         style: widget._item.selected
             ? null
             : TextStyle(
-                color: const Color(0x66000000),
+                color: const Color(0x44000000),
               ),
       ),
       trailing: widget._item.selected
