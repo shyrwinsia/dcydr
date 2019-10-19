@@ -14,13 +14,13 @@ Can't decide...
 
 Let Choosr help you!
 
-![Screen 4](img/screen4.png)
+![Screen 1](img/screen1.png)
 
 ### No more indecision
 
 Choosr helps victims of paralysis analysis by picking a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
 
-![Screen 1](img/screen1.png)
+![Screen 2](img/screen2.png)
 
 ### Fit for every situation
 
@@ -32,7 +32,7 @@ When picking for specific occasions, like maybe its a Sunday and some of your fa
 
 Unlike other randomizing apps, Choosr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just press the button.
 
-![Screen 2](img/screen2.png)
+![Screen 4](img/screen4.png)
 
 ### Save them brain juices
 
