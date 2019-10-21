@@ -168,6 +168,7 @@ class _AddListPageState extends State<AddListPage> {
                 onSubmitted: (e) {
                   // if this is last, add new, if not go to next
                   // FocusScope.of(context).requestFocus(items.last);
+                  _addNewEntry();
                 },
               ),
             ),
