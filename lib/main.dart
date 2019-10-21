@@ -22,7 +22,6 @@ class Choosr extends StatelessWidget {
         accentColor: const Color(0xff2a86cb),
         backgroundColor: const Color(0xfff7f7f9),
       ),
-      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }

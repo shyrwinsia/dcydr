@@ -11,6 +11,9 @@ class AddListPage extends StatefulWidget {
 class _AddListPageState extends State<AddListPage> {
   List items = List();
   String _icon = 'generic';
+  FocusNode _titleNode = FocusNode();
+
+  bool _dialog = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,22 +59,26 @@ class _AddListPageState extends State<AddListPage> {
             Flexible(
               child: TextField(
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 24,
                 ),
                 autofocus: true,
-                onSubmitted: (e) {
+                focusNode: _titleNode,
+                onEditingComplete: () {
                   _addNewEntry();
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter list title',
-                  contentPadding: EdgeInsets.fromLTRB(24, 24, 16, 24),
+                  contentPadding: EdgeInsets.fromLTRB(24, 16, 16, 16),
                 ),
               ),
             ),
             IconButton(
               padding: EdgeInsets.all(16),
               onPressed: () {
+                setState(() {
+                  _dialog = true;
+                });
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -83,6 +90,13 @@ class _AddListPageState extends State<AddListPage> {
             ),
           ],
         ),
+        Divider(
+          color: const Color(0x22000000),
+          height: 0,
+        ),
+        SizedBox(
+          height: 8,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -91,7 +105,7 @@ class _AddListPageState extends State<AddListPage> {
         FlatButton.icon(
           padding: EdgeInsets.all(16),
           icon: Icon(
-            FlatIcons.add,
+            FlatIcons.plus,
             size: 10,
           ),
           textColor: Theme.of(context).accentColor,
@@ -141,6 +155,7 @@ class _AddListPageState extends State<AddListPage> {
                   onPressed: () {
                     setState(() {
                       _icon = f.name;
+                      _dialog = false;
                     });
                     Navigator.pop(context);
                   },
@@ -167,9 +182,7 @@ class _AddListPageState extends State<AddListPage> {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 ),
-                onSubmitted: (e) {
-                  // if this is last, add new, if not go to next
-                  // FocusScope.of(context).requestFocus(items.last);
+                onEditingComplete: () {
                   _addNewEntry();
                 },
               ),
@@ -182,8 +195,8 @@ class _AddListPageState extends State<AddListPage> {
                 });
               },
               icon: Icon(
-                FlatIcons.error,
-                size: 18,
+                FlatIcons.minus,
+                size: 14,
                 color: Theme.of(context).accentColor,
               ),
             )
@@ -191,7 +204,10 @@ class _AddListPageState extends State<AddListPage> {
         );
       },
     ).toList();
-    if (items.length > 0) FocusScope.of(context).requestFocus(items.last);
+    if (items.length > 0 && !_dialog)
+      FocusScope.of(context).requestFocus(items.last);
+    else if (items.length == 0 && !_dialog)
+      FocusScope.of(context).requestFocus(_titleNode);
     return rvalue;
   }
 
