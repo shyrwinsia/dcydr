@@ -9,7 +9,7 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  List _items = List();
+  List items = List();
   String _icon = 'generic';
 
   @override
@@ -56,6 +56,10 @@ class _AddListPageState extends State<AddListPage> {
             Flexible(
               child: TextField(
                 style: TextStyle(fontSize: 32),
+                autofocus: true,
+                onSubmitted: (e) {
+                  _addNewEntry();
+                },
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter list title',
@@ -93,9 +97,7 @@ class _AddListPageState extends State<AddListPage> {
             'Add item',
           ),
           onPressed: () {
-            setState(() {
-              _items.add('');
-            });
+            _addNewEntry();
           },
         ),
       ],
@@ -150,25 +152,30 @@ class _AddListPageState extends State<AddListPage> {
   }
 
   _buildList() {
-    return _items.map(
+    List rvalue = items.map(
       (f) {
         return Row(
           children: <Widget>[
             Flexible(
               child: TextField(
+                focusNode: f,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter item name',
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 ),
+                onSubmitted: (e) {
+                  // if this is last, add new, if not go to next
+                  // FocusScope.of(context).requestFocus(items.last);
+                },
               ),
             ),
             IconButton(
               padding: EdgeInsets.symmetric(horizontal: 16),
               onPressed: () {
                 setState(() {
-                  _items.remove(f);
+                  items.remove(f);
                 });
               },
               icon: Icon(
@@ -181,5 +188,13 @@ class _AddListPageState extends State<AddListPage> {
         );
       },
     ).toList();
+    if (items.length > 0) FocusScope.of(context).requestFocus(items.last);
+    return rvalue;
+  }
+
+  void _addNewEntry() {
+    setState(() {
+      items.add(FocusNode());
+    });
   }
 }
