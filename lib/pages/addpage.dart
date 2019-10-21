@@ -55,7 +55,9 @@ class _AddListPageState extends State<AddListPage> {
           children: <Widget>[
             Flexible(
               child: TextField(
-                style: TextStyle(fontSize: 32),
+                style: TextStyle(
+                  fontSize: 32,
+                ),
                 autofocus: true,
                 onSubmitted: (e) {
                   _addNewEntry();
@@ -63,7 +65,7 @@ class _AddListPageState extends State<AddListPage> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter list title',
-                  contentPadding: EdgeInsets.fromLTRB(24, 32, 16, 32),
+                  contentPadding: EdgeInsets.fromLTRB(24, 24, 16, 24),
                 ),
               ),
             ),
