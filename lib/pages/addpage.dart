@@ -1,7 +1,7 @@
+import 'package:choosr/components/appbar.dart';
 import 'package:choosr/data/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class AddListPage extends StatefulWidget {
   @override
@@ -18,21 +18,9 @@ class _AddListPageState extends State<AddListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(
-        backgroundColorStart: const Color(0xff13b6cb),
-        backgroundColorEnd: const Color(0xff2a86cb),
-        centerTitle: true,
-        title: Text("Create list"),
-        leading: IconButton(
-          icon: Icon(
-            FlatIcons.con_left_arrow_1_a,
-            size: 18,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        elevation: 0,
+      appBar: ChoosrAppBar(
+        title: "Create list",
+        hasBackButton: true,
         actions: <Widget>[
           IconButton(
             onPressed: () {

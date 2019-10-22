@@ -1,8 +1,10 @@
 import 'dart:math';
+import 'package:choosr/components/appbar.dart';
+import 'package:choosr/components/fade.dart';
 import 'package:choosr/data/types.dart';
+import 'package:choosr/pages/setpage.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class PickPage extends StatefulWidget {
   final RandomList _list;
@@ -15,7 +17,6 @@ class PickPage extends StatefulWidget {
 
 class _PickPageState extends State<PickPage> {
   String _pick = "";
-  // Queue _pastPick = new Queue();
   var rng = Random();
 
   @override
@@ -26,40 +27,7 @@ class _PickPageState extends State<PickPage> {
   void _moveToListPage() {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          List<RandomListItem> _items = widget._list.items;
-
-          final Iterable<CustomSwitchTile> tiles = _items.map(
-            (RandomListItem item) {
-              return CustomSwitchTile(item);
-            },
-          );
-
-          final List<Widget> divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-
-          return Scaffold(
-            appBar: GradientAppBar(
-              backgroundColorStart: const Color(0xff13b6cb),
-              backgroundColorEnd: const Color(0xff2a86cb),
-              centerTitle: true,
-              title: Text(widget._list.name + ' choices'),
-              leading: IconButton(
-                icon: Icon(
-                  FlatIcons.con_left_arrow_1_a,
-                  size: 18,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              elevation: 0,
-            ),
-            body: ListView(children: divided),
-          );
-        },
+        builder: (context) => SetPage(list: widget._list),
       ),
     );
   }
@@ -79,21 +47,9 @@ class _PickPageState extends State<PickPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(
-        backgroundColorStart: const Color(0xff13b6cb),
-        backgroundColorEnd: const Color(0xff2a86cb),
-        centerTitle: true,
-        title: Text(widget._list.name),
-        leading: IconButton(
-          icon: Icon(
-            FlatIcons.con_left_arrow_1_a,
-            size: 18,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        elevation: 0,
+      appBar: ChoosrAppBar(
+        title: widget._list.name,
+        hasBackButton: true,
         actions: <Widget>[
           IconButton(
               icon: Icon(
@@ -141,91 +97,44 @@ class _PickPageState extends State<PickPage> {
   }
 }
 
-class FadeIn extends StatefulWidget {
-  final Widget child;
+// class SelectedOption extends StatelessWidget {
+//   RandomListPopupMenu choice;
 
-  FadeIn({@required this.child});
+//   SelectedOption({Key key, this.choice}) : super(key: key);
 
-  @override
-  createState() => _FadeInState();
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Icon(choice.icon, size: 140.0, color: Colors.white),
+//             Text(
+//               choice.title,
+//               style: TextStyle(color: Colors.white, fontSize: 30),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class _FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation _animation;
+// List<RandomListPopupMenu> choices = <RandomListPopupMenu>[
+//   RandomListPopupMenu(title: 'Edit', icon: FlatIcons.edit),
+//   RandomListPopupMenu(title: 'Delete', icon: FlatIcons.trash),
+// ];
 
-  @override
-  void initState() {
-    super.initState();
+// class RandomListPopupMenu {
+//   final String title;
+//   final IconData icon;
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 200),
-    );
-
-    _animation = Tween(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(_controller);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(FadeIn oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _controller.forward(from: 0.0);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _controller.forward();
-    return FadeTransition(
-      opacity: _animation,
-      child: widget.child,
-    );
-  }
-}
-
-class CustomSwitchTile extends StatefulWidget {
-  final RandomListItem _item;
-
-  CustomSwitchTile(this._item);
-
-  @override
-  _CustomSwitchTileState createState() => _CustomSwitchTileState();
-}
-
-class _CustomSwitchTileState extends State<CustomSwitchTile> {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        widget._item.name,
-        style: widget._item.selected
-            ? null
-            : TextStyle(
-                color: const Color(0x44000000),
-              ),
-      ),
-      trailing: widget._item.selected
-          ? Icon(
-              FlatIcons.success,
-              color: const Color(0xff2a86cb),
-            )
-          : null,
-      onTap: () => {
-        setState(() {
-          widget._item.selected = !widget._item.selected;
-        })
-      },
-    );
-  }
-}
+//   RandomListPopupMenu({
+//     this.title,
+//     this.icon,
+//   });
+// }
 
 // _pickAnItem() {
 //   List<RandomListItem> items = widget._list.getActiveItems();
