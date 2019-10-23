@@ -23,12 +23,12 @@ class _AddListPageState extends State<AddListPage> {
         hasBackButton: true,
         actions: <Widget>[
           IconButton(
+            iconSize: 18,
             onPressed: () {
               Navigator.pop(context);
             },
             icon: Icon(
               FlatIcons.save,
-              size: 18,
             ),
           )
         ],
@@ -176,6 +176,7 @@ class _AddListPageState extends State<AddListPage> {
               ),
             ),
             IconButton(
+              iconSize: 14,
               padding: EdgeInsets.symmetric(horizontal: 16),
               onPressed: () {
                 setState(() {
@@ -184,7 +185,6 @@ class _AddListPageState extends State<AddListPage> {
               },
               icon: Icon(
                 FlatIcons.minus,
-                size: 14,
                 color: Theme.of(context).accentColor,
               ),
             )

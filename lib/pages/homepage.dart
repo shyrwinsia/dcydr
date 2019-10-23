@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
         title: 'Choosr',
         actions: <Widget>[
           IconButton(
+            iconSize: 18,
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -28,7 +29,6 @@ class HomePage extends StatelessWidget {
             ),
             icon: Icon(
               FlatIcons.add_3,
-              size: 18,
             ),
           )
         ],
@@ -66,73 +66,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// Widget _successDialog(BuildContext context) {
-//   return Dialog(
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.circular(4),
-//     ),
-//     elevation: 0.0,
-//     backgroundColor: Colors.transparent,
-//     child: Container(
-//       padding: EdgeInsets.all(16),
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         shape: BoxShape.rectangle,
-//         borderRadius: BorderRadius.circular(4),
-//         boxShadow: [
-//           BoxShadow(
-//             color: Colors.black12,
-//             blurRadius: 10.0,
-//             offset: const Offset(0.0, 10.0),
-//           ),
-//         ],
-//       ),
-//       child: Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: <Widget>[
-//           ListTile(
-//             dense: true,
-//             onTap: () => Navigator.pop(context),
-//             leading: Icon(
-//               FlatIcons.edit,
-//               color: Colors.brown,
-//               size: 14,
-//             ),
-//             title: Text(
-//               'Edit list',
-//             ),
-//           ),
-//           ListTile(
-//             dense: true,
-//             onTap: () => Navigator.pop(context),
-//             leading: Icon(
-//               FlatIcons.trash,
-//               color: Colors.red,
-//               size: 14,
-//             ),
-//             title: Text(
-//               'Delete list',
-//             ),
-//           )
-//         ],
-//       ),
-//     ),
-//   );
-// }
-// GradientAppBar(
-//         backgroundColorStart: const Color(0xff13b6cb),
-//         backgroundColorEnd: const Color(0xff2a86cb),
-//         centerTitle: true,
-//         title: Text("Choosr"),
-//         actions: <Widget>[
-//           IconButton(
-//             onPressed: () => _navigateToAddRandomListPage(context),
-//             icon: Icon(
-//               FlatIcons.add_3,
-//               size: 18,
-//             ),
-//           )
-//         ],
-//         elevation: 0,
-//       ),
