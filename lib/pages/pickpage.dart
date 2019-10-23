@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:choosr/components/appbar.dart';
 import 'package:choosr/components/fade.dart';
 import 'package:choosr/data/types.dart';
+import 'package:choosr/pages/editpage.dart';
 import 'package:choosr/pages/setpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
@@ -104,8 +105,12 @@ class _PickPageState extends State<PickPage> {
 
   void choiceAction(String choice) {
     if (choice == Actions.EDIT) {
-      // TODO Add the logic to edit here
-      print('EDIT');
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditListPage(list: widget._list),
+        ),
+      );
     } else if (choice == Actions.DELETE) {
       showDialog(
         context: context,
