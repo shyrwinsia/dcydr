@@ -22,9 +22,9 @@ class ChoosrAppBar extends StatelessWidget with PreferredSizeWidget {
       title: Text(title),
       leading: hasBackButton
           ? IconButton(
+              iconSize: 18,
               icon: Icon(
                 FlatIcons.con_left_arrow_1_a,
-                size: 18,
               ),
               onPressed: () {
                 Navigator.pop(context);
