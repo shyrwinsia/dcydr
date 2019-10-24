@@ -12,10 +12,14 @@ dependencies:
   flat_icons_flutter: ^1.0.2
   sembast: ^1.15.1
   path_provider: ^0.5.0+1
-  # Used for BLoC state management
+  # bloc
+  bloc: ^0.15.0
   flutter_bloc: ^0.21.0
   equatable: ^0.6.0
+  meta: ^1.1.6
   gradient_app_bar: ^0.0.1
+  # logger
+  logger: ^0.7.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -26,3 +30,5 @@ flutter:
     - family: GothamPro
       fonts:
         - asset: fonts/GothamPro-Regular.otf
+  assets:
+    - img/logo-with-name.png

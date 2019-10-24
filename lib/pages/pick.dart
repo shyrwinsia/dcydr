@@ -2,8 +2,8 @@ import 'dart:math';
 import 'package:choosr/components/appbar.dart';
 import 'package:choosr/components/fade.dart';
 import 'package:choosr/data/types.dart';
-import 'package:choosr/pages/editpage.dart';
-import 'package:choosr/pages/setpage.dart';
+import 'package:choosr/pages/editlist.dart';
+import 'package:choosr/pages/set.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 
