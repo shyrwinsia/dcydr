@@ -30,6 +30,7 @@ class Choosr extends StatelessWidget {
       title: 'Choosr',
       theme: getThemeData(),
       home: buildBloc(context),
+      debugShowCheckedModeBanner: false,
     );
   }
 
