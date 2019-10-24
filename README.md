@@ -1,8 +1,8 @@
 ![logo](img/logo-with-name.png)
 
-# Choosr
+# Dcydr
 
-[![Build Status](https://travis-ci.org/shyrwinsia/choosr.svg?branch=master)](https://travis-ci.org/shyrwinsia/choosr)
+[![Build Status](https://travis-ci.org/shyrwinsia/dcydr.svg?branch=master)](https://travis-ci.org/shyrwinsia/dcydr)
 
 Can't decide...
 
@@ -12,31 +12,31 @@ Can't decide...
 - Left or Right?
 - Rock, Paper or Scissors?
 
-Let Choosr help you!
+Let Dcydr help you!
 
 ![Screen 1](img/screen1.png)
 
 ### No more indecision
 
-Choosr helps victims of paralysis analysis by picking a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
+Dcydr helps victims of paralysis analysis by picking a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
 
 ![Screen 2](img/screen2.png)
 
 ### Fit for every situation
 
-When picking for specific occasions, like maybe its a Sunday and some of your favorite restaurants in the list are closed. You can restrict Choosr by disabling some choices. No need remove and add them back again.
+When picking for specific occasions, like maybe its a Sunday and some of your favorite restaurants in the list are closed. You can restrict Dcydr by disabling some choices. No need remove and add them back again.
 
 ![Screen 3](img/screen3.png)
 
 ### Clean and straightforward interface
 
-Unlike other randomizing apps, Choosr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just press the button.
+Unlike other randomizing apps, Dcydr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just press the button.
 
 ![Screen 4](img/screen4.png)
 
 ### Save them brain juices
 
-Decisions, no matter how small, take mental effort. Studies have repeatedly shown that we humans have very limited amounts of it. So don't waste brain power deciding on those small mundane things. Save them for your bigger decisions! For your other trivial decisions, let Choosr choose for you.
+Decisions, no matter how small, take mental effort. Studies have repeatedly shown that we humans have very limited amounts of it. So don't waste brain power deciding on those small mundane things. Save them for your bigger decisions! For your other trivial decisions, let Dcydr decide for you.
 
 ## Get it
 
