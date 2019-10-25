@@ -1,9 +1,9 @@
 import 'dart:math';
-import 'package:choosr/components/appbar.dart';
-import 'package:choosr/components/fade.dart';
-import 'package:choosr/data/types.dart';
-import 'package:choosr/pages/editlist.dart';
-import 'package:choosr/pages/set.dart';
+import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/components/fade.dart';
+import 'package:dcydr/data/types.dart';
+import 'package:dcydr/pages/editlist.dart';
+import 'package:dcydr/pages/set.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 
@@ -46,7 +46,7 @@ class _PickPageState extends State<PickPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChoosrAppBar(
+      appBar: CustomAppBar(
         title: widget._list.name,
         hasBackButton: true,
         actions: <Widget>[

@@ -1,4 +1,4 @@
-package dev.ssia.choosr;
+package dev.ssia.dcydr;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

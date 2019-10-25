@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:choosr/bloc/app_state.dart';
-import 'package:choosr/pages/splash.dart';
+import 'package:dcydr/bloc/app_state.dart';
+import 'package:dcydr/pages/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:choosr/pages/home.dart';
+import 'package:dcydr/pages/home.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:choosr/bloc/bloc.dart';
+import 'package:dcydr/bloc/bloc.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -15,19 +15,19 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   Widget blocProvider = BlocProvider(
     builder: (context) {
-      return AppBloc()..dispatch(StartedApp());
+      return AppBloc();
     },
-    child: Choosr(),
+    child: Dcydr(),
   );
 
   runApp(blocProvider);
 }
 
-class Choosr extends StatelessWidget {
+class Dcydr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Choosr',
+      title: 'Dcydr',
       theme: getThemeData(),
       home: buildBloc(context),
       debugShowCheckedModeBanner: false,

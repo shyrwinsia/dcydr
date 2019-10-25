@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "39036283144",
-    "firebase_url": "https://choosr-beta.firebaseio.com",
-    "project_id": "choosr-beta",
-    "storage_bucket": "choosr-beta.appspot.com"
+    "project_number": "269528269976",
+    "firebase_url": "https://dcydr-beta.firebaseio.com",
+    "project_id": "dcydr-beta",
+    "storage_bucket": "dcydr-beta.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:39036283144:android:2e8010b01c3ca7eb9ca4bd",
+        "mobilesdk_app_id": "1:269528269976:android:137660ac073903ecf3fced",
         "android_client_info": {
-          "package_name": "dev.ssia.choosr"
+          "package_name": "dev.ssia.dcydr"
         }
       },
       "oauth_client": [
         {
-          "client_id": "39036283144-ochtu2hkif0c3lfdc9p0o1ch8ddiaiqd.apps.googleusercontent.com",
+          "client_id": "269528269976-98e6m7smqqlomb2r321n4n4hliobfiq0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjJRA7AKOxKi7kIPX5TUaCC5MC1K81M2U"
+          "current_key": "AIzaSyAxx1Pw86cJw2FpUwIEZ6Qqx17o85Hcd-Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "39036283144-ochtu2hkif0c3lfdc9p0o1ch8ddiaiqd.apps.googleusercontent.com",
+              "client_id": "269528269976-98e6m7smqqlomb2r321n4n4hliobfiq0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

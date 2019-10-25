@@ -2,12 +2,12 @@ import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class ChoosrAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
   final List<Widget> actions;
   final bool hasBackButton;
 
-  ChoosrAppBar({
+  CustomAppBar({
     @required this.title,
     this.actions,
     this.hasBackButton = false,

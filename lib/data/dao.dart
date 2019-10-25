@@ -1,5 +1,5 @@
-import 'package:choosr/data/database.dart';
-import 'package:choosr/data/types.dart';
+import 'package:dcydr/data/database.dart';
+import 'package:dcydr/data/types.dart';
 import 'package:sembast/sembast.dart';
 
 class RandomListDao {

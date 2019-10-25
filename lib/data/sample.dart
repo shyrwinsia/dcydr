@@ -1,4 +1,4 @@
-import 'package:choosr/data/types.dart';
+import 'package:dcydr/data/types.dart';
 
 class SampleData {
   final List data = List<RandomList>();

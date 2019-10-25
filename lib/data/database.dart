@@ -22,7 +22,7 @@ class AppDatabase {
 
   Future _openDatabase() async {
     final appDocumentDir = await getApplicationDocumentsDirectory();
-    final dbPath = join(appDocumentDir.path, 'choosr.db');
+    final dbPath = join(appDocumentDir.path, 'dcydr.db');
     final database = await createDatabaseFactoryIo().openDatabase(dbPath);
     _dbOpenCompleter.complete(database);
   }

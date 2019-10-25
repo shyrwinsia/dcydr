@@ -1,8 +1,8 @@
-import 'package:choosr/components/appbar.dart';
-import 'package:choosr/data/sample.dart';
-import 'package:choosr/data/types.dart';
-import 'package:choosr/pages/addlist.dart';
-import 'package:choosr/pages/pick.dart';
+import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/data/sample.dart';
+import 'package:dcydr/data/types.dart';
+import 'package:dcydr/pages/addlist.dart';
+import 'package:dcydr/pages/pick.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +16,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChoosrAppBar(
-        title: 'Choosr',
+      appBar: CustomAppBar(
+        title: 'Dcydr',
         actions: <Widget>[
           IconButton(
             iconSize: 18,

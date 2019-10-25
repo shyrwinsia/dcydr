@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:logger/logger.dart';
-import 'package:choosr/logger/logger.dart';
+import 'package:dcydr/logger/logger.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   Logger logger = getLogger();

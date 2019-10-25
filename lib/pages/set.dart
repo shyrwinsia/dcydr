@@ -1,6 +1,6 @@
-import 'package:choosr/components/appbar.dart';
-import 'package:choosr/components/switchtile.dart';
-import 'package:choosr/data/types.dart';
+import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/components/switchtile.dart';
+import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
 class SetPage extends StatelessWidget {
@@ -22,7 +22,7 @@ class SetPage extends StatelessWidget {
     ).toList();
 
     return Scaffold(
-      appBar: ChoosrAppBar(
+      appBar: CustomAppBar(
         title: list.name + ' choices',
         hasBackButton: true,
       ),

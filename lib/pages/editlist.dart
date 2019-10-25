@@ -1,5 +1,5 @@
-import 'package:choosr/components/appbar.dart';
-import 'package:choosr/data/types.dart';
+import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 
@@ -22,7 +22,7 @@ class _EditListPageState extends State<EditListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChoosrAppBar(
+      appBar: CustomAppBar(
         title: "Edit " + widget.list.name,
         hasBackButton: true,
         actions: <Widget>[

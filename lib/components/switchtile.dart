@@ -1,4 +1,4 @@
-import 'package:choosr/data/types.dart';
+import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
