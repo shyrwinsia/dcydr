@@ -13,14 +13,14 @@ void main() {
 
   // applying bloc delegate to override the transitions
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  Widget blocProvider = BlocProvider(
+  Widget appBlocProvider = BlocProvider<AppBloc>(
     builder: (context) {
       return AppBloc();
     },
     child: Dcydr(),
   );
 
-  runApp(blocProvider);
+  runApp(appBlocProvider);
 }
 
 class Dcydr extends StatelessWidget {
