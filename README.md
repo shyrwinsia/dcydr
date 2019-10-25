@@ -18,7 +18,7 @@ Let Dcydr help you!
 
 ### No more indecision
 
-Dcydr helps victims of paralysis analysis by picking a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
+Dcydr helps you, a victim of analysis paralysis pick a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
 
 ![Screen 2](img/screen2.png)
 
@@ -47,11 +47,11 @@ Decisions, no matter how small, take mental effort. Studies have repeatedly show
 
 I am not liable for any disastrous consequences that may have resulted from the suggestions of the app.
 
-## Notes
+## Bugs and Issues
 
-Just a side-project so it's not perfect. It's free (as in free lunch and free speech) so don't complain.
+This is just a side-project I write during my free time. It's not perfect, so don't complain. But still, I'll do my best to fix legit bugs.
 
-## Uses
+## About
 
 - Framework: Flutter
 - Icons: Flat Icons
