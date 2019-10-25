@@ -5,8 +5,6 @@ void main() {
   testWidgets('Smoke Test: Check if it loads', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(Dcydr());
-
-    // Verify random picker rendered correctly
     expect(find.text('Dcydr'), findsOneWidget);
   });
 }

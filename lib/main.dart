@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:dcydr/bloc/app_state.dart';
-import 'package:dcydr/pages/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:dcydr/pages/home.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dcydr/bloc/app_state.dart';
 import 'package:dcydr/bloc/bloc.dart';
+import 'package:dcydr/pages/home.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -13,14 +12,8 @@ void main() {
 
   // applying bloc delegate to override the transitions
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  Widget appBlocProvider = BlocProvider<AppBloc>(
-    builder: (context) {
-      return AppBloc();
-    },
-    child: Dcydr(),
-  );
 
-  runApp(appBlocProvider);
+  runApp(Dcydr());
 }
 
 class Dcydr extends StatelessWidget {
@@ -29,7 +22,7 @@ class Dcydr extends StatelessWidget {
     return MaterialApp(
       title: 'Dcydr',
       theme: getThemeData(),
-      home: buildBloc(context),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -37,9 +30,7 @@ class Dcydr extends StatelessWidget {
   Widget buildBloc(context) {
     return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
-        if (state is Uninitialized) return SplashPage();
-        if (state is Loaded) return HomePage();
-        return SplashPage();
+        return HomePage();
       },
     );
   }

@@ -4,9 +4,9 @@ abstract class AppEvent extends Equatable {
   const AppEvent();
 }
 
-class StartedApp extends AppEvent {
+class AppStarted extends AppEvent {
   @override
-  String toString() => '[Event] AuthenticationEvent: StartApp';
+  String toString() => '[Event] AppEvent: AppStarted';
 
   @override
   List<Object> get props => null;
