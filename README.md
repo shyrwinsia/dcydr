@@ -2,6 +2,8 @@
 
 # Dcydr
 
+[Undergoing massive refactoring]
+
 [![Build Status](https://travis-ci.org/shyrwinsia/dcydr.svg?branch=master)](https://travis-ci.org/shyrwinsia/dcydr)
 
 Can't decide...
