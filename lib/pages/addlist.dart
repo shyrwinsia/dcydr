@@ -1,4 +1,5 @@
 import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
@@ -13,6 +14,7 @@ class _AddListPageState extends State<AddListPage> {
   String _icon = 'generic';
   FocusNode _titleNode = FocusNode();
 
+  bool _saving = false;
   bool _dialog = false;
 
   @override
@@ -25,7 +27,32 @@ class _AddListPageState extends State<AddListPage> {
           IconButton(
             iconSize: 18,
             onPressed: () {
-              Navigator.pop(context);
+              RandomListDao().insert(
+                RandomList(
+                  name: 'Lunch places',
+                  type: 'location',
+                  items: <RandomListItem>[
+                    RandomListItem(name: "Slave Food", selected: true),
+                    RandomListItem(name: "Korean one-North", selected: true),
+                    RandomListItem(name: "Koufu one-North", selected: true),
+                    RandomListItem(name: "Subway one-North", selected: true),
+                    RandomListItem(name: "Bismillah Biryani", selected: true),
+                    RandomListItem(name: "Arkadas Cafe", selected: true),
+                    RandomListItem(name: "Burger King Vivo", selected: true),
+                    RandomListItem(name: "Kopitiam Vivo", selected: true),
+                    RandomListItem(name: "Texas Vivo", selected: true),
+                    RandomListItem(name: "Stuff'd Vivo", selected: true),
+                    RandomListItem(name: "Segar Buona Vista", selected: true),
+                    RandomListItem(name: "Korean Bouna Vista", selected: true),
+                    RandomListItem(name: "Texas Bouna Vista", selected: true),
+                    RandomListItem(name: "Burger King NUH", selected: true),
+                    RandomListItem(name: "Hawker NUH", selected: true),
+                    RandomListItem(name: "Kopitiam NUH", selected: true),
+                    RandomListItem(name: "Holland Village", selected: true),
+                    RandomListItem(name: "Al Amaan", selected: true),
+                  ],
+                ),
+              );
             },
             icon: Icon(
               FlatIcons.save,

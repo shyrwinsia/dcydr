@@ -22,6 +22,7 @@ class RandomList {
     return {
       'name': this.name,
       'type': this.type,
+      'items': RandomList.createItemsToMap(items),
     };
   }
 
@@ -33,8 +34,22 @@ class RandomList {
     );
   }
 
+  static List<Map> createItemsToMap(List<RandomListItem> items) {
+    return items
+        .map(
+          (f) => Map()
+            ..addAll(
+              {
+                'name': f.name,
+                'selected': f.selected,
+              },
+            ),
+        )
+        .toList();
+  }
+
   static List<RandomListItem> createItemsFromMap(List map) {
-    return map.map((f) => RandomListItem.fromMap(f));
+    return map.map((f) => RandomListItem.fromMap(f)).toList();
   }
 
   static Icon iconFromType(String type) {
