@@ -10,12 +10,14 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  List items = List();
+  List<RandomListItemWidget> items = List();
   String _icon = 'generic';
   FocusNode _titleNode = FocusNode();
 
   bool _saving = false;
   bool _dialog = false;
+
+  TextEditingController _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +62,11 @@ class _AddListPageState extends State<AddListPage> {
           )
         ],
       ),
-      body: _buildForm(),
+      body: _buildBody(),
     );
   }
 
-  Widget _buildForm() {
+  Widget _buildBody() {
     return ListView(
       children: <Widget>[
         Row(
@@ -78,9 +80,7 @@ class _AddListPageState extends State<AddListPage> {
                 ),
                 autofocus: true,
                 focusNode: _titleNode,
-                onEditingComplete: () {
-                  _addNewEntry();
-                },
+                onEditingComplete: () {},
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter list title',
@@ -128,7 +128,7 @@ class _AddListPageState extends State<AddListPage> {
             'Add item',
           ),
           onPressed: () {
-            _addNewEntry();
+            // _addNewEntry();
           },
         ),
       ],
@@ -190,7 +190,7 @@ class _AddListPageState extends State<AddListPage> {
           children: <Widget>[
             Flexible(
               child: TextField(
-                focusNode: f,
+                // focusNode: f,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter item name',
@@ -198,7 +198,7 @@ class _AddListPageState extends State<AddListPage> {
                       EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 ),
                 onEditingComplete: () {
-                  _addNewEntry();
+                  // _addNewEntry();
                 },
               ),
             ),
@@ -219,16 +219,76 @@ class _AddListPageState extends State<AddListPage> {
         );
       },
     ).toList();
-    if (items.length > 0 && !_dialog)
-      FocusScope.of(context).requestFocus(items.last);
-    else if (items.length == 0 && !_dialog)
-      FocusScope.of(context).requestFocus(_titleNode);
+    // if (items.length > 0 && !_dialog)
+    //   FocusScope.of(context).requestFocus(items.last);
+    // else if (items.length == 0 && !_dialog)
+    //   FocusScope.of(context).requestFocus(_titleNode);
     return rvalue;
   }
+}
 
-  void _addNewEntry() {
-    setState(() {
-      items.add(FocusNode());
-    });
+class RandomListItemWidget extends StatefulWidget {
+  final Function add;
+  final Function remove;
+
+  RandomListItemWidget({
+    @required this.add,
+    @required this.remove,
+  });
+
+  @override
+  _RandomListItemWidgetState createState() => _RandomListItemWidgetState();
+}
+
+class _RandomListItemWidgetState extends State<RandomListItemWidget> {
+  FocusNode focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode = FocusNode();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Flexible(
+          child: TextField(
+            focusNode: focusNode,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Enter item name',
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            ),
+            onEditingComplete: () {
+              widget.add();
+              // _addNewEntry();
+            },
+          ),
+        ),
+        IconButton(
+          iconSize: 14,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          onPressed: () {
+            setState(() {
+              widget.remove(widget);
+              // items.remove(f);
+            });
+          },
+          icon: Icon(
+            FlatIcons.minus,
+            color: Theme.of(context).accentColor,
+          ),
+        )
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    super.dispose();
   }
 }

@@ -34,6 +34,14 @@ class RandomList {
     );
   }
 
+  factory RandomList.empty() {
+    return RandomList(
+      name: '',
+      type: 'generic',
+      items: List<RandomListItem>(),
+    );
+  }
+
   static List<Map> createItemsToMap(List<RandomListItem> items) {
     return items
         .map(
@@ -169,5 +177,9 @@ class RandomListItem {
 
   factory RandomListItem.fromMap(Map<String, dynamic> map) {
     return RandomListItem(name: map['name'], selected: map['selected']);
+  }
+
+  factory RandomListItem.empty() {
+    return RandomListItem(name: '', selected: true);
   }
 }

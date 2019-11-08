@@ -13,8 +13,8 @@ dependencies:
   sembast: ^1.15.1
   path_provider: ^0.5.0+1
   # bloc
-  bloc: ^1.0.0
-  flutter_bloc: ^1.0.0
+  bloc: ^2.0.0
+  flutter_bloc: ^2.0.0
   equatable: ^0.6.1
   meta: ^1.1.6
   gradient_app_bar: ^0.0.1
