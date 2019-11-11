@@ -76,34 +76,33 @@ class HomePage extends StatelessWidget {
         ).toList(),
       );
     } else {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "You don't have any list. ಠ_ಠ",
-              textAlign: TextAlign.center,
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            "You don't have any list. ಠ_ಠ",
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          FlatButton.icon(
+            padding: EdgeInsets.all(16),
+            icon: Icon(
+              FlatIcons.add_3,
+              size: 12,
             ),
-            SizedBox(
-              height: 8,
+            textColor: Theme.of(context).accentColor,
+            label: Text('Create list'),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddListPage(),
+              ),
             ),
-            FlatButton.icon(
-              padding: EdgeInsets.all(16),
-              icon: Icon(
-                FlatIcons.add_3,
-                size: 12,
-              ),
-              textColor: Theme.of(context).accentColor,
-              label: Text('Create list'),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddListPage(),
-                ),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       );
     }
   }
