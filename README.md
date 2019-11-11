@@ -1,4 +1,4 @@
-![logo](img/logo-with-name.png)
+![logo](img/logo-with-background.png)
 
 # Dcydr
 
@@ -21,8 +21,6 @@ Let Dcydr help you!
 ### No more indecision
 
 Dcydr helps you, a victim of analysis paralysis pick a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
-
-![Screen 2](img/screen2.png)
 
 ### Fit for every situation
 
