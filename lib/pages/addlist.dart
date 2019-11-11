@@ -121,7 +121,7 @@ class _AddListPageState extends State<AddListPage> {
           padding: EdgeInsets.all(16),
           icon: Icon(
             FlatIcons.plus,
-            size: 10,
+            size: 12,
           ),
           textColor: Theme.of(context).accentColor,
           label: Text(

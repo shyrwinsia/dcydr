@@ -77,9 +77,32 @@ class HomePage extends StatelessWidget {
       );
     } else {
       return Center(
-        child: Text(
-          "You don't have any list as of the moment.",
-          textAlign: TextAlign.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "You don't have any list. ಠ_ಠ",
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            FlatButton.icon(
+              padding: EdgeInsets.all(16),
+              icon: Icon(
+                FlatIcons.add_3,
+                size: 12,
+              ),
+              textColor: Theme.of(context).accentColor,
+              label: Text('Create list'),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddListPage(),
+                ),
+              ),
+            )
+          ],
         ),
       );
     }
