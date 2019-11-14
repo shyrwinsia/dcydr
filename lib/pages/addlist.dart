@@ -73,21 +73,6 @@ class _AddListPageState extends State<AddListPage> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Flexible(
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-                autofocus: true,
-                focusNode: _titleNode,
-                onEditingComplete: () {},
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Enter list title',
-                  contentPadding: EdgeInsets.fromLTRB(24, 16, 16, 16),
-                ),
-              ),
-            ),
             IconButton(
               padding: EdgeInsets.all(16),
               onPressed: () {
@@ -102,6 +87,21 @@ class _AddListPageState extends State<AddListPage> {
                 );
               },
               icon: RandomList.iconFromType(_icon),
+            ),
+            Flexible(
+              child: TextField(
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+                autofocus: true,
+                focusNode: _titleNode,
+                onEditingComplete: () {},
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter list title',
+                  contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                ),
+              ),
             ),
           ],
         ),
