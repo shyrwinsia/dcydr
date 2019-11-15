@@ -36,10 +36,17 @@ class HomePage extends StatelessWidget {
                 return Text('Press button to start.');
               case ConnectionState.active:
               case ConnectionState.waiting:
-                return Text('Awaiting result...');
+                return Center(
+                  child: CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(const Color(0xff13b6cb)),
+                  ),
+                );
               case ConnectionState.done:
-                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-                return _createList(snapshot.data, context);
+                if (snapshot.hasError)
+                  return Text('Error: ${snapshot.error}');
+                else
+                  return _createList(snapshot.data, context);
             }
             return null;
           },
