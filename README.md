@@ -1,4 +1,4 @@
-![logo](img/logo-with-background.png)
+![logo](img/logo-square-small.png)
 
 # Dcydr
 
