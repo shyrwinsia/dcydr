@@ -63,6 +63,10 @@ class _HomePageState extends State<HomePage> {
           return Center(
             child: Text(state.message),
           );
+        } else {
+          return Center(
+            child: Text('Something went wrong'),
+          );
         }
       },
     );
