@@ -1,11 +1,14 @@
+import 'package:bloc/bloc.dart';
+import 'package:dcydr/bloc/blocdelegate.dart';
+import 'package:dcydr/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:dcydr/pages/home.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
+  // applying bloc delegate to override the transitions
+  BlocSupervisor.delegate = SimpleBlocDelegate();
   runApp(Dcydr());
 }
 

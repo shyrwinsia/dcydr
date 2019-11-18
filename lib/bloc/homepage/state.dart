@@ -20,9 +20,9 @@ class Loading extends HomePageState {
 }
 
 class Success extends HomePageState {
-  final RandomList list;
+  final List<RandomList> list;
 
-  Success({list}) : this.list = list ?? RandomList.empty();
+  Success({this.list});
 
   @override
   String toString() => '[State] HomePageState: Success';
