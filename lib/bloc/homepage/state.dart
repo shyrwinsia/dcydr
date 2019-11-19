@@ -3,7 +3,9 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class HomePageState extends Equatable {}
+abstract class HomePageState extends Equatable {
+  const HomePageState();
+}
 
 class Uninitialized extends HomePageState {
   @override

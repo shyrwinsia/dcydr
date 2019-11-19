@@ -1,5 +1,6 @@
+import 'package:dcydr/bloc/addlist/bloc.dart';
 import 'package:dcydr/components/appbar.dart';
-import 'package:dcydr/data/dao.dart';
+import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
@@ -10,14 +11,13 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  List<RandomListItemWidget> items = List();
-  String _icon = 'generic';
-  FocusNode _titleNode = FocusNode();
-
-  bool _saving = false;
-  bool _dialog = false;
-
-  TextEditingController _textController = TextEditingController();
+  AddListPageBloc _bloc;
+  @override
+  void initState() {
+    super.initState();
+    // _bloc = AddListPageBloc();
+    // _bloc.add(event)
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,32 +29,7 @@ class _AddListPageState extends State<AddListPage> {
           IconButton(
             iconSize: 18,
             onPressed: () {
-              RandomListDao().insert(
-                RandomList(
-                  name: 'Lunch places',
-                  type: 'location',
-                  items: <RandomListItem>[
-                    RandomListItem(name: "Slave Food", selected: true),
-                    RandomListItem(name: "Korean one-North", selected: true),
-                    RandomListItem(name: "Koufu one-North", selected: true),
-                    RandomListItem(name: "Subway one-North", selected: true),
-                    RandomListItem(name: "Bismillah Biryani", selected: true),
-                    RandomListItem(name: "Arkadas Cafe", selected: true),
-                    RandomListItem(name: "Burger King Vivo", selected: true),
-                    RandomListItem(name: "Kopitiam Vivo", selected: true),
-                    RandomListItem(name: "Texas Vivo", selected: true),
-                    RandomListItem(name: "Stuff'd Vivo", selected: true),
-                    RandomListItem(name: "Segar Buona Vista", selected: true),
-                    RandomListItem(name: "Korean Bouna Vista", selected: true),
-                    RandomListItem(name: "Texas Bouna Vista", selected: true),
-                    RandomListItem(name: "Burger King NUH", selected: true),
-                    RandomListItem(name: "Hawker NUH", selected: true),
-                    RandomListItem(name: "Kopitiam NUH", selected: true),
-                    RandomListItem(name: "Holland Village", selected: true),
-                    RandomListItem(name: "Al Amaan", selected: true),
-                  ],
-                ),
-              );
+              SampleData.instance.addLunchPlaces();
             },
             icon: Icon(
               FlatIcons.save,
@@ -77,7 +52,7 @@ class _AddListPageState extends State<AddListPage> {
               padding: EdgeInsets.all(16),
               onPressed: () {
                 setState(() {
-                  _dialog = true;
+                  // _dialog = true;
                 });
                 showDialog(
                   context: context,
@@ -86,7 +61,7 @@ class _AddListPageState extends State<AddListPage> {
                   },
                 );
               },
-              icon: RandomList.iconFromType(_icon),
+              icon: RandomList.iconFromType('generic'),
             ),
             Flexible(
               child: TextField(
@@ -94,7 +69,7 @@ class _AddListPageState extends State<AddListPage> {
                   fontSize: 24,
                 ),
                 autofocus: true,
-                focusNode: _titleNode,
+                // focusNode: _titleNode,
                 onEditingComplete: () {},
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -169,8 +144,8 @@ class _AddListPageState extends State<AddListPage> {
                   icon: RandomList.iconFromType(f.name),
                   onPressed: () {
                     setState(() {
-                      _icon = f.name;
-                      _dialog = false;
+                      // _icon = f.name;
+                      // _dialog = false;
                     });
                     Navigator.pop(context);
                   },
@@ -184,46 +159,47 @@ class _AddListPageState extends State<AddListPage> {
   }
 
   _buildList() {
-    List rvalue = items.map(
-      (f) {
-        return Row(
-          children: <Widget>[
-            Flexible(
-              child: TextField(
-                // focusNode: f,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Enter item name',
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                ),
-                onEditingComplete: () {
-                  // _addNewEntry();
-                },
-              ),
-            ),
-            IconButton(
-              iconSize: 14,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              onPressed: () {
-                setState(() {
-                  items.remove(f);
-                });
-              },
-              icon: Icon(
-                FlatIcons.minus,
-                color: Theme.of(context).accentColor,
-              ),
-            )
-          ],
-        );
-      },
-    ).toList();
+    // List rvalue = items.map(
+    //   (f) {
+    //     return Row(
+    //       children: <Widget>[
+    //         Flexible(
+    //           child: TextField(
+    //             // focusNode: f,
+    //             decoration: InputDecoration(
+    //               border: InputBorder.none,
+    //               hintText: 'Enter item name',
+    //               contentPadding:
+    //                   EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+    //             ),
+    //             onEditingComplete: () {
+    //               // _addNewEntry();
+    //             },
+    //           ),
+    //         ),
+    //         IconButton(
+    //           iconSize: 14,
+    //           padding: EdgeInsets.symmetric(horizontal: 16),
+    //           onPressed: () {
+    //             setState(() {
+    //               // items.remove(f);
+    //             });
+    //           },
+    //           icon: Icon(
+    //             FlatIcons.minus,
+    //             color: Theme.of(context).accentColor,
+    //           ),
+    //         )
+    //       ],
+    //     );
+    //   },
+    // ).toList();
     // if (items.length > 0 && !_dialog)
     //   FocusScope.of(context).requestFocus(items.last);
     // else if (items.length == 0 && !_dialog)
     //   FocusScope.of(context).requestFocus(_titleNode);
-    return rvalue;
+    // return rvalue;
+    return Container();
   }
 }
 
