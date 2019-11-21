@@ -4,11 +4,13 @@ import 'package:meta/meta.dart';
 
 // Datatypes
 class RandomList {
+  final int key;
   final String name;
   final String type;
   final List<RandomListItem> items;
 
   RandomList({
+    this.key: -1,
     @required this.name,
     @required this.type,
     @required this.items,
@@ -28,6 +30,7 @@ class RandomList {
 
   factory RandomList.fromMap(int key, Map<String, dynamic> map) {
     return RandomList(
+      key: key,
       name: map['name'],
       type: map['type'],
       items: RandomList.createItemsFromMap(map['items']),

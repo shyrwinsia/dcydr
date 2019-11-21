@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/fade.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:dcydr/pages/editlist.dart';
 import 'package:dcydr/pages/set.dart';
@@ -140,7 +141,9 @@ class _PickPageState extends State<PickPage> {
           onPressed: () {
             // TODO Add the logic to delete here
             print('YES. DELETE');
-            Navigator.of(context)..pop()..pop();
+            RandomListDao()
+                .delete(widget._list)
+                .then((onValue) => Navigator.of(context)..pop()..pop());
           },
         ),
       ],

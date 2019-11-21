@@ -1,5 +1,6 @@
 import 'package:dcydr/data/database.dart';
 import 'package:dcydr/data/types.dart';
+import 'package:dcydr/logger/logger.dart';
 import 'package:sembast/sembast.dart';
 
 class RandomListDao {
@@ -17,8 +18,9 @@ class RandomListDao {
   }
 
   Future delete(RandomList list) async {
-    // final finder = Finder(filter: Filter.byKey(list.id));
-    // await _randomListStore.delete(await _db, finder: finder);
+    getLogger().i(list.key);
+    final finder = Finder(filter: Filter.byKey(list.key));
+    await _randomListStore.delete(await _db, finder: finder);
   }
 
   Future<List<RandomList>> getAll() async {
