@@ -1,9 +1,9 @@
-import 'package:dcydr/bloc/addlist/bloc.dart';
+import 'package:dcydr/bloc/addlistpage/bloc.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/data/types.dart';
-import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
+import 'package:flutter/material.dart';
 
 class AddListPage extends StatefulWidget {
   @override

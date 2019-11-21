@@ -31,19 +31,40 @@ class _HomePageState extends State<HomePage> {
           actions: <Widget>[
             IconButton(
               iconSize: 18,
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddListPage(),
-                ),
-              ),
+              onPressed: () => _bloc.add(AddList()),
               icon: Icon(
                 FlatIcons.add_3,
               ),
             )
           ],
         ),
-        body: _blocBuilder(context));
+        body: _blocListener(context));
+  }
+
+  Widget _blocListener(BuildContext context) {
+    return BlocListener<HomePageBloc, HomePageState>(
+      bloc: _bloc,
+      listener: (context, state) {
+        if (state is MoveToPickPage) {
+          // this should return a widget
+          // move the routing here in the tree
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PickPage(state.list),
+            ),
+          );
+        } else if (state is MoveToAddPage) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddListPage(),
+            ),
+          );
+        }
+      },
+      child: _blocBuilder(context),
+    );
   }
 
   Widget _blocBuilder(BuildContext context) {
@@ -58,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         } else if (state is Success) {
-          return _buildListView(context, state.list);
+          return _listViewBuilder(context, state.list);
         } else if (state is Failed) {
           return Center(
             child: Text(state.message),
@@ -72,7 +93,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildListView(BuildContext context, List<RandomList> list) {
+  Widget _listViewBuilder(BuildContext context, List<RandomList> list) {
     if (list.length > 0) {
       return ListView(
         children: ListTile.divideTiles(
@@ -88,14 +109,7 @@ class _HomePageState extends State<HomePage> {
                   FlatIcons.con_right_arrow_1_a,
                   color: const Color(0x44000000),
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PickPage(item),
-                    ),
-                  );
-                },
+                onTap: () => _bloc.add(ChooseList(list: item)),
               );
             },
           ),
@@ -121,12 +135,7 @@ class _HomePageState extends State<HomePage> {
             ),
             textColor: Theme.of(context).accentColor,
             label: Text('Create list'),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddListPage(),
-              ),
-            ),
+            onPressed: () => _bloc.add(AddList()),
           )
         ],
       );

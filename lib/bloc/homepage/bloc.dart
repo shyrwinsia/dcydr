@@ -22,6 +22,12 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
         getLogger().wtf(e);
         yield Failed(message: 'Something went wrong.');
       }
+    } else if (event is ChooseList) {
+      yield MoveToPickPage(list: event.list);
+    } else if (event is AddList) {
+      yield MoveToAddPage();
+    } else {
+      getLogger().wtf('Something went wrong.');
     }
   }
 }
