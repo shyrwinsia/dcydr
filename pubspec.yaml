@@ -15,7 +15,7 @@ dependencies:
   # bloc
   bloc: ^2.0.0
   flutter_bloc: ^2.0.0
-  equatable: ^0.6.1
+  equatable: ^1.0.0
   meta: ^1.1.6
   gradient_app_bar: ^0.0.1
   # logger
