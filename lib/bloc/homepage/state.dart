@@ -21,26 +21,15 @@ class Loading extends HomePageState {
   List<Object> get props => null;
 }
 
-class Success extends HomePageState {
+class Loaded extends HomePageState {
   final List<RandomList> list;
 
-  Success({this.list});
+  Loaded({this.list});
 
   @override
-  String toString() => '[State] HomePageState: Success';
+  String toString() => '[State] HomePageState: Loaded';
 
   List<Object> get props => [this.list];
-}
-
-class Failed extends HomePageState {
-  final String message;
-
-  Failed({this.message});
-
-  @override
-  String toString() => '[State] HomePageState: Failed';
-
-  List<Object> get props => [this.message];
 }
 
 class MoveToPickPage extends HomePageState {

@@ -15,13 +15,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   Stream<HomePageState> mapEventToState(HomePageEvent event) async* {
     if (event is LoadLists) {
       yield Loading();
-      try {
-        List<RandomList> list = await RandomListDao().getAll();
-        yield Success(list: list);
-      } catch (e) {
-        getLogger().wtf(e);
-        yield Failed(message: 'Something went wrong.');
-      }
+      yield* _reloadLists();
     } else if (event is ChooseList) {
       yield MoveToPickPage(list: event.list);
     } else if (event is AddList) {
@@ -30,4 +24,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       getLogger().wtf('Something went wrong.');
     }
   }
+}
+
+Stream<HomePageState> _reloadLists() async* {
+  final List<RandomList> list = await RandomListDao().getAll();
+  yield Loaded(list: list);
 }

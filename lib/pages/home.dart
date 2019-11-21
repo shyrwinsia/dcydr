@@ -46,21 +46,9 @@ class _HomePageState extends State<HomePage> {
       bloc: _bloc,
       listener: (context, state) {
         if (state is MoveToPickPage) {
-          // this should return a widget
-          // move the routing here in the tree
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PickPage(state.list),
-            ),
-          );
+          _pushPage(PickPage(state.list));
         } else if (state is MoveToAddPage) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddListPage(),
-            ),
-          );
+          _pushPage(AddListPage());
         }
       },
       child: _blocBuilder(context),
@@ -78,16 +66,11 @@ class _HomePageState extends State<HomePage> {
                   AlwaysStoppedAnimation<Color>(const Color(0xff13b6cb)),
             ),
           );
-        } else if (state is Success) {
+        } else if (state is Loaded) {
           return _listViewBuilder(context, state.list);
-        } else if (state is Failed) {
-          return Center(
-            child: Text(state.message),
-          );
         } else {
-          return Center(
-            child: Text('Something went wrong'),
-          );
+          _bloc.add(LoadLists());
+          return Container();
         }
       },
     );
@@ -140,5 +123,14 @@ class _HomePageState extends State<HomePage> {
         ],
       );
     }
+  }
+
+  void _pushPage(Widget page) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => page,
+      ),
+    ).then((onValue) => _bloc.add(LoadLists()));
   }
 }

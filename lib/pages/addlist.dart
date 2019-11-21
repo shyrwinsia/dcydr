@@ -15,8 +15,7 @@ class _AddListPageState extends State<AddListPage> {
   @override
   void initState() {
     super.initState();
-    // _bloc = AddListPageBloc();
-    // _bloc.add(event)
+    _bloc = AddListPageBloc();
   }
 
   @override
@@ -87,11 +86,11 @@ class _AddListPageState extends State<AddListPage> {
         SizedBox(
           height: 8,
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: _buildList(),
-        ),
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   mainAxisAlignment: MainAxisAlignment.start,
+        //   children: _buildList(),
+        // ),
         FlatButton.icon(
           padding: EdgeInsets.all(16),
           icon: Icon(
@@ -137,21 +136,21 @@ class _AddListPageState extends State<AddListPage> {
                 ),
               ),
             ),
-            Wrap(
-              children: RandomListTypes.types.map((f) {
-                return IconButton(
-                  padding: EdgeInsets.all(24),
-                  icon: RandomList.iconFromType(f.name),
-                  onPressed: () {
-                    setState(() {
-                      // _icon = f.name;
-                      // _dialog = false;
-                    });
-                    Navigator.pop(context);
-                  },
-                );
-              }).toList(),
-            ),
+            // Wrap(
+            //   children: RandomListTypes.types.map((f) {
+            //     return IconButton(
+            //       padding: EdgeInsets.all(24),
+            //       icon: RandomList.iconFromType(f.name),
+            //       onPressed: () {
+            //         setState(() {
+            //           // _icon = f.name;
+            //           // _dialog = false;
+            //         });
+            //         Navigator.pop(context);
+            //       },
+            //     );
+            //   }).toList(),
+            // ),
           ],
         ),
       ),
@@ -199,6 +198,7 @@ class _AddListPageState extends State<AddListPage> {
     // else if (items.length == 0 && !_dialog)
     //   FocusScope.of(context).requestFocus(_titleNode);
     // return rvalue;
+
     return Container();
   }
 }
