@@ -6,7 +6,7 @@ abstract class AddListPageEvent extends Equatable {
 
 class AddListItem extends AddListPageEvent {
   @override
-  String toString() => '[State] AddListPageEvent: AddListItem';
+  String toString() => '[Event] AddListPageEvent: AddListItem';
 
   @override
   List<Object> get props => null;
@@ -14,7 +14,7 @@ class AddListItem extends AddListPageEvent {
 
 class PushListIcon extends AddListPageEvent {
   @override
-  String toString() => '[State] AddListPageEvent: PushListIcon';
+  String toString() => '[Event] AddListPageEvent: PushListIcon';
 
   @override
   List<Object> get props => null;
@@ -22,7 +22,7 @@ class PushListIcon extends AddListPageEvent {
 
 class ChooseListIcon extends AddListPageEvent {
   @override
-  String toString() => '[State] AddListPageEvent: ChooseListIcon';
+  String toString() => '[Event] AddListPageEvent: ChooseListIcon';
 
   @override
   List<Object> get props => null;
@@ -30,7 +30,7 @@ class ChooseListIcon extends AddListPageEvent {
 
 class SaveList extends AddListPageEvent {
   @override
-  String toString() => '[State] AddListPageEvent: SaveList';
+  String toString() => '[Event] AddListPageEvent: SaveList';
 
   @override
   List<Object> get props => null;

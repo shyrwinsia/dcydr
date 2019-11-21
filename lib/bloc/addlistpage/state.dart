@@ -7,4 +7,7 @@ abstract class AddListPageState extends Equatable {
 class Uninitialized extends AddListPageState {
   @override
   List<Object> get props => [];
+
+  @override
+  String toString() => '[State] AddListPageState: Uninitialized';
 }

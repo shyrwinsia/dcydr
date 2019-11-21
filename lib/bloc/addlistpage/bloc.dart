@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dcydr/bloc/addlist/event.dart';
-import 'package:dcydr/bloc/addlist/state.dart';
+import 'package:dcydr/bloc/addlistpage/event.dart';
+import 'package:dcydr/bloc/addlistpage/state.dart';
 import 'package:dcydr/data/types.dart';
 
 class AddListPageBloc extends Bloc<AddListPageEvent, AddListPageState> {
