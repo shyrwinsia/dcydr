@@ -5,8 +5,8 @@ class SampleData {
   static final SampleData _singleton = SampleData();
   static SampleData get instance => _singleton;
 
-  void addLunchPlaces() {
-    RandomListDao().insert(
+  Future addLunchPlaces() {
+    return RandomListDao().insert(
       RandomList(
         name: 'Lunch places',
         type: 'location',

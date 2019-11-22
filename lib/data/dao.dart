@@ -18,7 +18,6 @@ class RandomListDao {
   }
 
   Future delete(RandomList list) async {
-    getLogger().i(list.key);
     final finder = Finder(filter: Filter.byKey(list.key));
     await _randomListStore.delete(await _db, finder: finder);
   }

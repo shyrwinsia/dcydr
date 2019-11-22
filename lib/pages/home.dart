@@ -3,7 +3,6 @@ import 'package:dcydr/bloc/homepage/event.dart';
 import 'package:dcydr/bloc/homepage/state.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/data/types.dart';
-import 'package:dcydr/logger/logger.dart';
 import 'package:dcydr/pages/addlist.dart';
 import 'package:dcydr/pages/pick.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
@@ -39,10 +38,10 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        body: _blocListener(context));
+        body: _pageRouter(context));
   }
 
-  Widget _blocListener(BuildContext context) {
+  Widget _pageRouter(BuildContext context) {
     return BlocListener<HomePageBloc, HomePageState>(
       bloc: _bloc,
       listener: (context, state) {
@@ -133,7 +132,6 @@ class _HomePageState extends State<HomePage> {
         builder: (context) => page,
       ),
     ).then((onValue) {
-      getLogger().i("AAAAAAAAAAAAAAAA");
       _bloc.add(LoadLists());
     });
   }
