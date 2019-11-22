@@ -1,6 +1,5 @@
 import 'package:dcydr/data/database.dart';
 import 'package:dcydr/data/types.dart';
-import 'package:dcydr/logger/logger.dart';
 import 'package:sembast/sembast.dart';
 
 class RandomListDao {
