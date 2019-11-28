@@ -17,7 +17,7 @@ class LoadLists extends HomePageEvent {
 
 class ChooseList extends HomePageEvent {
   final RandomList list;
-  ChooseList({this.list});
+  ChooseList({@required this.list});
 
   @override
   String toString() => '[Event] HomePageEvent: ChooseList';

@@ -1,12 +1,15 @@
-import 'dart:math';
+import 'package:dcydr/bloc/pickpage/bloc.dart';
+import 'package:dcydr/bloc/pickpage/event.dart';
+import 'package:dcydr/bloc/pickpage/state.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/fade.dart';
 import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:dcydr/pages/editlist.dart';
 import 'package:dcydr/pages/set.dart';
-import 'package:flutter/material.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PickPage extends StatefulWidget {
   final RandomList _list;
@@ -16,12 +19,12 @@ class PickPage extends StatefulWidget {
 }
 
 class _PickPageState extends State<PickPage> {
-  String _pick = '';
-  var rng = Random();
+  PickPageBloc _bloc;
 
   @override
   void initState() {
     super.initState();
+    _bloc = PickPageBloc();
   }
 
   void _moveToListPage() {
@@ -30,18 +33,6 @@ class _PickPageState extends State<PickPage> {
         builder: (context) => SetPage(list: widget._list),
       ),
     );
-  }
-
-  _pickAnItem() {
-    List<RandomListItem> items = widget._list.active;
-    // TODO Store old picks up to 2 so it will not keep repeating
-    setState(() {
-      items.length > 0
-          ? items.length > 1
-              ? _pick = items.elementAt(rng.nextInt(items.length)).name
-              : _pick = "Can't randomly pick from only one choice\n¯\\_(ツ)_/¯"
-          : _pick = 'Nothing to pick (◔_◔)';
-    });
   }
 
   @override
@@ -80,27 +71,51 @@ class _PickPageState extends State<PickPage> {
         children: [
           Expanded(
             child: FadeIn(
-              child: InkWell(
-                onTap: _pickAnItem,
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(40),
-                    child: Text(
-                      _pick == ''
-                          ? 'Tap to choose from ' + widget._list.name
-                          : _pick,
-                      textAlign: TextAlign.center,
-                      style: _pick == ''
-                          ? null
-                          : Theme.of(context).textTheme.display2,
-                    ),
-                  ),
-                ),
-              ),
+              child: _blocBuilder(context),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _blocBuilder(BuildContext context) {
+    return BlocBuilder<PickPageBloc, PickPageState>(
+      bloc: _bloc,
+      builder: (context, state) {
+        if (state is PickedItemState) {
+          return InkWell(
+            onTap: () => _bloc.add(
+              PickItem(items: this.widget._list.items),
+            ),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(40),
+                child: Text(
+                  state.pick,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.display2,
+                ),
+              ),
+            ),
+          );
+        } else {
+          return InkWell(
+            onTap: () => _bloc.add(
+              PickItem(items: this.widget._list.items),
+            ),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(40),
+                child: Text(
+                  'Tap to choose from ' + widget._list.name,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 
