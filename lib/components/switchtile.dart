@@ -17,13 +17,13 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
   Widget build(BuildContext context) {
     return ListTile(
       title: widget._item.selected
-          ? FadeIn(child: Text(widget._item.name), from: 0.4, to: 1.0)
+          ? FadeIn(child: Text(widget._item.name), fromAlpha: 0.4, toAlpha: 1.0)
           : FadeOut(
               child: Text(
                 widget._item.name,
               ),
-              from: 1.0,
-              to: 0.4,
+              fromAlpha: 1.0,
+              toAlpha: 0.4,
             ),
       trailing: widget._item.selected
           ? FadeIn(

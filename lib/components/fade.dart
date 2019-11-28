@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class FadeIn extends StatefulWidget {
   final Widget child;
-  final double from, to;
+  final double fromAlpha, toAlpha;
   final int duration;
 
-  FadeIn({@required this.child, from, to, duration})
-      : this.from = from ?? 0.0,
-        this.to = to ?? 1.0,
+  FadeIn({@required this.child, fromAlpha, toAlpha, duration})
+      : this.fromAlpha = fromAlpha ?? 0.0,
+        this.toAlpha = toAlpha ?? 1.0,
         this.duration = duration ?? 200;
 
   @override
@@ -28,8 +28,8 @@ class _FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
     );
 
     _animation = Tween(
-      begin: this.widget.from,
-      end: this.widget.to,
+      begin: this.widget.fromAlpha,
+      end: this.widget.toAlpha,
     ).animate(_controller);
   }
 
@@ -42,7 +42,7 @@ class _FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
   @override
   void didUpdateWidget(FadeIn oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _controller.forward(from: this.widget.from);
+    _controller.forward(from: this.widget.fromAlpha);
   }
 
   @override
@@ -57,12 +57,12 @@ class _FadeInState extends State<FadeIn> with SingleTickerProviderStateMixin {
 
 class FadeOut extends StatefulWidget {
   final Widget child;
-  final double from, to;
+  final double fromAlpha, toAlpha;
   final int duration;
 
-  FadeOut({@required this.child, from, to, duration})
-      : this.from = from ?? 1.0,
-        this.to = to ?? 0.0,
+  FadeOut({@required this.child, fromAlpha, toAlpha, duration})
+      : this.fromAlpha = fromAlpha ?? 1.0,
+        this.toAlpha = toAlpha ?? 0.0,
         this.duration = duration ?? 200;
 
   @override
@@ -83,8 +83,8 @@ class _FadeOutState extends State<FadeOut> with SingleTickerProviderStateMixin {
     );
 
     _animation = Tween(
-      begin: this.widget.from,
-      end: this.widget.to,
+      begin: this.widget.fromAlpha,
+      end: this.widget.toAlpha,
     ).animate(_controller);
   }
 
@@ -97,7 +97,7 @@ class _FadeOutState extends State<FadeOut> with SingleTickerProviderStateMixin {
   @override
   void didUpdateWidget(FadeOut oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _controller.forward(from: this.widget.from);
+    _controller.forward(from: this.widget.fromAlpha);
   }
 
   @override
