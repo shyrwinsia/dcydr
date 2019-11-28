@@ -16,3 +16,19 @@ class PickItem extends PickPageEvent {
   @override
   List<Object> get props => [this.items];
 }
+
+class PickOptions extends PickPageEvent {
+  @override
+  String toString() => '[Event] PickPageEvent: PickOptions';
+
+  @override
+  List<Object> get props => null;
+}
+
+class Reintialize extends PickPageEvent {
+  @override
+  String toString() => '[Event] PickPageEvent: Reintialize';
+
+  @override
+  List<Object> get props => null;
+}

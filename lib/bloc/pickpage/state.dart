@@ -7,7 +7,7 @@ abstract class PickPageState extends Equatable {
 
 class Uninitialized extends PickPageState {
   @override
-  List<Object> get props => [];
+  List<Object> get props => null;
 }
 
 class PickedItemState extends PickPageState {
@@ -19,4 +19,12 @@ class PickedItemState extends PickPageState {
 
   @override
   String toString() => '[State] PickPageState: PickedItemState ${this.pick}';
+}
+
+class MoveToPickOptionsPage extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: MoveToPickOptionsPage';
 }

@@ -3,10 +3,10 @@ import 'package:dcydr/components/switchtile.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
-class SetPage extends StatelessWidget {
+class PickOptionsPage extends StatelessWidget {
   final RandomList list;
 
-  SetPage({this.list});
+  PickOptionsPage({this.list});
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,10 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
     if (event is PickItem) {
       yield PickedItemState(pick: _pickRandomItem(event.items));
+    } else if (event is PickOptions) {
+      yield MoveToPickOptionsPage();
+    } else if (event is Reintialize) {
+      yield Uninitialized();
     } else {
       getLogger().wtf('Something went wrong.');
     }

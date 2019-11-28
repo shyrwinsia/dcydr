@@ -6,7 +6,7 @@ import 'package:dcydr/components/fade.dart';
 import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:dcydr/pages/editlist.dart';
-import 'package:dcydr/pages/set.dart';
+import 'package:dcydr/pages/pickoptions.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,14 +27,6 @@ class _PickPageState extends State<PickPage> {
     _bloc = PickPageBloc();
   }
 
-  void _moveToListPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (context) => SetPage(list: widget._list),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +35,14 @@ class _PickPageState extends State<PickPage> {
         hasBackButton: true,
         actions: <Widget>[
           IconButton(
-              iconSize: 18,
-              icon: Icon(
-                FlatIcons.controls_4,
-              ),
-              onPressed: _moveToListPage),
+            iconSize: 18,
+            icon: Icon(
+              FlatIcons.controls_4,
+            ),
+            onPressed: () => _bloc.add(
+              PickOptions(),
+            ),
+          ),
           PopupMenuButton<String>(
             icon: Icon(
               FlatIcons.more_1,
@@ -71,11 +66,31 @@ class _PickPageState extends State<PickPage> {
         children: [
           Expanded(
             child: FadeIn(
-              child: _blocBuilder(context),
+              child: _pageRouter(context),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _pageRouter(BuildContext context) {
+    return BlocListener<PickPageBloc, PickPageState>(
+      bloc: _bloc,
+      listener: (context, state) {
+        if (state is MoveToPickOptionsPage) {
+          Navigator.of(context)
+              .push(
+            MaterialPageRoute<void>(
+              builder: (context) => PickOptionsPage(list: widget._list),
+            ),
+          )
+              .then((onValue) {
+            _bloc.add(Reintialize());
+          });
+        }
+      },
+      child: _blocBuilder(context),
     );
   }
 
@@ -99,7 +114,7 @@ class _PickPageState extends State<PickPage> {
               ),
             ),
           );
-        } else {
+        } else if (state is Uninitialized) {
           return InkWell(
             onTap: () => _bloc.add(
               PickItem(items: this.widget._list.items),
@@ -114,6 +129,8 @@ class _PickPageState extends State<PickPage> {
               ),
             ),
           );
+        } else {
+          return Container();
         }
       },
     );
@@ -165,6 +182,8 @@ class _PickPageState extends State<PickPage> {
     );
   }
 }
+
+class MoveToPickOptionPage {}
 
 class Actions {
   static const String EDIT = 'Edit';
