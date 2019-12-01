@@ -170,6 +170,7 @@ class _PickPageState extends State<PickPage> {
             'Delete',
             style: TextStyle(color: Colors.red),
           ),
+          // TODO Change this to BLoC
           onPressed: () {
             // TODO Add the logic to delete here
             print('YES. DELETE');
