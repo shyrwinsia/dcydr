@@ -25,9 +25,33 @@ class PickOptions extends PickPageEvent {
   List<Object> get props => null;
 }
 
-class Reintialize extends PickPageEvent {
+class DeleteAction extends PickPageEvent {
   @override
-  String toString() => '[Event] PickPageEvent: Reintialize';
+  String toString() => '[Event] PickPageEvent: DeleteAction';
+
+  @override
+  List<Object> get props => null;
+}
+
+class DeleteCancelled extends PickPageEvent {
+  @override
+  String toString() => '[Event] PickPageEvent: DeleteCancelled';
+
+  @override
+  List<Object> get props => null;
+}
+
+class DeleteConfirmed extends PickPageEvent {
+  @override
+  String toString() => '[Event] PickPageEvent: DeleteConfirmed';
+
+  @override
+  List<Object> get props => null;
+}
+
+class GetLastPickedItem extends PickPageEvent {
+  @override
+  String toString() => '[Event] PickPageEvent: GetLastPickedItem';
 
   @override
   List<Object> get props => null;

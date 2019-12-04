@@ -28,3 +28,27 @@ class MoveToPickOptionsPage extends PickPageState {
   @override
   String toString() => '[State] PickPageState: MoveToPickOptionsPage';
 }
+
+class DeleteConfirmDialog extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: DeleteConfirmDialog';
+}
+
+class CloseConfirmDialog extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: CloseConfirmDialog';
+}
+
+class DeleteList extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: DeleteList';
+}

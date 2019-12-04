@@ -86,8 +86,24 @@ class _PickPageState extends State<PickPage> {
             ),
           )
               .then((onValue) {
-            _bloc.add(Reintialize());
+            _bloc.add(GetLastPickedItem());
           });
+        } else if (state is DeleteConfirmDialog) {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) {
+              return _buildDeleteConfirmDialog();
+            },
+          );
+        } else if (state is CloseConfirmDialog) {
+          Navigator.of(context).pop();
+          _bloc.add(GetLastPickedItem());
+        } else if (state is DeleteList) {
+          // delete then pop
+          RandomListDao()
+              .delete(widget._list)
+              .then((onValue) => Navigator.of(context)..pop()..pop());
         }
       },
       child: _blocBuilder(context),
@@ -137,6 +153,7 @@ class _PickPageState extends State<PickPage> {
   }
 
   void choiceAction(String choice) {
+    // TODO change to bloc
     if (choice == Actions.EDIT) {
       Navigator.push(
         context,
@@ -145,16 +162,11 @@ class _PickPageState extends State<PickPage> {
         ),
       );
     } else if (choice == Actions.DELETE) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return _buildDialog();
-        },
-      );
+      _bloc.add(DeleteAction());
     }
   }
 
-  Widget _buildDialog() {
+  Widget _buildDeleteConfirmDialog() {
     return AlertDialog(
       contentPadding: EdgeInsets.fromLTRB(24, 32, 24, 16),
       content: Text('Delete this list?'),
@@ -162,7 +174,7 @@ class _PickPageState extends State<PickPage> {
         FlatButton(
           child: Text('Cancel'),
           onPressed: () {
-            Navigator.of(context).pop();
+            _bloc.add(DeleteCancelled());
           },
         ),
         FlatButton(
@@ -172,11 +184,7 @@ class _PickPageState extends State<PickPage> {
           ),
           // TODO Change this to BLoC
           onPressed: () {
-            // TODO Add the logic to delete here
-            print('YES. DELETE');
-            RandomListDao()
-                .delete(widget._list)
-                .then((onValue) => Navigator.of(context)..pop()..pop());
+            _bloc.add(DeleteConfirmed());
           },
         ),
       ],

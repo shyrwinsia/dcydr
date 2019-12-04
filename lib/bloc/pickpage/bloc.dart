@@ -8,18 +8,30 @@ import 'package:dcydr/logger/logger.dart';
 
 class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   final rng = Random();
+  String _pickedItem;
 
   @override
   PickPageState get initialState => Uninitialized();
 
   @override
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
+    print(this._pickedItem);
     if (event is PickItem) {
-      yield PickedItemState(pick: _pickRandomItem(event.items));
+      this._pickedItem = _pickRandomItem(event.items);
+      yield PickedItemState(pick: this._pickedItem);
     } else if (event is PickOptions) {
       yield MoveToPickOptionsPage();
-    } else if (event is Reintialize) {
-      yield Uninitialized();
+    } else if (event is DeleteAction) {
+      yield DeleteConfirmDialog();
+    } else if (event is DeleteCancelled) {
+      yield CloseConfirmDialog();
+    } else if (event is DeleteConfirmed) {
+      yield DeleteList();
+    } else if (event is GetLastPickedItem) {
+      if (_pickedItem != null)
+        yield PickedItemState(pick: this._pickedItem);
+      else
+        yield Uninitialized();
     } else {
       getLogger().wtf('Something went wrong.');
     }
