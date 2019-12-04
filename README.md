@@ -52,15 +52,13 @@ This is just a side-project I write during my free time. It's not perfect, so do
 
 ## Upcoming Features
 
-Don't ask me to add a shake gesture to pick or show an animation picking. I think it's a waste of time to wait for a pointless animation and an insult to your intelligence to make you shake your phone to generate a random pick. If you think this is important, get another app. There are other apps out there that do exactly that. The whole point of this is to be simple, clean and fast. This app is not for entertainment purposes.
-
-Some features I'm planning to do in the future:
+This app aims to be simple, clean and fast. A picking animation or a 'shake to pick' will never be added as a feature. There are other apps out there that do that, but this isn't one of them. By contrast, here are some features I'm planning to do in the future:
 
 - Categorize items and lists
 - Batch select and deselect
 - Reorder lists
-- Clone list
-- Share list
+- Clone and edit list
+- Share list to another user
 
 ## About
 
