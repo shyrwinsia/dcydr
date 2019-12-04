@@ -115,38 +115,14 @@ class _PickPageState extends State<PickPage> {
       bloc: _bloc,
       builder: (context, state) {
         if (state is PickedItemState) {
-          return InkWell(
-            onTap: () => _bloc.add(
-              PickItem(items: this.widget._list.items),
-            ),
-            child: Center(
-              child: FadeIn(
-                child: Padding(
-                  padding: EdgeInsets.all(40),
-                  child: Text(
-                    state.pick,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.display2,
-                  ),
-                ),
-              ),
-            ),
-          );
+          return _buildPicker(pick: state.pick);
+        } else if (state is DeleteConfirmDialog) {
+          if (state.pick != null)
+            return _buildPicker(pick: state.pick);
+          else
+            return _buildInstruction();
         } else if (state is Uninitialized) {
-          return InkWell(
-            onTap: () => _bloc.add(
-              PickItem(items: this.widget._list.items),
-            ),
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(40),
-                child: Text(
-                  'Tap to choose from ' + widget._list.name,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          );
+          return _buildInstruction();
         } else {
           return Container();
         }
@@ -184,13 +160,62 @@ class _PickPageState extends State<PickPage> {
             'Delete',
             style: TextStyle(color: Colors.red),
           ),
-          // TODO Change this to BLoC
           onPressed: () {
             _bloc.add(DeleteConfirmed());
           },
         ),
       ],
     );
+  }
+
+  Widget _buildInstruction() {
+    return InkWell(
+      onTap: () => _bloc.add(
+        PickItem(items: this.widget._list.items),
+      ),
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.all(40),
+          child: Text(
+            'Tap to choose from ' + widget._list.name,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPicker({staticText: false, @required pick}) {
+    if (!staticText) {
+      return InkWell(
+        onTap: () => _bloc.add(
+          PickItem(items: this.widget._list.items),
+        ),
+        child: Center(
+          child: FadeIn(
+            child: Padding(
+              padding: EdgeInsets.all(40),
+              child: Text(
+                pick,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.display2,
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Center(
+        child: Padding(
+          padding: EdgeInsets.all(40),
+          child: Text(
+            pick,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.display2,
+          ),
+        ),
+      );
+    }
   }
 }
 

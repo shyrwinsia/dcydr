@@ -30,9 +30,11 @@ class MoveToPickOptionsPage extends PickPageState {
 }
 
 class DeleteConfirmDialog extends PickPageState {
-  @override
-  List<Object> get props => null;
+  final String pick;
+  DeleteConfirmDialog({@required this.pick});
 
+  @override
+  List<Object> get props => [this.pick];
   @override
   String toString() => '[State] PickPageState: DeleteConfirmDialog';
 }
