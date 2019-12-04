@@ -120,12 +120,14 @@ class _PickPageState extends State<PickPage> {
               PickItem(items: this.widget._list.items),
             ),
             child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(40),
-                child: Text(
-                  state.pick,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.display2,
+              child: FadeIn(
+                child: Padding(
+                  padding: EdgeInsets.all(40),
+                  child: Text(
+                    state.pick,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.display2,
+                  ),
                 ),
               ),
             ),
