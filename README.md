@@ -20,6 +20,8 @@ Let Dcydr help you!
 
 Dcydr helps you, a victim of analysis paralysis pick a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
 
+![Screen 2](img/screen2.png)
+
 ### Fit for every situation
 
 When picking for specific occasions, like maybe its a Sunday and some of your favorite restaurants in the list are closed. You can restrict Dcydr by disabling some choices. No need remove and add them back again.
