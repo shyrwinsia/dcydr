@@ -28,9 +28,8 @@ class _AddListPageState extends State<AddListPage> {
           IconButton(
             iconSize: 18,
             onPressed: () {
-              SampleData.instance
-                  .addLunchPlaces()
-                  .then((onValue) => Navigator.of(context).pop());
+              SampleData.instance.addDefaultData();
+              // Navigator.of(context).pop();
             },
             icon: Icon(
               FlatIcons.save,
