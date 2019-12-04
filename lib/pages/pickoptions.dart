@@ -4,6 +4,8 @@ import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
 class PickOptionsPage extends StatelessWidget {
+  // TODO fix the problem that the disabled
+  // ones are still updated in the pick page
   final RandomList list;
 
   PickOptionsPage({this.list});
