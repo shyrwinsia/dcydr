@@ -14,25 +14,25 @@ Can't decide...
 
 Let Dcydr help you!
 
-![Screen 1](img/screen1.png)
+![Rock was chosen](img/screen1.png)
 
 ### No more indecision
 
 Dcydr helps you, a victim of analysis paralysis pick a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
 
-![Screen 2](img/screen2.png)
+![Showing a list](img/screen2.png)
 
 ### Fit for every situation
 
 When picking for specific occasions, like maybe its a Sunday and some of your favorite restaurants in the list are closed. You can restrict Dcydr by disabling some choices. No need remove and add them back again.
 
-![Screen 3](img/screen3.png)
+![Disabled Lizard and Spock](img/screen3.png)
 
 ### Clean and straightforward interface
 
-Unlike other randomizing apps, Dcydr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just press the button.
+Unlike other randomizing apps, Dcydr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just tap the screen.
 
-![Screen 4](img/screen4.png)
+![Asking user to tap screen](img/screen4.png)
 
 ### Save them brain juices
 
@@ -40,8 +40,7 @@ Decisions, no matter how small, take mental effort. Studies have repeatedly show
 
 ## Get it
 
-- [Android Play Store]()
-- [iOS App Store]()
+To be uploaded to App Store and Google Play soon.
 
 ## Disclaimer
 
