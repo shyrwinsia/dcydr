@@ -23,6 +23,8 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
       } while (_pick == this._pickedItem);
       this._pickedItem = _pick;
       yield PickedItemState(pick: this._pickedItem);
+    } else if (event is EditAction) {
+      yield MoveToEditPage();
     } else if (event is PickOptions) {
       yield MoveToPickOptionsPage();
     } else if (event is DeleteAction) {

@@ -54,3 +54,11 @@ class DeleteList extends PickPageState {
   @override
   String toString() => '[State] PickPageState: DeleteList';
 }
+
+class MoveToEditPage extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: MoveToEditPage';
+}

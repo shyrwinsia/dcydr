@@ -56,3 +56,11 @@ class GetLastPickedItem extends PickPageEvent {
   @override
   List<Object> get props => null;
 }
+
+class EditAction extends PickPageEvent {
+  @override
+  String toString() => '[Event] PickPageEvent: EditAction';
+
+  @override
+  List<Object> get props => null;
+}

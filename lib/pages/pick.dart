@@ -74,51 +74,59 @@ class _PickPageState extends State<PickPage> {
     );
   }
 
-  Widget _pageRouter(BuildContext context) {
-    return BlocListener<PickPageBloc, PickPageState>(
-      bloc: _bloc,
-      listener: (context, state) {
-        if (state is MoveToPickOptionsPage) {
-          Navigator.of(context)
-              .push(
-            MaterialPageRoute<void>(
-              builder: (context) => PickOptionsPage(list: widget._list),
-            ),
-          )
-              .then((onValue) {
+  Widget _pageRouter(BuildContext context) =>
+      BlocListener<PickPageBloc, PickPageState>(
+        bloc: _bloc,
+        listener: (context, state) {
+          if (state is MoveToPickOptionsPage) {
+            Navigator.of(context)
+                .push(
+              MaterialPageRoute<void>(
+                builder: (context) => PickOptionsPage(list: widget._list),
+              ),
+            )
+                .then((onValue) {
+              _bloc.add(GetLastPickedItem());
+            });
+          } else if (state is MoveToEditPage) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditListPage(list: widget._list),
+              ),
+            ).then((onValue) {
+              _bloc.add(GetLastPickedItem());
+            });
+          } else if (state is DeleteConfirmDialog) {
+            showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (BuildContext context) {
+                return _buildDeleteConfirmDialog();
+              },
+            );
+          } else if (state is CloseConfirmDialog) {
+            Navigator.of(context).pop();
             _bloc.add(GetLastPickedItem());
-          });
-        } else if (state is DeleteConfirmDialog) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) {
-              return _buildDeleteConfirmDialog();
-            },
-          );
-        } else if (state is CloseConfirmDialog) {
-          Navigator.of(context).pop();
-          _bloc.add(GetLastPickedItem());
-        } else if (state is DeleteList) {
-          // delete then pop
-          RandomListDao()
-              .delete(widget._list)
-              .then((onValue) => Navigator.of(context)..pop()..pop());
-        }
-      },
-      child: _blocBuilder(context),
-    );
-  }
+          } else if (state is DeleteList) {
+            // delete then pop
+            RandomListDao()
+                .delete(widget._list)
+                .then((onValue) => Navigator.of(context)..pop()..pop());
+          }
+        },
+        child: _blocBuilder(context),
+      );
 
   Widget _blocBuilder(BuildContext context) {
     return BlocBuilder<PickPageBloc, PickPageState>(
       bloc: _bloc,
       builder: (context, state) {
         if (state is PickedItemState) {
-          return _buildPicker(pick: state.pick);
+          return _buildPicker(state.pick);
         } else if (state is DeleteConfirmDialog) {
           if (state.pick != null)
-            return _buildPicker(pick: state.pick);
+            return _buildPicker(state.pick);
           else
             return _buildInstruction();
         } else if (state is Uninitialized) {
@@ -130,43 +138,27 @@ class _PickPageState extends State<PickPage> {
     );
   }
 
-  void choiceAction(String choice) {
-    // TODO change to bloc
-    if (choice == Actions.EDIT) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => EditListPage(list: widget._list),
-        ),
-      );
-    } else if (choice == Actions.DELETE) {
-      _bloc.add(DeleteAction());
-    }
-  }
-
-  Widget _buildDeleteConfirmDialog() {
-    return AlertDialog(
-      contentPadding: EdgeInsets.fromLTRB(24, 32, 24, 16),
-      content: Text('Delete this list?'),
-      actions: <Widget>[
-        FlatButton(
-          child: Text('Cancel'),
-          onPressed: () {
-            _bloc.add(DeleteCancelled());
-          },
-        ),
-        FlatButton(
-          child: Text(
-            'Delete',
-            style: TextStyle(color: Colors.red),
+  Widget _buildDeleteConfirmDialog() => AlertDialog(
+        contentPadding: EdgeInsets.fromLTRB(24, 32, 24, 16),
+        content: Text('Delete this list?'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Cancel'),
+            onPressed: () {
+              _bloc.add(DeleteCancelled());
+            },
           ),
-          onPressed: () {
-            _bloc.add(DeleteConfirmed());
-          },
-        ),
-      ],
-    );
-  }
+          FlatButton(
+            child: Text(
+              'Delete',
+              style: TextStyle(color: Colors.red),
+            ),
+            onPressed: () {
+              _bloc.add(DeleteConfirmed());
+            },
+          ),
+        ],
+      );
 
   Widget _buildInstruction() {
     return InkWell(
@@ -185,9 +177,7 @@ class _PickPageState extends State<PickPage> {
     );
   }
 
-  Widget _buildPicker({staticText: false, @required pick}) {
-    if (!staticText) {
-      return InkWell(
+  Widget _buildPicker(String pick) => InkWell(
         onTap: () => _bloc.add(
           PickItem(items: this.widget._list.items),
         ),
@@ -204,22 +194,15 @@ class _PickPageState extends State<PickPage> {
           ),
         ),
       );
-    } else {
-      return Center(
-        child: Padding(
-          padding: EdgeInsets.all(40),
-          child: Text(
-            pick,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.display2,
-          ),
-        ),
-      );
+
+  void choiceAction(String choice) {
+    if (choice == Actions.EDIT) {
+      _bloc.add(EditAction());
+    } else if (choice == Actions.DELETE) {
+      _bloc.add(DeleteAction());
     }
   }
 }
-
-class MoveToPickOptionPage {}
 
 class Actions {
   static const String EDIT = 'Edit';
