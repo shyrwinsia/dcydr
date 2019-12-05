@@ -1,6 +1,6 @@
-![logo](img/logo-square-small.png)
+![logo](img/banner.png)
 
-# Dcydr
+---
 
 ![Build Status](https://travis-ci.org/shyrwinsia/dcydr.svg?branch=master) ![Refactor Status](https://img.shields.io/static/v1?label=refactor&message=ongoing&color=red)
 
