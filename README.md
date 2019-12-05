@@ -1,7 +1,5 @@
 ![logo](img/banner.png)
 
----
-
 ![Build Status](https://travis-ci.org/shyrwinsia/dcydr.svg?branch=master) ![Refactor Status](https://img.shields.io/static/v1?label=refactor&message=ongoing&color=red)
 
 Can't decide...
