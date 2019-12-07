@@ -8,7 +8,6 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    - name: Run a one-line script
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.7.x'
