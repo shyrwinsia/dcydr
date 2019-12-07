@@ -16,7 +16,7 @@ jobs:
         flutter-version: '1.9.x'
         channel: 'dev'
     - name: Download Flutter dependendencies
-    - run: flutter pub get
+      run: flutter pub get
     - name: Build AOT
       run: flutter build aot
     - name: Analyze
