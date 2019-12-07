@@ -13,7 +13,6 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v1
       with:
-        flutter-version: '1.12.x'
         channel: 'dev'
     - name: Download Flutter dependendencies
       run: flutter pub get
