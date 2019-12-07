@@ -4,15 +4,22 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
+    - name: Checkout latest
+      uses: actions/checkout@v1
+    - name: Setup Java
+      uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    - uses: subosito/flutter-action@v1
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.9.x'
         channel: 'dev'
+    - name: Download Flutter dependendencies
     - run: flutter pub get
-    - run: flutter build aot
-    - run: flutter analyze
-    - run: flutter test
+    - name: Build AOT
+      run: flutter build aot
+    - name: Analyze
+      run: flutter analyze
+    - name: Test
+      run: flutter test
