@@ -10,7 +10,7 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-        flutter-version: '1.7.x'
+        flutter-version: '1.9.x'
         channel: 'dev'
     - run: flutter pub get
     - run: flutter build aot
