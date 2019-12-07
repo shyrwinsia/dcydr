@@ -15,7 +15,6 @@ class _EditListPageState extends State<EditListPage> {
   List<RandomListItem> items;
   String type;
   FocusNode _titleNode = FocusNode();
-  bool _dialog = false;
 
   _EditListPageState({this.items, this.type});
 
@@ -69,9 +68,6 @@ class _EditListPageState extends State<EditListPage> {
             IconButton(
               padding: EdgeInsets.all(16),
               onPressed: () {
-                setState(() {
-                  _dialog = true;
-                });
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -148,7 +144,6 @@ class _EditListPageState extends State<EditListPage> {
                   onPressed: () {
                     setState(() {
                       type = f.name;
-                      _dialog = false;
                     });
                     Navigator.pop(context);
                   },

@@ -1,4 +1,3 @@
-import 'package:dcydr/bloc/addlistpage/bloc.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/data/types.dart';
@@ -11,11 +10,11 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  AddListPageBloc _bloc;
+  // AddListPageBloc _bloc;
   @override
   void initState() {
     super.initState();
-    _bloc = AddListPageBloc();
+    // _bloc = AddListPageBloc();
   }
 
   @override
@@ -158,50 +157,46 @@ class _AddListPageState extends State<AddListPage> {
     );
   }
 
-  _buildList() {
-    // List rvalue = items.map(
-    //   (f) {
-    //     return Row(
-    //       children: <Widget>[
-    //         Flexible(
-    //           child: TextField(
-    //             // focusNode: f,
-    //             decoration: InputDecoration(
-    //               border: InputBorder.none,
-    //               hintText: 'Enter item name',
-    //               contentPadding:
-    //                   EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-    //             ),
-    //             onEditingComplete: () {
-    //               // _addNewEntry();
-    //             },
-    //           ),
-    //         ),
-    //         IconButton(
-    //           iconSize: 14,
-    //           padding: EdgeInsets.symmetric(horizontal: 16),
-    //           onPressed: () {
-    //             setState(() {
-    //               // items.remove(f);
-    //             });
-    //           },
-    //           icon: Icon(
-    //             FlatIcons.minus,
-    //             color: Theme.of(context).accentColor,
-    //           ),
-    //         )
-    //       ],
-    //     );
-    //   },
-    // ).toList();
-    // if (items.length > 0 && !_dialog)
-    //   FocusScope.of(context).requestFocus(items.last);
-    // else if (items.length == 0 && !_dialog)
-    //   FocusScope.of(context).requestFocus(_titleNode);
-    // return rvalue;
-
-    return Container();
-  }
+  // List rvalue = items.map(
+  //   (f) {
+  //     return Row(
+  //       children: <Widget>[
+  //         Flexible(
+  //           child: TextField(
+  //             // focusNode: f,
+  //             decoration: InputDecoration(
+  //               border: InputBorder.none,
+  //               hintText: 'Enter item name',
+  //               contentPadding:
+  //                   EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+  //             ),
+  //             onEditingComplete: () {
+  //               // _addNewEntry();
+  //             },
+  //           ),
+  //         ),
+  //         IconButton(
+  //           iconSize: 14,
+  //           padding: EdgeInsets.symmetric(horizontal: 16),
+  //           onPressed: () {
+  //             setState(() {
+  //               // items.remove(f);
+  //             });
+  //           },
+  //           icon: Icon(
+  //             FlatIcons.minus,
+  //             color: Theme.of(context).accentColor,
+  //           ),
+  //         )
+  //       ],
+  //     );
+  //   },
+  // ).toList();
+  // if (items.length > 0 && !_dialog)
+  //   FocusScope.of(context).requestFocus(items.last);
+  // else if (items.length == 0 && !_dialog)
+  //   FocusScope.of(context).requestFocus(_titleNode);
+  // return rvalue;
 }
 
 class RandomListItemWidget extends StatefulWidget {
