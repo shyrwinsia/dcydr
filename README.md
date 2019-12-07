@@ -1,6 +1,6 @@
 ![logo](img/banner.png)
 
-![Build Status](https://travis-ci.org/shyrwinsia/dcydr.svg?branch=master) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) ![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr)
+![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) ![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr)
 
 Can't decide...
 
