@@ -1,4 +1,5 @@
 import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -20,16 +21,15 @@ class _AddListPageState extends State<AddListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Create list",
+        title: "Create new list",
         hasBackButton: true,
         actions: <Widget>[
           FlatButton(
-            child: Text(
-              'Save',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {},
-          ),
+              child: Text(
+                'Save',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => SampleData.instance.addDefaultData()),
         ],
       ),
       body: _buildBody(),
