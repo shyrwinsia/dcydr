@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
               iconSize: 18,
               onPressed: () => _bloc.add(AddList()),
               icon: Icon(
-                FlatIcons.add_3,
+                FlatIcons.add,
               ),
             )
           ],
@@ -110,16 +110,26 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 8,
           ),
-          FlatButton.icon(
-            padding: EdgeInsets.all(16),
-            icon: Icon(
-              FlatIcons.add_3,
-              size: 12,
-            ),
-            textColor: Theme.of(context).accentColor,
-            label: Text('Create list'),
-            onPressed: () => _bloc.add(AddList()),
-          )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              FlatButton.icon(
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(8),
+                ),
+                color: const Color(0xff2a86cb),
+                textColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                icon: Icon(
+                  FlatIcons.add,
+                  size: 12,
+                ),
+                label: Text('Create new list'),
+                onPressed: () => _bloc.add(AddList()),
+              )
+            ],
+          ),
         ],
       );
     }

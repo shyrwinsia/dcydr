@@ -6,7 +6,7 @@ import 'package:dcydr/components/fade.dart';
 import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:dcydr/pages/editlist.dart';
-import 'package:dcydr/pages/pickoptions.dart';
+import 'package:dcydr/pages/toggle.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,27 +37,27 @@ class _PickPageState extends State<PickPage> {
           IconButton(
             iconSize: 18,
             icon: Icon(
-              FlatIcons.controls_4,
+              FlatIcons.list_1,
             ),
             onPressed: () => _bloc.add(
               PickOptions(),
             ),
           ),
-          PopupMenuButton<String>(
-            icon: Icon(
-              FlatIcons.more_1,
-              size: 18,
-            ),
-            onSelected: choiceAction,
-            itemBuilder: (BuildContext context) {
-              return Actions.choices.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          )
+          // PopupMenuButton<String>(
+          //   icon: Icon(
+          //     FlatIcons.more_1,
+          //     size: 18,
+          //   ),
+          //   onSelected: choiceAction,
+          //   itemBuilder: (BuildContext context) {
+          //     return Actions.choices.map((String choice) {
+          //       return PopupMenuItem<String>(
+          //         value: choice,
+          //         child: Text(choice),
+          //       );
+          //     }).toList();
+          //   },
+          // )
         ],
       ),
       body: Column(
@@ -82,7 +82,7 @@ class _PickPageState extends State<PickPage> {
             Navigator.of(context)
                 .push(
               MaterialPageRoute<void>(
-                builder: (context) => PickOptionsPage(list: widget._list),
+                builder: (context) => TogglePage(list: widget._list),
               ),
             )
                 .then((onValue) {

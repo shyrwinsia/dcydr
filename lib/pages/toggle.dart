@@ -1,14 +1,15 @@
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/switchtile.dart';
 import 'package:dcydr/data/types.dart';
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
-class PickOptionsPage extends StatelessWidget {
+class TogglePage extends StatelessWidget {
   // TODO fix the problem that the disabled
   // ones are still updated in the pick page
   final RandomList list;
 
-  PickOptionsPage({this.list});
+  TogglePage({this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,17 @@ class PickOptionsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: list.name + ' choices',
+        title: 'Toggle Choices',
         hasBackButton: true,
+        actions: <Widget>[
+          IconButton(
+            iconSize: 18,
+            icon: Icon(
+              FlatIcons.edit,
+            ),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: ListView(children: divided),
     );

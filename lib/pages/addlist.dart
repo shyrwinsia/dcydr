@@ -1,5 +1,4 @@
 import 'package:dcydr/components/appbar.dart';
-import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -24,16 +23,13 @@ class _AddListPageState extends State<AddListPage> {
         title: "Create list",
         hasBackButton: true,
         actions: <Widget>[
-          IconButton(
-            iconSize: 18,
-            onPressed: () {
-              SampleData.instance.addDefaultData();
-              // Navigator.of(context).pop();
-            },
-            icon: Icon(
-              FlatIcons.save,
+          FlatButton(
+            child: Text(
+              'Save',
+              style: TextStyle(color: Colors.white),
             ),
-          )
+            onPressed: () {},
+          ),
         ],
       ),
       body: _buildBody(),
@@ -42,25 +38,28 @@ class _AddListPageState extends State<AddListPage> {
 
   Widget _buildBody() {
     return ListView(
+      padding: EdgeInsets.all(16),
       children: <Widget>[
         Row(
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            IconButton(
-              padding: EdgeInsets.all(16),
-              onPressed: () {
-                setState(() {
-                  // _dialog = true;
-                });
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return _buildCategoryDialog();
-                  },
-                );
-              },
-              icon: RandomList.iconFromType('generic'),
+            Ink(
+              decoration: ShapeDecoration(
+                color: const Color(0xFFEFEFEF),
+                shape: CircleBorder(),
+              ),
+              child: IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return _buildCategoryDialog();
+                    },
+                  );
+                },
+                icon: RandomList.iconFromType('generic'),
+              ),
             ),
             Flexible(
               child: TextField(
@@ -73,11 +72,14 @@ class _AddListPageState extends State<AddListPage> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter list title',
-                  contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
+                  contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
                 ),
               ),
             ),
           ],
+        ),
+        SizedBox(
+          height: 8,
         ),
         Divider(
           color: const Color(0x22000000),
