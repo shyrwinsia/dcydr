@@ -106,6 +106,9 @@ class _HomePageState extends State<HomePage> {
           Text(
             "You don't have any list. ಠ_ಠ",
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 18,
+            ),
           ),
           SizedBox(
             height: 8,
@@ -118,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(8),
                 ),
-                color: const Color(0xff2a86cb),
+                color: const Color(0xdd2a86cb),
                 textColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 icon: Icon(
