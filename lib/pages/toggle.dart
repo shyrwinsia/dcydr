@@ -36,6 +36,13 @@ class TogglePage extends StatelessWidget {
             ),
             onPressed: () {},
           ),
+          IconButton(
+            iconSize: 18,
+            icon: Icon(
+              FlatIcons.trash,
+            ),
+            onPressed: () {},
+          ),
         ],
       ),
       body: ListView(children: divided),
