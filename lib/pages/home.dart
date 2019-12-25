@@ -88,9 +88,14 @@ class _HomePageState extends State<HomePage> {
                 title: Text(
                   item.name,
                 ),
-                trailing: Icon(
-                  FlatIcons.con_right_arrow_1_a,
-                  color: const Color(0x44000000),
+                trailing: IconButton(
+                  iconSize: 18,
+                  padding: EdgeInsets.all(0),
+                  alignment: Alignment.centerRight,
+                  icon: Icon(
+                    FlatIcons.more,
+                    color: const Color(0x44000000),
+                  ),
                 ),
                 onTap: () => _bloc.add(ChooseList(list: item)),
               );
@@ -113,13 +118,14 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 8,
           ),
+// TODO make this a button theme
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               FlatButton.icon(
                 shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 color: const Color(0xdd2a86cb),
                 textColor: Colors.white,

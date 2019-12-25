@@ -45,8 +45,9 @@ class _AddListPageState extends State<AddListPage> {
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
             Ink(
+              // TODO use this color as button
               decoration: ShapeDecoration(
-                color: const Color(0xFFEFEFEF),
+                color: const Color(0x0F2a86cb),
                 shape: CircleBorder(),
               ),
               child: IconButton(

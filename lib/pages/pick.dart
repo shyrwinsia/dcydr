@@ -37,7 +37,7 @@ class _PickPageState extends State<PickPage> {
           IconButton(
             iconSize: 18,
             icon: Icon(
-              FlatIcons.list_1,
+              FlatIcons.settings_5,
             ),
             onPressed: () => _bloc.add(
               PickOptions(),
