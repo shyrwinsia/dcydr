@@ -16,11 +16,7 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   @override
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
     if (event is PickItem) {
-      var _pick; // prevent consecutive
-      do {
-        _pick = _pickRandomItem(event.items);
-      } while (_pick == this._pickedItem);
-      this._pickedItem = _pick;
+      this._pickedItem = _pickRandomItem(event.items);
       yield PickedItemState(pick: this._pickedItem);
     } else if (event is ToggleList) {
       yield MoveToToggleListPage();
@@ -33,13 +29,23 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
 
   String _pickRandomItem(List list) {
     String pick;
-    // list.where((e) => e)
+    // filter
+    list = list.where((e) => e.selected).toList();
     list.length > 0
         ? list.length > 1
-            ? pick = list.elementAt(rng.nextInt(list.length)).name
+            ? pick = _pickItem(list)
             : pick = "Can't randomly pick from only one choice\n¯\\_(ツ)_/¯"
         : pick = 'Nothing to pick (◔_◔)';
 
+    return pick;
+  }
+
+  String _pickItem(List list) {
+    String pick;
+    // prevent conscutieve
+    do {
+      pick = list.elementAt(rng.nextInt(list.length)).name;
+    } while (pick == this._pickedItem);
     return pick;
   }
 }
