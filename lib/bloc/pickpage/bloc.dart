@@ -15,7 +15,6 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
 
   @override
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
-    print(this._pickedItem);
     if (event is PickItem) {
       var _pick; // prevent consecutive
       do {
@@ -23,21 +22,10 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
       } while (_pick == this._pickedItem);
       this._pickedItem = _pick;
       yield PickedItemState(pick: this._pickedItem);
-    } else if (event is EditAction) {
-      yield MoveToEditPage();
-    } else if (event is PickOptions) {
-      yield MoveToPickOptionsPage();
-    } else if (event is DeleteAction) {
-      yield DeleteConfirmDialog(pick: this._pickedItem);
-    } else if (event is DeleteCancelled) {
-      yield CloseConfirmDialog();
-    } else if (event is DeleteConfirmed) {
-      yield DeleteList();
-    } else if (event is GetLastPickedItem) {
-      if (_pickedItem != null)
-        yield PickedItemState(pick: this._pickedItem);
-      else
-        yield Uninitialized();
+    } else if (event is ToggleList) {
+      yield MoveToToggleListPage();
+    } else if (event is Reinitialize) {
+      yield Uninitialized();
     } else {
       getLogger().wtf('Something went wrong.');
     }
@@ -45,6 +33,7 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
 
   String _pickRandomItem(List list) {
     String pick;
+    // list.where((e) => e)
     list.length > 0
         ? list.length > 1
             ? pick = list.elementAt(rng.nextInt(list.length)).name

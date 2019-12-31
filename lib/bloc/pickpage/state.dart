@@ -21,44 +21,10 @@ class PickedItemState extends PickPageState {
   String toString() => '[State] PickPageState: PickedItemState ${this.pick}';
 }
 
-class MoveToPickOptionsPage extends PickPageState {
+class MoveToToggleListPage extends PickPageState {
   @override
   List<Object> get props => null;
 
   @override
-  String toString() => '[State] PickPageState: MoveToPickOptionsPage';
-}
-
-class DeleteConfirmDialog extends PickPageState {
-  final String pick;
-  DeleteConfirmDialog({@required this.pick});
-
-  @override
-  List<Object> get props => [this.pick];
-  @override
-  String toString() => '[State] PickPageState: DeleteConfirmDialog';
-}
-
-class CloseConfirmDialog extends PickPageState {
-  @override
-  List<Object> get props => null;
-
-  @override
-  String toString() => '[State] PickPageState: CloseConfirmDialog';
-}
-
-class DeleteList extends PickPageState {
-  @override
-  List<Object> get props => null;
-
-  @override
-  String toString() => '[State] PickPageState: DeleteList';
-}
-
-class MoveToEditPage extends PickPageState {
-  @override
-  List<Object> get props => null;
-
-  @override
-  String toString() => '[State] PickPageState: MoveToEditPage';
+  String toString() => '[State] PickPageState: MoveToToggleListPage';
 }
