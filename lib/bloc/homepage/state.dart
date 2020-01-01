@@ -31,22 +31,3 @@ class Loaded extends HomePageState {
 
   List<Object> get props => [this.list];
 }
-
-class MoveToPickPage extends HomePageState {
-  final RandomList list;
-
-  MoveToPickPage({this.list});
-
-  @override
-  String toString() =>
-      '[State] HomePageState: MoveToPickPage ${this.list.name}';
-
-  List<Object> get props => [this.list];
-}
-
-class MoveToAddPage extends HomePageState {
-  @override
-  String toString() => '[State] HomePageState: MoveToAddPage';
-
-  List<Object> get props => null;
-}

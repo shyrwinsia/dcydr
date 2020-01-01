@@ -16,10 +16,6 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     if (event is LoadLists) {
       yield Loading();
       yield* _reloadLists();
-    } else if (event is ChooseList) {
-      yield MoveToPickPage(list: event.list);
-    } else if (event is AddList) {
-      yield MoveToAddPage();
     } else {
       getLogger().wtf('Something went wrong.');
     }

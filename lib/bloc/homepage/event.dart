@@ -1,4 +1,3 @@
-import 'package:dcydr/data/types.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -15,20 +14,9 @@ class LoadLists extends HomePageEvent {
   List<Object> get props => null;
 }
 
-class ChooseList extends HomePageEvent {
-  final RandomList list;
-  ChooseList({@required this.list});
-
+class Reinitialize extends HomePageEvent {
   @override
-  String toString() => '[Event] HomePageEvent: ChooseList';
-
-  @override
-  List<Object> get props => [this.list];
-}
-
-class AddList extends HomePageEvent {
-  @override
-  String toString() => '[Event] HomePageEvent: AddList';
+  String toString() => '[Event] HomePageEvent: Reinitialize';
 
   @override
   List<Object> get props => null;

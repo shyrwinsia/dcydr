@@ -1,7 +1,11 @@
 import 'package:dcydr/bloc/homepage/bloc.dart';
 import 'package:dcydr/bloc/homepage/event.dart';
 import 'package:dcydr/bloc/homepage/state.dart';
+import 'package:dcydr/bloc/router/bloc.dart';
+import 'package:dcydr/bloc/router/event.dart';
+import 'package:dcydr/bloc/router/state.dart';
 import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:dcydr/pages/addlist.dart';
 import 'package:dcydr/pages/pick.dart';
@@ -16,11 +20,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomePageBloc _bloc;
+  RouterBloc _router;
   @override
   void initState() {
     super.initState();
     _bloc = HomePageBloc();
     _bloc.add(LoadLists());
+    _router = RouterBloc();
   }
 
   @override
@@ -31,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           actions: <Widget>[
             IconButton(
               iconSize: 18,
-              onPressed: () => _bloc.add(AddList()),
+              onPressed: () => _router.add(MoveToAddPage()),
               icon: Icon(
                 FlatIcons.add,
               ),
@@ -42,12 +48,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _pageRouter(BuildContext context) {
-    return BlocListener<HomePageBloc, HomePageState>(
-      bloc: _bloc,
+    return BlocListener<RouterBloc, RouterState>(
+      bloc: _router,
       listener: (context, state) {
-        if (state is MoveToPickPage) {
+        if (state is RouterPickPage) {
           _pushPage(PickPage(state.list));
-        } else if (state is MoveToAddPage) {
+        } else if (state is RouterAddPage) {
           _pushPage(AddListPage());
         }
       },
@@ -55,6 +61,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // TODO add a bloc provider for routing to pages
   Widget _blocBuilder(BuildContext context) {
     return BlocBuilder<HomePageBloc, HomePageState>(
       bloc: _bloc,
@@ -69,7 +76,6 @@ class _HomePageState extends State<HomePage> {
         } else if (state is Loaded) {
           return _listViewBuilder(context, state.list);
         } else {
-          _bloc.add(LoadLists());
           return Container();
         }
       },
@@ -95,10 +101,14 @@ class _HomePageState extends State<HomePage> {
                   icon: Icon(
                     FlatIcons.more,
                     color: const Color(0x44000000),
-                  ),
-                  onPressed: () {}, // add bottomsheet here
+                  ), // TOTO doble loading
+                  onPressed: () {
+                    RandomListDao()
+                        .delete(item)
+                        .then((e) => _bloc.add(Reinitialize()));
+                  }, // add bottomsheet here
                 ),
-                onTap: () => _bloc.add(ChooseList(list: item)),
+                onTap: () => _router.add(MoveToPickPage(list: item)),
               );
             },
           ),
@@ -136,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                   size: 12,
                 ),
                 label: Text('Create new list'),
-                onPressed: () => _bloc.add(AddList()),
+                onPressed: () => _router.add(MoveToAddPage()),
               )
             ],
           ),
@@ -152,6 +162,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context) => page,
       ),
     ).then((onValue) {
+      _router.add(MoveToHomePage());
       _bloc.add(LoadLists());
     });
   }
