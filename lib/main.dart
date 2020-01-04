@@ -25,11 +25,14 @@ void main() {
 
 class Dcydr extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: 'Dcydr',
-        theme: getThemeData(),
-        home: _buildRouter(),
-        debugShowCheckedModeBanner: false,
+  Widget build(BuildContext context) => BlocProvider<RouterBloc>(
+        create: (BuildContext context) => RouterBloc()..add(MoveToHomePage()),
+        child: MaterialApp(
+          title: 'Dcydr',
+          theme: getThemeData(),
+          home: _buildRouter(),
+          debugShowCheckedModeBanner: false,
+        ),
       );
 
   ThemeData getThemeData() => ThemeData(
@@ -43,26 +46,23 @@ class Dcydr extends StatelessWidget {
       );
 
   // router listenr
-  Widget _buildRouter() => BlocProvider<RouterBloc>(
-        create: (BuildContext context) => RouterBloc()..add(MoveToHomePage()),
-        child: BlocListener<RouterBloc, RouterState>(
-          listener: (context, state) {
-            if (state is RouterPickPage)
-              _pushPage(
-                context,
-                BlocProvider(
-                  child: PickPage(state.list),
-                  create: (BuildContext context) => PickPageBloc(),
-                ),
-              );
-            else if (state is RouterPopPage) {
-              Navigator.pop(context);
-            }
-          },
-          child: BlocProvider(
-            child: HomePage(),
-            create: (BuildContext context) => HomePageBloc()..add(LoadLists()),
-          ),
+  Widget _buildRouter() => BlocListener<RouterBloc, RouterState>(
+        listener: (context, state) {
+          if (state is RouterPickPage)
+            _pushPage(
+              context,
+              BlocProvider(
+                child: PickPage(state.list),
+                create: (BuildContext context) => PickPageBloc(),
+              ),
+            );
+          else if (state is RouterPopPage) {
+            Navigator.pop(context);
+          }
+        },
+        child: BlocProvider(
+          child: HomePage(),
+          create: (BuildContext context) => HomePageBloc()..add(LoadLists()),
         ),
       );
 
