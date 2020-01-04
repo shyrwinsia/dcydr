@@ -14,35 +14,34 @@ class CustomSwitchTile extends StatefulWidget {
 
 class _CustomSwitchTileState extends State<CustomSwitchTile> {
   @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: widget._item.selected
-          ? FadeIn(child: Text(widget._item.name), fromAlpha: 0.4, toAlpha: 1.0)
-          : FadeOut(
-              child: Text(
-                widget._item.name,
+  Widget build(BuildContext context) => ListTile(
+        title: widget._item.selected
+            ? FadeIn(
+                child: Text(widget._item.name), fromAlpha: 0.4, toAlpha: 1.0)
+            : FadeOut(
+                child: Text(
+                  widget._item.name,
+                ),
+                fromAlpha: 1.0,
+                toAlpha: 0.4,
               ),
-              fromAlpha: 1.0,
-              toAlpha: 0.4,
-            ),
-      trailing: widget._item.selected
-          ? FadeIn(
-              child: Icon(
-                FlatIcons.success,
-                color: const Color(0xff2a86cb),
+        trailing: widget._item.selected
+            ? FadeIn(
+                child: Icon(
+                  FlatIcons.success,
+                  color: const Color(0xff2a86cb),
+                ),
+              )
+            : FadeOut(
+                child: Icon(
+                  FlatIcons.success,
+                  color: const Color(0xff2a86cb),
+                ),
               ),
-            )
-          : FadeOut(
-              child: Icon(
-                FlatIcons.success,
-                color: const Color(0xff2a86cb),
-              ),
-            ),
-      onTap: () => {
-        setState(() {
-          widget._item.selected = !widget._item.selected;
-        })
-      },
-    );
-  }
+        onTap: () => {
+          setState(() {
+            widget._item.selected = !widget._item.selected;
+          })
+        },
+      );
 }

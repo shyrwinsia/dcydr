@@ -25,8 +25,7 @@ class RandomListDao {
     final recordSnapshots = await _randomListStore.find(await _db);
 
     return recordSnapshots.map((snapshot) {
-      final list = RandomList.fromMap(snapshot.key, snapshot.value);
-      return list;
+      return RandomList.fromMap(snapshot.key, snapshot.value);
     }).toList();
   }
 }

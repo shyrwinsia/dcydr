@@ -4,8 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/bloc/router/state.dart';
 import 'package:dcydr/logger/logger.dart';
+import 'package:flutter/material.dart';
 
 class RouterBloc extends Bloc<RouterEvent, RouterState> {
+  final GlobalKey<dynamic> routerKey;
+  RouterBloc({this.routerKey});
+
   @override
   RouterState get initialState => RouterHomePage();
 
@@ -13,7 +17,9 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
   Stream<RouterState> mapEventToState(
     RouterEvent event,
   ) async* {
-    if (event is MoveToPickPage) {
+    if (event is PopPage) {
+      yield RouterPopPage();
+    } else if (event is MoveToPickPage) {
       yield RouterPickPage(list: event.list);
     } else if (event is MoveToHomePage) {
       yield RouterHomePage();

@@ -18,8 +18,6 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
     if (event is PickItem) {
       this._pickedItem = _pickRandomItem(event.items);
       yield PickedItemState(pick: this._pickedItem);
-    } else if (event is ToggleList) {
-      yield MoveToToggleListPage();
     } else if (event is Reinitialize) {
       yield Uninitialized();
     } else {

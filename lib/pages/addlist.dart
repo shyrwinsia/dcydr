@@ -18,99 +18,88 @@ class _AddListPageState extends State<AddListPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: "Create new list",
-        hasBackButton: true,
-        actions: <Widget>[
-          FlatButton(
-              child: Text(
-                'Save',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () => SampleData.instance.addDefaultData()),
-        ],
-      ),
-      body: _buildBody(),
-    );
-  }
-
-  Widget _buildBody() {
-    return ListView(
-      padding: EdgeInsets.all(16),
-      children: <Widget>[
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          textBaseline: TextBaseline.alphabetic,
-          children: <Widget>[
-            Ink(
-              // TODO use this color as button
-              decoration: ShapeDecoration(
-                color: const Color(0x0F2a86cb),
-                shape: CircleBorder(),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return _buildCategoryDialog();
-                    },
-                  );
-                },
-                icon: RandomList.iconFromType('generic'),
-              ),
-            ),
-            Flexible(
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 24,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: CustomAppBar(
+          title: "Create new list",
+          hasBackButton: true,
+          actions: <Widget>[
+            FlatButton(
+                child: Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white),
                 ),
-                autofocus: true,
-                // focusNode: _titleNode,
-                onEditingComplete: () {},
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Enter list title',
-                  contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                ),
-              ),
-            ),
+                onPressed: () => SampleData.instance.addDefaultData()),
           ],
         ),
-        SizedBox(
-          height: 8,
-        ),
-        Divider(
-          color: const Color(0x22000000),
-          height: 0,
-        ),
-        SizedBox(
-          height: 8,
-        ),
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   mainAxisAlignment: MainAxisAlignment.start,
-        //   children: _buildList(),
-        // ),
-        FlatButton.icon(
-          padding: EdgeInsets.all(16),
-          icon: Icon(
-            FlatIcons.plus,
-            size: 12,
+        body: _buildBody(),
+      );
+
+  Widget _buildBody() => ListView(
+        padding: EdgeInsets.all(16),
+        children: <Widget>[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: <Widget>[
+              Ink(
+                // TODO use this color as button
+                decoration: ShapeDecoration(
+                  color: const Color(0x0F2a86cb),
+                  shape: CircleBorder(),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => _buildCategoryDialog(),
+                    );
+                  },
+                  icon: RandomList.iconFromType('generic'),
+                ),
+              ),
+              Flexible(
+                child: TextField(
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                  autofocus: true,
+                  // focusNode: _titleNode,
+                  onEditingComplete: () {},
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter list title',
+                    contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+                  ),
+                ),
+              ),
+            ],
           ),
-          textColor: Theme.of(context).accentColor,
-          label: Text(
-            'Add item',
+          SizedBox(
+            height: 8,
           ),
-          onPressed: () {
-            // _addNewEntry();
-          },
-        ),
-      ],
-    );
-  }
+          Divider(
+            color: const Color(0x22000000),
+            height: 0,
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          FlatButton.icon(
+            padding: EdgeInsets.all(16),
+            icon: Icon(
+              FlatIcons.plus,
+              size: 12,
+            ),
+            textColor: Theme.of(context).accentColor,
+            label: Text(
+              'Add item',
+            ),
+            onPressed: () {
+              // _addNewEntry();
+            },
+          ),
+        ],
+      );
 
   @override
   void dispose() {
@@ -118,88 +107,30 @@ class _AddListPageState extends State<AddListPage> {
     super.dispose();
   }
 
-  Widget _buildCategoryDialog() {
-    return Dialog(
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 40,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: 24),
-              child: Text(
-                'Choose an icon',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+  Widget _buildCategoryDialog() => Dialog(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 40,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(bottom: 24),
+                child: Text(
+                  'Choose an icon',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            // Wrap(
-            //   children: RandomListTypes.types.map((f) {
-            //     return IconButton(
-            //       padding: EdgeInsets.all(24),
-            //       icon: RandomList.iconFromType(f.name),
-            //       onPressed: () {
-            //         setState(() {
-            //           // _icon = f.name;
-            //           // _dialog = false;
-            //         });
-            //         Navigator.pop(context);
-            //       },
-            //     );
-            //   }).toList(),
-            // ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  }
-
-  // List rvalue = items.map(
-  //   (f) {
-  //     return Row(
-  //       children: <Widget>[
-  //         Flexible(
-  //           child: TextField(
-  //             // focusNode: f,
-  //             decoration: InputDecoration(
-  //               border: InputBorder.none,
-  //               hintText: 'Enter item name',
-  //               contentPadding:
-  //                   EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-  //             ),
-  //             onEditingComplete: () {
-  //               // _addNewEntry();
-  //             },
-  //           ),
-  //         ),
-  //         IconButton(
-  //           iconSize: 14,
-  //           padding: EdgeInsets.symmetric(horizontal: 16),
-  //           onPressed: () {
-  //             setState(() {
-  //               // items.remove(f);
-  //             });
-  //           },
-  //           icon: Icon(
-  //             FlatIcons.minus,
-  //             color: Theme.of(context).accentColor,
-  //           ),
-  //         )
-  //       ],
-  //     );
-  //   },
-  // ).toList();
-  // if (items.length > 0 && !_dialog)
-  //   FocusScope.of(context).requestFocus(items.last);
-  // else if (items.length == 0 && !_dialog)
-  //   FocusScope.of(context).requestFocus(_titleNode);
-  // return rvalue;
+      );
 }
 
 class RandomListItemWidget extends StatefulWidget {
@@ -225,45 +156,42 @@ class _RandomListItemWidgetState extends State<RandomListItemWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Flexible(
-          child: TextField(
-            focusNode: focusNode,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Enter item name',
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+  Widget build(BuildContext context) => Row(
+        children: <Widget>[
+          Flexible(
+            child: TextField(
+              focusNode: focusNode,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter item name',
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              ),
+              onEditingComplete: () {
+                widget.add();
+                // _addNewEntry();
+              },
             ),
-            onEditingComplete: () {
-              widget.add();
-              // _addNewEntry();
+          ),
+          IconButton(
+            iconSize: 14,
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            onPressed: () {
+              setState(() {
+                widget.remove(widget);
+                // items.remove(f);
+              });
             },
-          ),
-        ),
-        IconButton(
-          iconSize: 14,
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          onPressed: () {
-            setState(() {
-              widget.remove(widget);
-              // items.remove(f);
-            });
-          },
-          icon: Icon(
-            FlatIcons.minus,
-            color: Theme.of(context).accentColor,
-          ),
-        )
-      ],
-    );
-  }
+            icon: Icon(
+              FlatIcons.minus,
+              color: Theme.of(context).accentColor,
+            ),
+          )
+        ],
+      );
 
   @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    super.dispose();
-  }
+  void dispose() =>
+      // Clean up the controller when the widget is disposed.
+      super.dispose();
 }

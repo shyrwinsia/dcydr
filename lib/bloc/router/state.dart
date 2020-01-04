@@ -32,3 +32,11 @@ class RouterAddPage extends RouterState {
   @override
   String toString() => '[State] RouterState: RouterPickPage';
 }
+
+class RouterPopPage extends RouterState {
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => '[State] RouterState: RouterPopPage';
+}

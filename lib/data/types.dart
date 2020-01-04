@@ -16,52 +16,42 @@ class RandomList {
     @required this.items,
   });
 
-  List<RandomListItem> get active {
-    return this.items.where((i) => i.selected).toList();
-  }
+  List<RandomListItem> get active =>
+      this.items.where((i) => i.selected).toList();
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': this.name,
-      'type': this.type,
-      'items': RandomList.createItemsToMap(items),
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        'name': this.name,
+        'type': this.type,
+        'items': RandomList.createItemsToMap(items),
+      };
 
-  factory RandomList.fromMap(int key, Map<String, dynamic> map) {
-    return RandomList(
-      key: key,
-      name: map['name'],
-      type: map['type'],
-      items: RandomList.createItemsFromMap(map['items']),
-    );
-  }
+  factory RandomList.fromMap(int key, Map<String, dynamic> map) => RandomList(
+        key: key,
+        name: map['name'],
+        type: map['type'],
+        items: RandomList.createItemsFromMap(map['items']),
+      );
 
-  factory RandomList.empty() {
-    return RandomList(
-      name: '',
-      type: 'generic',
-      items: List<RandomListItem>(),
-    );
-  }
+  factory RandomList.empty() => RandomList(
+        name: '',
+        type: 'generic',
+        items: List<RandomListItem>(),
+      );
 
-  static List<Map> createItemsToMap(List<RandomListItem> items) {
-    return items
-        .map(
-          (f) => Map()
-            ..addAll(
-              {
-                'name': f.name,
-                'selected': f.selected,
-              },
-            ),
-        )
-        .toList();
-  }
+  static List<Map> createItemsToMap(List<RandomListItem> items) => items
+      .map(
+        (f) => Map()
+          ..addAll(
+            {
+              'name': f.name,
+              'selected': f.selected,
+            },
+          ),
+      )
+      .toList();
 
-  static List<RandomListItem> createItemsFromMap(List map) {
-    return map.map((f) => RandomListItem.fromMap(f)).toList();
-  }
+  static List<RandomListItem> createItemsFromMap(List map) =>
+      map.map((f) => RandomListItem.fromMap(f)).toList();
 
   static Icon iconFromType(String type) {
     switch (type.toLowerCase()) {
@@ -178,11 +168,8 @@ class RandomListItem {
     this.selected,
   });
 
-  factory RandomListItem.fromMap(Map<String, dynamic> map) {
-    return RandomListItem(name: map['name'], selected: map['selected']);
-  }
+  factory RandomListItem.fromMap(Map<String, dynamic> map) =>
+      RandomListItem(name: map['name'], selected: map['selected']);
 
-  factory RandomListItem.empty() {
-    return RandomListItem(name: '', selected: true);
-  }
+  factory RandomListItem.empty() => RandomListItem(name: '', selected: true);
 }

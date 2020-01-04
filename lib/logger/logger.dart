@@ -11,6 +11,4 @@ class EventStatePrinter extends LogPrinter {
   }
 }
 
-Logger getLogger() {
-  return Logger(printer: EventStatePrinter());
-}
+Logger getLogger() => Logger(printer: EventStatePrinter());

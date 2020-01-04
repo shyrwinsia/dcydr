@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final _routerBloc = BlocProvider.of<RouterBloc>(context);
     return GradientAppBar(
       backgroundColorStart: const Color(0xff13b6cb),
       backgroundColorEnd: const Color(0xff2a86cb),
@@ -27,7 +28,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 FlatIcons.con_left_arrow_1_a,
               ),
               onPressed: () {
-                Navigator.pop(context);
+                // BlocProvider.of<RouterBloc>(context).add(PopPage());
               },
             )
           : null,

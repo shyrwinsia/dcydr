@@ -13,9 +13,7 @@ class TogglePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Iterable<CustomSwitchTile> tiles = list.items.map(
-      (RandomListItem item) {
-        return CustomSwitchTile(item);
-      },
+      (RandomListItem item) => CustomSwitchTile(item),
     );
 
     final List<Widget> divided = ListTile.divideTiles(

@@ -20,11 +20,3 @@ class PickedItemState extends PickPageState {
   @override
   String toString() => '[State] PickPageState: PickedItemState ${this.pick}';
 }
-
-class MoveToToggleListPage extends PickPageState {
-  @override
-  List<Object> get props => null;
-
-  @override
-  String toString() => '[State] PickPageState: MoveToToggleListPage';
-}

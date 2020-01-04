@@ -6,6 +6,14 @@ abstract class RouterEvent extends Equatable {
   const RouterEvent();
 }
 
+class PopPage extends RouterEvent {
+  @override
+  String toString() => '[Event] RouterEvent: PopPage';
+
+  @override
+  List<Object> get props => null;
+}
+
 class MoveToPickPage extends RouterEvent {
   final RandomList list;
   MoveToPickPage({@required this.list});
