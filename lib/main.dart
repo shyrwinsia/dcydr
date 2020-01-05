@@ -8,6 +8,7 @@ import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/bloc/router/state.dart';
 import 'package:dcydr/pages/home.dart';
 import 'package:dcydr/pages/pick.dart';
+import 'package:dcydr/pages/toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,9 +53,14 @@ class Dcydr extends StatelessWidget {
             _pushPage(
               context,
               BlocProvider(
-                child: PickPage(state.list),
+                child: PickPage(list: state.list),
                 create: (BuildContext context) => PickPageBloc(),
               ),
+            );
+          else if (state is RouterTogglePage)
+            _pushPage(
+              context,
+              TogglePage(list: state.list),
             );
           else if (state is RouterPopPage) {
             Navigator.pop(context);

@@ -29,7 +29,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                   FlatIcons.con_left_arrow_1_a,
                 ),
                 onPressed: () {
-                  BlocProvider.of<RouterBloc>(context).add(PopPage());
+                  BlocProvider.of<RouterBloc>(context)
+                      .add(PopPage(from: title));
                 },
               )
             : null,

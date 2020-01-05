@@ -1,6 +1,8 @@
 import 'package:dcydr/bloc/pickpage/bloc.dart';
 import 'package:dcydr/bloc/pickpage/event.dart';
 import 'package:dcydr/bloc/pickpage/state.dart';
+import 'package:dcydr/bloc/router/bloc.dart';
+import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/fade.dart';
 import 'package:dcydr/data/types.dart';
@@ -10,22 +12,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_text/gradient_text.dart';
 
 class PickPage extends StatefulWidget {
-  final RandomList _list;
-  PickPage(this._list);
+  final RandomList list;
+  PickPage({this.list});
   @override
   _PickPageState createState() => _PickPageState();
 }
 
 class _PickPageState extends State<PickPage> {
   PickPageBloc _pageBloc;
+  RouterBloc _routerBloc;
 
   @override
   Widget build(BuildContext context) {
     _pageBloc = BlocProvider.of<PickPageBloc>(context);
+    _routerBloc = BlocProvider.of<RouterBloc>(context);
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: widget._list.name,
+        title: widget.list.name,
         hasBackButton: true,
         actions: <Widget>[
           IconButton(
@@ -33,7 +37,8 @@ class _PickPageState extends State<PickPage> {
             icon: Icon(
               FlatIcons.settings_5,
             ),
-            onPressed: () => _pageBloc.add(ToggleList()),
+            onPressed: () =>
+                _routerBloc.add(MoveToTogglePage(list: widget.list)),
           ),
         ],
       ),
@@ -45,7 +50,7 @@ class _PickPageState extends State<PickPage> {
             child: FadeIn(
               child: InkWell(
                 onTap: () => _pageBloc.add(
-                  PickItem(items: this.widget._list.items),
+                  PickItem(items: this.widget.list.items),
                 ),
                 child: Center(
                   child: Padding(

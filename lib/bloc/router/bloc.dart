@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 class RouterBloc extends Bloc<RouterEvent, RouterState> {
   final GlobalKey<dynamic> routerKey;
   RouterBloc({this.routerKey});
+  List stack = List();
 
   @override
   RouterState get initialState => RouterHomePage();
@@ -18,9 +19,11 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
     RouterEvent event,
   ) async* {
     if (event is PopPage) {
-      yield RouterPopPage();
+      yield RouterPopPage(from: event.from);
     } else if (event is MoveToPickPage) {
       yield RouterPickPage(list: event.list);
+    } else if (event is MoveToTogglePage) {
+      yield RouterTogglePage(list: event.list);
     } else if (event is MoveToHomePage) {
       yield RouterHomePage();
     } else if (event is MoveToAddPage) {

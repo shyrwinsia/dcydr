@@ -7,11 +7,15 @@ abstract class RouterEvent extends Equatable {
 }
 
 class PopPage extends RouterEvent {
-  @override
-  String toString() => '[Event] RouterEvent: PopPage';
+  final String from;
+
+  PopPage({this.from});
 
   @override
-  List<Object> get props => null;
+  String toString() => '[Event] RouterEvent: PopPage from ${this.from}';
+
+  @override
+  List<Object> get props => [this.from];
 }
 
 class MoveToPickPage extends RouterEvent {
@@ -22,7 +26,7 @@ class MoveToPickPage extends RouterEvent {
   String toString() => '[Event] RouterEvent: MoveToPickPage';
 
   @override
-  List<Object> get props => null;
+  List<Object> get props => [this.list];
 }
 
 class MoveToAddPage extends RouterEvent {
@@ -39,4 +43,15 @@ class MoveToHomePage extends RouterEvent {
 
   @override
   List<Object> get props => null;
+}
+
+class MoveToTogglePage extends RouterEvent {
+  final RandomList list;
+  MoveToTogglePage({@required this.list});
+
+  @override
+  String toString() => '[Event] RouterEvent: MoveToTogglePage';
+
+  @override
+  List<Object> get props => [this.list];
 }

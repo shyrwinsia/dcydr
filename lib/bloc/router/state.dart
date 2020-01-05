@@ -19,7 +19,7 @@ class RouterPickPage extends RouterState {
   RouterPickPage({this.list});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [this.list];
 
   @override
   String toString() => '[State] RouterState: RouterPickPage';
@@ -34,9 +34,25 @@ class RouterAddPage extends RouterState {
 }
 
 class RouterPopPage extends RouterState {
+  final String from;
+
+  RouterPopPage({this.from});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [this.from];
 
   @override
   String toString() => '[State] RouterState: RouterPopPage';
+}
+
+class RouterTogglePage extends RouterState {
+  final RandomList list;
+
+  RouterTogglePage({this.list});
+
+  @override
+  List<Object> get props => [this.list];
+
+  @override
+  String toString() => '[State] RouterState: RouterTogglePage';
 }
