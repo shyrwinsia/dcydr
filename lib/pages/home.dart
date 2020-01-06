@@ -59,37 +59,27 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            "You don't have any list. ಠ_ಠ",
+            "You don't have any lists. ಠ_ಠ",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
+              color: const Color(0x66000000),
             ),
-          ),
-          SizedBox(
-            height: 8,
           ),
           _buildCreateButton(),
         ],
       );
 
-  Widget _buildCreateButton() =>
-      // TODO make this a button theme
-      Row(
+  Widget _buildCreateButton() => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           FlatButton.icon(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            color: const Color(0xdd2a86cb),
-            textColor: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
             icon: Icon(
               FlatIcons.add,
               size: 12,
             ),
-            label: Text('Create new list'),
+            label: Text('Build new list'),
             onPressed: () => _routerBloc.add(MoveToAddPage()),
           )
         ],

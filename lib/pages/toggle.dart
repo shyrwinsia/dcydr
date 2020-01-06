@@ -4,8 +4,6 @@ import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
 class TogglePage extends StatelessWidget {
-  // TODO fix the problem that the disabled
-  // ones are still updated in the pick page
   final RandomList list;
 
   TogglePage({this.list});

@@ -20,7 +20,7 @@ class _AddListPageState extends State<AddListPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: CustomAppBar(
-          title: "Create new list",
+          title: "Build new list",
           hasBackButton: true,
           actions: <Widget>[
             FlatButton(
@@ -42,9 +42,8 @@ class _AddListPageState extends State<AddListPage> {
             textBaseline: TextBaseline.alphabetic,
             children: <Widget>[
               Ink(
-                // TODO use this color as button
                 decoration: ShapeDecoration(
-                  color: const Color(0x0F2a86cb),
+                  color: const Color(0x0F2A86CB),
                   shape: CircleBorder(),
                 ),
                 child: IconButton(

@@ -85,7 +85,7 @@ class _PickPageState extends State<PickPage> {
           'Tap anywhere to pick',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 18,
             color: const Color(0x66000000),
           ),
         )

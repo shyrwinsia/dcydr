@@ -6,6 +6,7 @@ import 'package:dcydr/bloc/pickpage/bloc.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/bloc/router/state.dart';
+import 'package:dcydr/pages/addlist.dart';
 import 'package:dcydr/pages/home.dart';
 import 'package:dcydr/pages/pick.dart';
 import 'package:dcydr/pages/toggle.dart';
@@ -44,12 +45,20 @@ class Dcydr extends StatelessWidget {
         hintColor: const Color(0x22000000),
         accentColor: const Color(0xff2a86cb),
         backgroundColor: const Color(0xfff7f7f9),
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
+        ),
       );
 
   // router listenr
   Widget _buildRouter() => BlocListener<RouterBloc, RouterState>(
         listener: (context, state) {
-          if (state is RouterPickPage)
+          if (state is RouterAddPage)
+            _pushPage(
+              context,
+              AddListPage(),
+            );
+          else if (state is RouterPickPage)
             _pushPage(
               context,
               BlocProvider(
