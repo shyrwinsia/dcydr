@@ -34,7 +34,9 @@ Unlike other randomizing apps, Dcydr does not have needless fancy animations, ca
 
 ### Save them brain juices
 
-Decisions, no matter how small, take mental effort. Studies have repeatedly shown that we humans have very limited amounts of it. So don't waste brain power deciding on those small mundane things. Save them for your bigger decisions! For your other trivial decisions, let Dcydr decide for you.
+Decisions, no matter how small, take mental effort. An average person makes 35,000 decision per day. This can lead to Decision Fatigue: a state when you are so tired after making a gazillion choices, you become impulsive or refrain from deciding altogether.
+
+So don't waste precious brain power deciding on those small everyday mundane things. Save them for bigger decisions like your next career or which new city to go next! For your trivial decisions, let Dcydr decide for you.
 
 ## Get it
 
@@ -42,15 +44,15 @@ To be uploaded to App Store and Google Play soon.
 
 ## Disclaimer
 
-I am not liable for any disastrous consequences that may have resulted from the suggestions of the app.
+I am not liable for any disastrous consequences that may result from the suggestions of the app.
 
 ## Bugs and Issues
 
-This is just a side-project I write during my free time. It's not perfect, so don't complain. But still, I'll do my best to fix legit bugs.
+This is just a side-project I write during my free time. It's not perfect and I'll do my best to fix legit bugs. If you see something wrong, fork this repo and send me a pull request. I'd love to collaborate.
 
 ## Upcoming Features
 
-This app aims to be simple, clean and fast. A picking animation or a 'shake to pick' will never be added as a feature. There are other apps out there that do that, but this isn't one of them. By contrast, here are some features I'm planning to do in the future:
+This app aims to be simple, clean and fast. A picking animation or a 'shake to pick' will never be added as a feature. There are other apps out there that already do that. By contrast, here are some features I'm planning to do in the future:
 
 - Categorize items and lists
 - Batch select and deselect
