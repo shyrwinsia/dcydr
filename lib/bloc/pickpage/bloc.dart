@@ -16,26 +16,21 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   @override
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
     if (event is PickItem) {
-      this._pickedItem = _pickRandomItem(event.items);
-      yield PickedItemState(pick: this._pickedItem);
+      // filter
+      List list = event.items.where((e) => e.selected).toList();
+      if (list.length == 0)
+        yield NoItemToPickState();
+      else if (list.length == 1)
+        yield CannotPickState();
+      else {
+        this._pickedItem = _pickItem(list);
+        yield PickedItemState(pick: this._pickedItem);
+      }
     } else if (event is Reinitialize) {
       yield Uninitialized();
     } else {
       getLogger().wtf('Something went wrong.');
     }
-  }
-
-  String _pickRandomItem(List list) {
-    String pick;
-    // filter
-    list = list.where((e) => e.selected).toList();
-    list.length > 0
-        ? list.length > 1
-            ? pick = _pickItem(list)
-            : pick = "Can't randomly pick from only one choice\n¯\\_(ツ)_/¯"
-        : pick = 'Nothing to pick (◔_◔)';
-
-    return pick;
   }
 
   String _pickItem(List list) {

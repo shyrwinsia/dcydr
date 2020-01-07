@@ -70,28 +70,82 @@ class _PickPageState extends State<PickPage> {
       BlocBuilder<PickPageBloc, PickPageState>(
         bloc: _pageBloc,
         builder: (context, state) {
-          if (state is PickedItemState) {
-            return _buildText(text: state.pick);
-          } else if (state is Uninitialized) {
-            return _buildText();
+          if (state is Uninitialized) {
+            return Text(
+              'Tap anywhere to pick',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                color: const Color(0x66000000),
+              ),
+            );
+          } else if (state is NoItemToPickState) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  '🤷‍♂️',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: const Color(0x66000000),
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Can't pick. Your list is empty.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: const Color(0x66000000),
+                  ),
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+              ],
+            );
+          } else if (state is CannotPickState) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  '🙄',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: const Color(0x66000000),
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Can't pick. There's only one choice.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: const Color(0x66000000),
+                  ),
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+              ],
+            );
+          } else if (state is PickedItemState) {
+            return GradientText(state.pick,
+                gradient: LinearGradient(
+                    colors: [const Color(0xff13b6cb), const Color(0xff2a86cb)]),
+                style: TextStyle(fontSize: 42),
+                textAlign: TextAlign.center);
           } else {
             return Container();
           }
         },
       );
-
-  Widget _buildText({String text}) => (text == null)
-      ? Text(
-          'Tap anywhere to pick',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-            color: const Color(0x66000000),
-          ),
-        )
-      : GradientText(text,
-          gradient: LinearGradient(
-              colors: [const Color(0xff13b6cb), const Color(0xff2a86cb)]),
-          style: TextStyle(fontSize: 42),
-          textAlign: TextAlign.center);
 }

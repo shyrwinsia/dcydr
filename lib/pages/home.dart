@@ -59,12 +59,26 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            "You don't have any lists. ಠ_ಠ",
+            '🤔',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 40,
+              color: const Color(0x66000000),
+            ),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Text(
+            "You don't have any lists.",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,
               color: const Color(0x66000000),
             ),
+          ),
+          SizedBox(
+            height: 32,
           ),
           _buildCreateButton(),
         ],
@@ -75,6 +89,12 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           FlatButton.icon(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            color: const Color(0x142A86CB),
+            textColor: const Color(0xFF2A86CB),
+            padding: EdgeInsets.all(16),
             icon: Icon(
               FlatIcons.add,
               size: 12,
