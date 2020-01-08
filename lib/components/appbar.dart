@@ -1,8 +1,5 @@
-import 'package:dcydr/bloc/router/bloc.dart';
-import 'package:dcydr/bloc/router/event.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -29,8 +26,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                   FlatIcons.con_left_arrow_1_a,
                 ),
                 onPressed: () {
-                  BlocProvider.of<RouterBloc>(context)
-                      .add(PopPage(from: title));
+                  Navigator.pop(context);
                 },
               )
             : null,

@@ -68,9 +68,6 @@ class Dcydr extends StatelessWidget {
               context,
               TogglePage(list: state.list),
             );
-          else if (state is RouterPopPage) {
-            Navigator.pop(context);
-          }
         },
         child: BlocProvider(
           child: HomePage(),
@@ -83,5 +80,6 @@ class Dcydr extends StatelessWidget {
         MaterialPageRoute<void>(
           builder: (BuildContext context) => page,
         ),
-      );
+      ).then((onValue) => BlocProvider.of<RouterBloc>(context)
+          .add(PopPage(from: page.hashCode.toString())));
 }
