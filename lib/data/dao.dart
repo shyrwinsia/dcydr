@@ -12,8 +12,8 @@ class RandomListDao {
   }
 
   Future update(RandomList list) async {
-    // final finder = Finder(filter: Filter.byKey(list.id));
-    // await _randomListStore.update(await _db, list.toMap(), finder: finder);
+    final finder = Finder(filter: Filter.byKey(list.key));
+    await _randomListStore.update(await _db, list.toMap(), finder: finder);
   }
 
   Future delete(RandomList list) async {
