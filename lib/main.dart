@@ -6,7 +6,6 @@ import 'package:dcydr/bloc/pickpage/bloc.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/bloc/router/state.dart';
-import 'package:dcydr/bloc/togglepage/bloc.dart';
 import 'package:dcydr/pages/addlist.dart';
 import 'package:dcydr/pages/home.dart';
 import 'package:dcydr/pages/pick.dart';
@@ -67,10 +66,7 @@ class Dcydr extends StatelessWidget {
           else if (state is RouterTogglePage)
             _pushPage(
               context,
-              BlocProvider(
-                child: TogglePage(list: state.list),
-                create: (BuildContext context) => TogglePageBloc(),
-              ),
+              TogglePage(list: state.list),
             );
         },
         child: BlocProvider(

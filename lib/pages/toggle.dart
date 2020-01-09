@@ -1,10 +1,7 @@
-import 'package:dcydr/bloc/togglepage/bloc.dart';
-import 'package:dcydr/bloc/togglepage/event.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/switchtile.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TogglePage extends StatelessWidget {
   final RandomList list;
@@ -13,11 +10,11 @@ class TogglePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<TogglePageBloc>(context)
-        .add(SaveListEvent(list: this.list));
-
     final Iterable<CustomSwitchTile> tiles = list.items.map(
-      (RandomListItem item) => CustomSwitchTile(item),
+      (RandomListItem item) => CustomSwitchTile(
+        list: list,
+        item: item,
+      ),
     );
 
     final List<Widget> divided = ListTile.divideTiles(

@@ -1,12 +1,14 @@
 import 'package:dcydr/components/fade.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class CustomSwitchTile extends StatefulWidget {
-  final RandomListItem _item;
+  final RandomListItem item;
+  final RandomList list;
 
-  CustomSwitchTile(this._item);
+  CustomSwitchTile({this.list, this.item});
 
   @override
   _CustomSwitchTileState createState() => _CustomSwitchTileState();
@@ -15,17 +17,17 @@ class CustomSwitchTile extends StatefulWidget {
 class _CustomSwitchTileState extends State<CustomSwitchTile> {
   @override
   Widget build(BuildContext context) => ListTile(
-        title: widget._item.selected
+        title: widget.item.selected
             ? FadeIn(
-                child: Text(widget._item.name), fromAlpha: 0.4, toAlpha: 1.0)
+                child: Text(widget.item.name), fromAlpha: 0.4, toAlpha: 1.0)
             : FadeOut(
                 child: Text(
-                  widget._item.name,
+                  widget.item.name,
                 ),
                 fromAlpha: 1.0,
                 toAlpha: 0.4,
               ),
-        trailing: widget._item.selected
+        trailing: widget.item.selected
             ? FadeIn(
                 child: Icon(
                   FlatIcons.success,
@@ -40,7 +42,8 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
               ),
         onTap: () => {
           setState(() {
-            widget._item.selected = !widget._item.selected;
+            widget.item.selected = !widget.item.selected;
+            RandomListDao().update(this.widget.list);
           })
         },
       );
