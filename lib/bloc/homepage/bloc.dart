@@ -16,6 +16,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     if (event is LoadLists) {
       yield Loading();
       yield* _reloadLists();
+    } else if (event is Reinitialize) {
+      yield* _reloadLists();
     } else {
       getLogger().wtf('Something went wrong.');
     }

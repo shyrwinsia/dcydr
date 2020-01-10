@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           if (state is Loading)
             return _buildLoading();
           else if (state is Loaded)
-            return _buildListView(state.list);
+            return _buildListView(state.list, context);
           else
             return Container();
         },
@@ -51,8 +51,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildListView(List<RandomList> list) =>
-      (list.isEmpty) ? _buildAddList() : _buildList(list);
+  Widget _buildListView(List<RandomList> list, BuildContext context) =>
+      (list.isEmpty) ? _buildAddList() : _buildList(list, context);
 
   Widget _buildAddList() => Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
-  Widget _buildList(List<RandomList> list) => ListView(
+  Widget _buildList(List<RandomList> list, BuildContext context) => ListView(
         children: ListTile.divideTiles(
           context: context,
           tiles: list.map(
@@ -122,13 +122,16 @@ class _HomePageState extends State<HomePage> {
                   FlatIcons.more,
                   color: const Color(0x44000000),
                 ), // TOTO doble loading
-                onPressed: () {
-                  RandomListDao()
-                      .delete(item)
-                      .then((e) => _pageBloc.add(Reinitialize()));
-                }, // add bottomsheet here
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) => _buildCategoryDialog(item),
+                ),
               ),
               onTap: () => _routerBloc.add(MoveToPickPage(list: item)),
+              onLongPress: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => _buildCategoryDialog(item),
+              ),
             ),
           ),
         ).toList(),
@@ -137,6 +140,44 @@ class _HomePageState extends State<HomePage> {
   Widget _buildLoading() => Center(
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(const Color(0xff13b6cb)),
+        ),
+      );
+
+  Widget _buildCategoryDialog(RandomList list) => Dialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8))),
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(
+                  FlatIcons.edit,
+                ),
+                title: Text(
+                  'Edit list',
+                ),
+              ),
+              ListTile(
+                leading: Icon(
+                  FlatIcons.trash,
+                  color: Colors.red,
+                ),
+                title: Text(
+                  'Delete list',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+                onTap: () => RandomListDao()
+                    .delete(list)
+                    .then((e) => _pageBloc.add(Reinitialize()))
+                    .then((e) => Navigator.pop(context)),
+              ),
+            ],
+          ),
         ),
       );
 }
