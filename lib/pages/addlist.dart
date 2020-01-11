@@ -10,12 +10,7 @@ class AddListPage extends StatefulWidget {
 }
 
 class _AddListPageState extends State<AddListPage> {
-  // AddListPageBloc _bloc;
-  @override
-  void initState() {
-    super.initState();
-    // _bloc = AddListPageBloc();
-  }
+  String icon = 'generic';
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -53,7 +48,7 @@ class _AddListPageState extends State<AddListPage> {
                       builder: (BuildContext context) => _buildCategoryDialog(),
                     );
                   },
-                  icon: RandomList.iconFromType('generic'),
+                  icon: RandomList.iconFromType(this.icon),
                 ),
               ),
               Flexible(
@@ -125,6 +120,18 @@ class _AddListPageState extends State<AddListPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              Wrap(
+                children: RandomListTypes.types.map((f) {
+                  return IconButton(
+                    padding: EdgeInsets.all(24),
+                    icon: RandomList.iconFromType(f.name),
+                    onPressed: () {
+                      setState(() => icon = f.name);
+                      Navigator.pop(context);
+                    },
+                  );
+                }).toList(),
               ),
             ],
           ),
