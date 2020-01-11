@@ -62,7 +62,7 @@ class _AddListPageState extends State<AddListPage> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Enter list title',
-                    contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+                    contentPadding: EdgeInsets.all(16),
                   ),
                 ),
               ),
