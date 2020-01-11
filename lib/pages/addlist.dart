@@ -11,6 +11,7 @@ class AddListPage extends StatefulWidget {
 
 class _AddListPageState extends State<AddListPage> {
   String icon = 'generic';
+  List<RandomListItem> items;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -61,7 +62,7 @@ class _AddListPageState extends State<AddListPage> {
                   onEditingComplete: () {},
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Enter list title',
+                    hintText: 'Add title',
                     contentPadding: EdgeInsets.all(16),
                   ),
                 ),
@@ -88,9 +89,10 @@ class _AddListPageState extends State<AddListPage> {
             label: Text(
               'Add item',
             ),
-            onPressed: () {
-              // _addNewEntry();
-            },
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) => _buildAddItemDialog(),
+            ),
           ),
         ],
       );
@@ -137,67 +139,29 @@ class _AddListPageState extends State<AddListPage> {
           ),
         ),
       );
-}
 
-class RandomListItemWidget extends StatefulWidget {
-  final Function add;
-  final Function remove;
-
-  RandomListItemWidget({
-    @required this.add,
-    @required this.remove,
-  });
-
-  @override
-  _RandomListItemWidgetState createState() => _RandomListItemWidgetState();
-}
-
-class _RandomListItemWidgetState extends State<RandomListItemWidget> {
-  FocusNode focusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    focusNode = FocusNode();
-  }
-
-  @override
-  Widget build(BuildContext context) => Row(
-        children: <Widget>[
-          Flexible(
-            child: TextField(
-              focusNode: focusNode,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Enter item name',
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              ),
-              onEditingComplete: () {
-                widget.add();
-                // _addNewEntry();
-              },
-            ),
+  Widget _buildAddItemDialog() => Dialog(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 40,
           ),
-          IconButton(
-            iconSize: 14,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            onPressed: () {
-              setState(() {
-                widget.remove(widget);
-                // items.remove(f);
-              });
-            },
-            icon: Icon(
-              FlatIcons.minus,
-              color: Theme.of(context).accentColor,
-            ),
-          )
-        ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(bottom: 24),
+                child: Text(
+                  'Add item',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       );
-
-  @override
-  void dispose() =>
-      // Clean up the controller when the widget is disposed.
-      super.dispose();
 }
