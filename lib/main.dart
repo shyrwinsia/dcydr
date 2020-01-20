@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dcydr/bloc/addlistpage/bloc.dart';
 import 'package:dcydr/bloc/blocdelegate.dart';
 import 'package:dcydr/bloc/homepage/bloc.dart';
 import 'package:dcydr/bloc/homepage/event.dart';
@@ -53,7 +54,10 @@ class Dcydr extends StatelessWidget {
           if (state is RouterAddPage)
             _pushPage(
               context,
-              AddListPage(),
+              BlocProvider(
+                child: AddListPage(),
+                create: (BuildContext context) => AddListPageBloc(),
+              ),
             );
           else if (state is RouterPickPage)
             _pushPage(
@@ -71,6 +75,7 @@ class Dcydr extends StatelessWidget {
         },
         child: BlocProvider(
           child: HomePage(),
+          // TODO Reload list after add
           create: (BuildContext context) => HomePageBloc()..add(LoadLists()),
         ),
       );

@@ -172,4 +172,6 @@ class RandomListItem {
       RandomListItem(name: map['name'], selected: map['selected']);
 
   factory RandomListItem.empty() => RandomListItem(name: '', selected: true);
+  factory RandomListItem.withName(String name) =>
+      RandomListItem(name: name, selected: true);
 }

@@ -84,26 +84,22 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
-  Widget _buildCreateButton() => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          FlatButton.icon(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            color: const Color(0x142A86CB),
-            textColor: const Color(0xFF2A86CB),
-            padding: EdgeInsets.all(16),
-            icon: Icon(
-              FlatIcons.add,
-              size: 12,
-            ),
-            label: Text('Build new list'),
-            onPressed: () => _routerBloc.add(MoveToAddPage()),
-          )
-        ],
-      );
+  Widget _buildCreateButton() => Align(
+      alignment: Alignment.bottomCenter,
+      child: FlatButton.icon(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        color: const Color(0x142A86CB),
+        textColor: const Color(0xFF2A86CB),
+        padding: EdgeInsets.all(12),
+        icon: Icon(
+          FlatIcons.add,
+          size: 12,
+        ),
+        label: Text('Build new list'),
+        onPressed: () => _routerBloc.add(MoveToAddPage()),
+      ));
 
   Widget _buildList(List<RandomList> list, BuildContext context) => ListView(
         children: ListTile.divideTiles(

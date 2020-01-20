@@ -1,8 +1,11 @@
+import 'package:dcydr/bloc/addlistpage/bloc.dart';
+import 'package:dcydr/bloc/addlistpage/event.dart';
+import 'package:dcydr/bloc/addlistpage/state.dart';
 import 'package:dcydr/components/appbar.dart';
-import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddListPage extends StatefulWidget {
   @override
@@ -11,24 +14,52 @@ class AddListPage extends StatefulWidget {
 
 class _AddListPageState extends State<AddListPage> {
   String icon = 'generic';
-  List<RandomListItem> items;
+  List<RandomListItem> items = List();
+  final itemTextController = TextEditingController();
+  final titleTextController = TextEditingController();
+  AddListPageBloc _pageBloc;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: CustomAppBar(
-          title: "Build new list",
-          hasBackButton: true,
-          actions: <Widget>[
-            FlatButton(
-                child: Text(
-                  'Save',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () => SampleData.instance.addDefaultData()),
-          ],
-        ),
-        body: _buildBody(),
-      );
+  Widget build(BuildContext context) {
+    _pageBloc = BlocProvider.of<AddListPageBloc>(context);
+
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: "Build new list",
+        hasBackButton: true,
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              'Save',
+              style: TextStyle(color: Colors.white),
+            ),
+            onPressed: () => _pageBloc.add(
+              SaveList(
+                list: RandomList(
+                    name: titleTextController.text,
+                    type: this.icon,
+                    items: this.items),
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: BlocBuilder<AddListPageBloc, AddListPageState>(
+        bloc: _pageBloc,
+        builder: (context, state) {
+          if (state is Saving)
+            return _buildLoading();
+          else if (state is Saved) {
+            // TODO Bad Future
+            WidgetsBinding.instance
+                .addPostFrameCallback((_) => Navigator.pop(context));
+            return Container();
+          } else
+            return _buildBody();
+        },
+      ),
+    );
+  }
 
   Widget _buildBody() => ListView(
         padding: EdgeInsets.all(16),
@@ -54,12 +85,10 @@ class _AddListPageState extends State<AddListPage> {
               ),
               Flexible(
                 child: TextField(
+                  controller: titleTextController,
                   style: TextStyle(
                     fontSize: 24,
                   ),
-                  autofocus: true,
-                  // focusNode: _titleNode,
-                  onEditingComplete: () {},
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Add title',
@@ -79,19 +108,29 @@ class _AddListPageState extends State<AddListPage> {
           SizedBox(
             height: 8,
           ),
-          FlatButton.icon(
-            padding: EdgeInsets.all(16),
-            icon: Icon(
-              FlatIcons.plus,
-              size: 12,
-            ),
-            textColor: Theme.of(context).accentColor,
-            label: Text(
-              'Add item',
-            ),
-            onPressed: () => showDialog(
-              context: context,
-              builder: (BuildContext context) => _buildAddItemDialog(),
+          Column(
+            children: _buildItemList(),
+          ),
+          SizedBox(
+            height: 18,
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              color: const Color(0x142A86CB),
+              textColor: const Color(0xFF2A86CB),
+              padding: EdgeInsets.all(12),
+              child: Text('Add item'),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => _buildAddItemDialog(),
+                );
+              },
             ),
           ),
         ],
@@ -100,6 +139,8 @@ class _AddListPageState extends State<AddListPage> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
+    itemTextController.dispose();
+    titleTextController.dispose();
     super.dispose();
   }
 
@@ -118,7 +159,7 @@ class _AddListPageState extends State<AddListPage> {
                 child: Text(
                   'Choose an icon',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -141,6 +182,8 @@ class _AddListPageState extends State<AddListPage> {
       );
 
   Widget _buildAddItemDialog() => Dialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8))),
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 24,
@@ -150,18 +193,96 @@ class _AddListPageState extends State<AddListPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 24),
-                child: Text(
-                  'Add item',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+              Text(
+                'Add item',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 24),
+              TextField(
+                autofocus: true,
+                controller: itemTextController,
+                onEditingComplete: () {
+                  setState(() {
+                    items.add(RandomListItem.withName(itemTextController.text));
+                    itemTextController.text = '';
+                  });
+                  Navigator.pop(context);
+                },
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                decoration: InputDecoration.collapsed(
+                  hintText: 'Item name',
+                ),
+              ),
+              Divider(
+                color: const Color(0xFF2A86CB),
+                height: 0,
+              ),
+              SizedBox(height: 18),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
+                  color: const Color(0x142A86CB),
+                  textColor: const Color(0xFF2A86CB),
+                  padding: EdgeInsets.all(12),
+                  child: Text('Add'),
+                  onPressed: () {
+                    setState(() {
+                      items.add(
+                          RandomListItem.withName(itemTextController.text));
+                      itemTextController.text = '';
+                    });
+                    Navigator.pop(context);
+                  },
                 ),
               ),
             ],
           ),
+        ),
+      );
+
+  _buildItemList() {
+    return this.items.map((f) {
+      return Container(
+        padding: EdgeInsets.only(left: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              f.name,
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            IconButton(
+              iconSize: 18,
+              onPressed: () {
+                setState(() {
+                  this.items.remove(f);
+                });
+              },
+              icon: Icon(
+                FlatIcons.minus,
+                color: const Color(0xff2a86cb),
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
+  }
+
+  Widget _buildLoading() => Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(const Color(0xff13b6cb)),
         ),
       );
 }
