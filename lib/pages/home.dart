@@ -4,6 +4,7 @@ import 'package:dcydr/bloc/homepage/state.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/components/dialog.dart';
 import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
@@ -139,41 +140,32 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  Widget _buildCategoryDialog(RandomList list) => Dialog(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(
-                  FlatIcons.edit,
-                ),
-                title: Text(
-                  'Edit list',
-                ),
-              ),
-              ListTile(
-                leading: Icon(
-                  FlatIcons.trash,
-                  color: Colors.red,
-                ),
-                title: Text(
-                  'Delete list',
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
-                ),
-                onTap: () => RandomListDao()
-                    .delete(list)
-                    .then((e) => _pageBloc.add(Reinitialize()))
-                    .then((e) => Navigator.pop(context)),
-              ),
-            ],
+  Widget _buildCategoryDialog(RandomList list) => CustomDialog(
+        children: <Widget>[
+          ListTile(
+            leading: Icon(
+              FlatIcons.edit,
+            ),
+            title: Text(
+              'Edit list',
+            ),
           ),
-        ),
+          ListTile(
+            leading: Icon(
+              FlatIcons.trash,
+              color: Colors.red,
+            ),
+            title: Text(
+              'Delete list',
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+            onTap: () => RandomListDao()
+                .delete(list)
+                .then((e) => _pageBloc.add(Reinitialize()))
+                .then((e) => Navigator.pop(context)),
+          ),
+        ],
       );
 }
