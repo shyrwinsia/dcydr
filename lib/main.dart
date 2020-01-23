@@ -26,7 +26,15 @@ void main() {
   );
 }
 
-class Dcydr extends StatelessWidget {
+class Dcydr extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _DcydrState();
+}
+
+class _DcydrState extends State<Dcydr> {
+  String icon = 'generic';
+  HomePageBloc _homePageBloc;
+
   @override
   Widget build(BuildContext context) => BlocProvider<RouterBloc>(
         create: (BuildContext context) => RouterBloc()..add(MoveToHomePage()),
@@ -49,42 +57,48 @@ class Dcydr extends StatelessWidget {
       );
 
   // router listenr
-  Widget _buildRouter() => BlocListener<RouterBloc, RouterState>(
-        listener: (context, state) {
-          if (state is RouterAddPage)
-            _pushPage(
+  Widget _buildRouter() {
+    _homePageBloc = HomePageBloc();
+
+    return BlocListener<RouterBloc, RouterState>(
+      listener: (context, state) {
+        if (state is RouterAddPage)
+          _pushPage(
               context,
               BlocProvider(
                 child: AddListPage(),
                 create: (BuildContext context) => AddListPageBloc(),
               ),
-            );
-          else if (state is RouterPickPage)
-            _pushPage(
-              context,
-              BlocProvider(
-                child: PickPage(list: state.list),
-                create: (BuildContext context) => PickPageBloc(),
-              ),
-            );
-          else if (state is RouterTogglePage)
-            _pushPage(
-              context,
-              TogglePage(list: state.list),
-            );
-        },
-        child: BlocProvider(
-          child: HomePage(),
-          // TODO Reload list after add
-          create: (BuildContext context) => HomePageBloc()..add(LoadLists()),
-        ),
-      );
+              () => _homePageBloc.add(LoadLists()));
+        else if (state is RouterPickPage)
+          _pushPage(
+            context,
+            BlocProvider(
+              child: PickPage(list: state.list),
+              create: (BuildContext context) => PickPageBloc(),
+            ),
+          );
+        else if (state is RouterTogglePage)
+          _pushPage(
+            context,
+            TogglePage(list: state.list),
+          );
+      },
+      child: BlocProvider(
+        child: HomePage(),
+        create: (BuildContext context) => _homePageBloc..add(LoadLists()),
+      ),
+    );
+  }
 
-  void _pushPage(BuildContext context, Widget page) => Navigator.push(
+  void _pushPage(BuildContext context, Widget page, [Function callback]) =>
+      Navigator.push(
         context,
         MaterialPageRoute<void>(
           builder: (BuildContext context) => page,
         ),
-      ).then((onValue) => BlocProvider.of<RouterBloc>(context)
-          .add(PopPage(from: page.hashCode.toString())));
+      )
+          .then((onValue) => BlocProvider.of<RouterBloc>(context)
+              .add(PopPage(from: page.hashCode.toString())))
+          .then((onValue) => callback());
 }

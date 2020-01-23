@@ -22,46 +22,38 @@ class _AddListPageState extends State<AddListPage> {
   @override
   Widget build(BuildContext context) {
     _pageBloc = BlocProvider.of<AddListPageBloc>(context);
-
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: "Build new list",
-        hasBackButton: true,
-        actions: <Widget>[
-          FlatButton(
-            child: Text(
-              'Save',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () => _pageBloc.add(
-              SaveList(
-                list: RandomList(
-                    name: titleTextController.text,
-                    type: this.icon,
-                    items: this.items),
+    return BlocListener<AddListPageBloc, AddListPageState>(
+      bloc: _pageBloc,
+      listener: (context, state) {
+        if (state is Saved) Navigator.pop(context);
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: "Build new list",
+          hasBackButton: true,
+          actions: <Widget>[
+            FlatButton(
+              child: Text(
+                'Save',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => _pageBloc.add(
+                SaveList(
+                  list: RandomList(
+                      name: titleTextController.text,
+                      type: this.icon,
+                      items: this.items),
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: BlocBuilder<AddListPageBloc, AddListPageState>(
-        bloc: _pageBloc,
-        builder: (context, state) {
-          if (state is Saving)
-            return _buildLoading();
-          else if (state is Saved) {
-            // TODO Bad Future
-            WidgetsBinding.instance
-                .addPostFrameCallback((_) => Navigator.pop(context));
-            return Container();
-          } else
-            return _buildBody();
-        },
+          ],
+        ),
+        body: _buildBody(context),
       ),
     );
   }
 
-  Widget _buildBody() => ListView(
+  Widget _buildBody(BuildContext context) => ListView(
         padding: EdgeInsets.all(16),
         children: <Widget>[
           Row(
@@ -248,7 +240,7 @@ class _AddListPageState extends State<AddListPage> {
         ),
       );
 
-  _buildItemList() {
+  dynamic _buildItemList() {
     return this.items.map((f) {
       return Container(
         padding: EdgeInsets.only(left: 8),
@@ -279,10 +271,4 @@ class _AddListPageState extends State<AddListPage> {
       );
     }).toList();
   }
-
-  Widget _buildLoading() => Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(const Color(0xff13b6cb)),
-        ),
-      );
 }
