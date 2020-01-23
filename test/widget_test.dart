@@ -65,16 +65,17 @@ void main() {
     expect(find.text('Save'), findsOneWidget);
     expect(find.text('Add item'), findsOneWidget);
     await tester.enterText(find.byKey(Key('listName')), 'List 2');
+
     await tester.tap(find.byIcon(FlatIcons.add));
     await tester.pumpAndSettle();
     // expect a dialog
-    await tester.enterText(find.byKey(Key('itemName')), 'Item 1');
+    await tester.enterText(find.byType(TextField).at(1), 'Item 1');
     await tester.tap(find.text('Add'));
     await tester.pumpAndSettle();
 
     await tester.tap(find.byIcon(FlatIcons.add));
     await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(Key('itemName')), 'Item 2');
+    await tester.enterText(find.byType(TextField).at(1), 'Item 2');
     await tester.tap(find.text('Add'));
     await tester.pumpAndSettle();
 

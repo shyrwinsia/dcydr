@@ -266,7 +266,7 @@ class ExtendedCustomDialogState extends State<ExtendedCustomDialog> {
         style: TextStyle(
           fontSize: 18,
         ),
-        decoration: InputDecoration.collapsed(hintText: 'Item name'),
+        decoration: InputDecoration.collapsed(hintText: 'Enter item name'),
       );
 
   Widget _buildAddButton() => _isAddAllowed
