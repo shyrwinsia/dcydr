@@ -17,7 +17,7 @@ class _CustomDialogState extends State<CustomDialog> {
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 24,
-            vertical: 40,
+            vertical: 32,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
