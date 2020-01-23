@@ -77,13 +77,14 @@ class _AddListPageState extends State<AddListPage> {
               ),
               Flexible(
                 child: TextField(
+                  key: Key('listName'),
                   controller: titleTextController,
                   style: TextStyle(
                     fontSize: 24,
                   ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Add title',
+                    hintText: 'List name',
                     contentPadding: EdgeInsets.all(16),
                   ),
                 ),
@@ -108,14 +109,18 @@ class _AddListPageState extends State<AddListPage> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: FlatButton(
+            child: FlatButton.icon(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
               color: const Color(0x142A86CB),
               textColor: const Color(0xFF2A86CB),
               padding: EdgeInsets.all(12),
-              child: Text('Add item'),
+              icon: Icon(
+                FlatIcons.add,
+                size: 12,
+              ),
+              label: Text('Add item'),
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 showDialog(
@@ -194,6 +199,7 @@ class _AddListPageState extends State<AddListPage> {
               ),
               SizedBox(height: 24),
               TextField(
+                key: Key('itemName'),
                 autofocus: true,
                 controller: itemTextController,
                 onEditingComplete: () {

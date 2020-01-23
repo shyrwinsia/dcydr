@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             iconSize: 18,
             onPressed: () => _routerBloc.add(MoveToAddPage()),
             icon: Icon(
-              FlatIcons.add,
+              FlatIcons.add_2,
             ),
           )
         ],
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         textColor: const Color(0xFF2A86CB),
         padding: EdgeInsets.all(12),
         icon: Icon(
-          FlatIcons.add,
+          FlatIcons.add_2,
           size: 12,
         ),
         label: Text('Build new list'),
