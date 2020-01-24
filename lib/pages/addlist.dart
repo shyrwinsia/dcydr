@@ -105,7 +105,6 @@ class _AddListPageState extends State<AddListPage> {
           ),
           Flexible(
             child: TextField(
-              key: Key('listName'),
               onChanged: (text) {
                 setState(() {
                   if (text.length > 0)
@@ -251,7 +250,6 @@ class ExtendedCustomDialogState extends State<ExtendedCustomDialog> {
       );
 
   Widget _buildItemNameTextField() => TextField(
-        key: Key('itemName'),
         autofocus: true,
         controller: this.controller,
         onEditingComplete: _addItemToList,
