@@ -59,41 +59,49 @@ class RandomList {
         return Icon(
           FlatIcons.user,
           color: Colors.blue,
+          size: 18,
         );
       case 'star':
         return Icon(
           FlatIcons.star,
           color: Colors.orange,
+          size: 18,
         );
       case 'location':
         return Icon(
           FlatIcons.map_location,
           color: Colors.red,
+          size: 18,
         );
       case 'megaphone':
         return Icon(
           FlatIcons.megaphone,
           color: Colors.purple,
+          size: 18,
         );
       case 'diamond':
         return Icon(
           FlatIcons.diamond,
           color: Colors.indigo,
+          size: 18,
         );
       case 'tag':
         return Icon(
           FlatIcons.price_tag,
           color: Colors.cyan,
+          size: 18,
         );
       case 'idea':
         return Icon(
           FlatIcons.idea,
           color: Colors.amber,
+          size: 18,
         );
       default:
         return Icon(
           FlatIcons.list,
           color: Colors.teal,
+          size: 16,
         );
     }
   }

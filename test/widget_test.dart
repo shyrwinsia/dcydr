@@ -19,9 +19,8 @@ void main() {
     await tester.pumpAndSettle();
     // expect to be in the add page
     expect(find.text('Build new list'), findsOneWidget);
-    expect(find.text('Save'), findsOneWidget);
     await tester.enterText(find.byType(TextField), 'List 0');
-    await tester.tap(find.text('Save'));
+    await tester.tap(find.byIcon(FlatIcons.save));
     // wait for the animation to complete
     await tester.pumpAndSettle();
     expect(find.text('List 0'), findsOneWidget);
@@ -35,29 +34,28 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Build new list'), findsOneWidget);
-    expect(find.widgetWithText(FlatButton, 'Save'), findsOneWidget);
     expect(find.byIcon(FlatIcons.add), findsOneWidget);
     // print(find.byIcon(FlatIcons.add).at(0));
     // print(find.widgetWithIcon(FlatButton, FlatIcons.add).description);
     // expect(find.widgetWithIcon(FlatButton, FlatIcons.add), findsOneWidget);
     expect(find.widgetWithText(TextField, 'Enter list name'), findsOneWidget);
 
-    // await tester.tap(find.byIcon(FlatIcons.add));
-    // await tester.pumpAndSettle();
-    // expect(find.widgetWithText(TextField, 'Enter item name'), findsOneWidget);
-    // expect(find.text('Add'), findsOneWidget);
+    await tester.tap(find.byIcon(FlatIcons.add));
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(TextField, 'Enter item name'), findsOneWidget);
+    expect(find.text('Add'), findsOneWidget);
 
-    // await tester.enterText(
-    //     find.widgetWithText(TextField, 'Enter item name'), 'Item 1');
-    // await tester.tap(find.text('Add'));
-    // await tester.pumpAndSettle();
-    // expect(find.widgetWithText(List, 'Item 1'), findsOneWidget);
-    // expect(find.widgetWithText(Row, 'Add item'), findsOneWidget);
+    await tester.enterText(
+        find.widgetWithText(TextField, 'Enter item name'), 'Item 1');
+    await tester.tap(find.text('Add'));
+    await tester.pumpAndSettle();
+    expect(find.text('Item 1'), findsOneWidget);
+    expect(find.widgetWithText(Row, 'Add item'), findsOneWidget);
 
-    // await tester.enterText(
-    //     find.widgetWithText(TextField, 'Enter list name'), 'List 1');
-    // await tester.tap(find.text('Save'));
-    // await tester.pumpAndSettle();
-    // expect(find.text('List 1'), findsOneWidget);
+    await tester.enterText(
+        find.widgetWithText(TextField, 'Enter list name'), 'List 1');
+    await tester.tap(find.byIcon(FlatIcons.save));
+    await tester.pumpAndSettle();
+    expect(find.text('List 1'), findsOneWidget);
   });
 }
