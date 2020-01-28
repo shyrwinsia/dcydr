@@ -103,6 +103,12 @@ class RandomList {
           color: Colors.deepPurple,
           size: 18,
         );
+      case 'briefcase':
+        return Icon(
+          FlatIcons.briefcase,
+          color: Colors.deepPurple,
+          size: 18,
+        );
       default:
         return Icon(
           FlatIcons.list,
@@ -157,6 +163,11 @@ class RandomListTypes {
     ..add(RandomListType(
       name: 'time',
       icon: FlatIcons.time,
+      color: Colors.deepPurple,
+    ))
+    ..add(RandomListType(
+      name: 'briefcase',
+      icon: FlatIcons.briefcase,
       color: Colors.deepPurple,
     ))
     ..add(RandomListType(

@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(
                   FlatIcons.more,
                   color: const Color(0xFF2A86CB),
-                ), // TOTO doble loading
+                ),
                 onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) => _buildCategoryDialog(item),
