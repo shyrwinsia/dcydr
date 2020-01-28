@@ -38,6 +38,10 @@ Decisions, no matter how small, take mental effort. An average person makes 35,0
 
 So don't waste precious brain power deciding on those small everyday mundane things. Save them for bigger decisions like your next career or which new city to go next! For your trivial decisions, let Dcydr decide for you.
 
+### No Ads
+
+You hate ads as much as I do. They are obtrusive and annoying. This app will never have ads and will always be free forever (free lunch and free speech).
+
 ## Get it
 
 To be uploaded to App Store and Google Play soon.
