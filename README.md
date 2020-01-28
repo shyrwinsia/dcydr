@@ -38,9 +38,9 @@ Decisions, no matter how small, take mental effort. An average person makes 35,0
 
 So don't waste precious brain power deciding on those small everyday mundane things. Save them for bigger decisions like your next career or which new city to go next! For your trivial decisions, let Dcydr decide for you.
 
-### No Ads
+### No Ads, No Begging for Ratings
 
-You hate ads as much as I do. They are obtrusive and annoying. This app will never have ads and will never ask you to rate it.
+You hate ads as much as I do. They are obtrusive and annoying. They always come in your way when when you're about to do something. This app will let you do what you need to do. It will not have ads and not ask you to rate it.
 
 ![Please rate my app](img/no.png)
 
