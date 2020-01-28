@@ -48,6 +48,8 @@ The source code is open and always be free forever (free lunch and free speech).
 
 ## Get it
 
+[Version 1.0.0 Release Candidate 1](https://github.com/shyrwinsia/dcydr/releases/tag/v1.0.0.rc1)
+
 To be uploaded to App Store and Google Play soon.
 
 ## Disclaimer
