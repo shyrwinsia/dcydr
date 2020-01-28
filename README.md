@@ -40,7 +40,11 @@ So don't waste precious brain power deciding on those small everyday mundane thi
 
 ### No Ads
 
-You hate ads as much as I do. They are obtrusive and annoying. This app will never have ads and will always be free forever (free lunch and free speech).
+You hate ads as much as I do. They are obtrusive and annoying. This app will never have ads and will never ask you to rate it.
+
+![Please rate my app](img/no.png)
+
+The source code is open and always be free forever (free lunch and free speech).
 
 ## Get it
 
