@@ -7,6 +7,7 @@ import 'package:dcydr/bloc/pickpage/bloc.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/bloc/router/state.dart';
+import 'package:dcydr/data/sample.dart';
 import 'package:dcydr/pages/addlist.dart';
 import 'package:dcydr/pages/home.dart';
 import 'package:dcydr/pages/pick.dart';
@@ -59,7 +60,6 @@ class _DcydrState extends State<Dcydr> {
   // router listenr
   Widget _buildRouter() {
     _homePageBloc = HomePageBloc();
-
     return BlocListener<RouterBloc, RouterState>(
       listener: (context, state) {
         if (state is RouterAddPage)

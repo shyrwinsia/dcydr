@@ -97,6 +97,12 @@ class RandomList {
           color: Colors.amber,
           size: 18,
         );
+      case 'time':
+        return Icon(
+          FlatIcons.time,
+          color: Colors.deepPurple,
+          size: 18,
+        );
       default:
         return Icon(
           FlatIcons.list,
@@ -147,6 +153,11 @@ class RandomListTypes {
       name: 'idea',
       icon: FlatIcons.idea,
       color: Colors.amber,
+    ))
+    ..add(RandomListType(
+      name: 'time',
+      icon: FlatIcons.time,
+      color: Colors.deepPurple,
     ))
     ..add(RandomListType(
       name: 'generic',
