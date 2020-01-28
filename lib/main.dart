@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:dcydr/bloc/addlistpage/bloc.dart';
 import 'package:dcydr/bloc/blocdelegate.dart';
-import 'package:dcydr/bloc/editlistpage/bloc.dart';
 import 'package:dcydr/bloc/homepage/bloc.dart';
 import 'package:dcydr/bloc/homepage/event.dart';
+import 'package:dcydr/bloc/listpage/bloc.dart';
 import 'package:dcydr/bloc/pickpage/bloc.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
@@ -68,7 +67,7 @@ class _DcydrState extends State<Dcydr> {
               context,
               BlocProvider(
                 child: AddListPage(),
-                create: (BuildContext context) => AddListPageBloc(),
+                create: (BuildContext context) => ListPageBloc(),
               ),
               () => _homePageBloc.add(LoadLists()));
         else if (state is RouterEditPage)
@@ -76,7 +75,7 @@ class _DcydrState extends State<Dcydr> {
             context,
             BlocProvider(
               child: EditListPage(list: state.list),
-              create: (BuildContext context) => EditListPageBloc(),
+              create: (BuildContext context) => ListPageBloc(),
             ),
             () {
               _homePageBloc.add(LoadLists());
