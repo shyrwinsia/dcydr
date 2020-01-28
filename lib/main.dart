@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dcydr/bloc/addlistpage/bloc.dart';
 import 'package:dcydr/bloc/blocdelegate.dart';
+import 'package:dcydr/bloc/editlistpage/bloc.dart';
 import 'package:dcydr/bloc/homepage/bloc.dart';
 import 'package:dcydr/bloc/homepage/event.dart';
 import 'package:dcydr/bloc/pickpage/bloc.dart';
@@ -8,6 +9,7 @@ import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/bloc/router/state.dart';
 import 'package:dcydr/pages/addlist.dart';
+import 'package:dcydr/pages/editlist.dart';
 import 'package:dcydr/pages/home.dart';
 import 'package:dcydr/pages/pick.dart';
 import 'package:dcydr/pages/toggle.dart';
@@ -69,6 +71,18 @@ class _DcydrState extends State<Dcydr> {
                 create: (BuildContext context) => AddListPageBloc(),
               ),
               () => _homePageBloc.add(LoadLists()));
+        else if (state is RouterEditPage)
+          _pushPage(
+            context,
+            BlocProvider(
+              child: EditListPage(list: state.list),
+              create: (BuildContext context) => EditListPageBloc(),
+            ),
+            () {
+              _homePageBloc.add(LoadLists());
+              Navigator.pop(context);
+            },
+          );
         else if (state is RouterPickPage)
           _pushPage(
             context,

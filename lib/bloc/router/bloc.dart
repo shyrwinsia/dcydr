@@ -28,6 +28,8 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
       yield RouterHomePage();
     } else if (event is MoveToAddPage) {
       yield RouterAddPage();
+    } else if (event is MoveToEditPage) {
+      yield RouterEditPage(list: event.list);
     } else {
       getLogger().wtf('Something went wrong.');
     }

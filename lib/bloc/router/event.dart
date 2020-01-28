@@ -37,6 +37,17 @@ class MoveToAddPage extends RouterEvent {
   List<Object> get props => null;
 }
 
+class MoveToEditPage extends RouterEvent {
+  final RandomList list;
+  MoveToEditPage({@required this.list});
+
+  @override
+  String toString() => '[Event] RouterEvent: MoveToEditPage';
+
+  @override
+  List<Object> get props => null;
+}
+
 class MoveToHomePage extends RouterEvent {
   @override
   String toString() => '[Event] RouterEvent: MoveToHomePage';

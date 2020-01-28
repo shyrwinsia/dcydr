@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                   CustomFlatIconButton(
                     label: 'Edit list',
                     icon: FlatIcons.edit,
-                    callback: null,
+                    callback: () => _routerBloc.add(MoveToEditPage(list: list)),
                   ),
                   FlatButton.icon(
                     textColor: const Color(0xFF2A86CB),

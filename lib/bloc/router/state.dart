@@ -33,6 +33,18 @@ class RouterAddPage extends RouterState {
   String toString() => '[State] RouterState: RouterPickPage';
 }
 
+class RouterEditPage extends RouterState {
+  final RandomList list;
+
+  RouterEditPage({this.list});
+
+  @override
+  List<Object> get props => [this.list];
+
+  @override
+  String toString() => '[State] RouterState: RouterPickPage';
+}
+
 class RouterPopPage extends RouterState {
   final String from;
 
