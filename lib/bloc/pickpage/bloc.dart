@@ -4,11 +4,12 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:dcydr/bloc/pickpage/event.dart';
 import 'package:dcydr/bloc/pickpage/state.dart';
+import 'package:dcydr/data/dao.dart';
+import 'package:dcydr/data/types.dart';
 import 'package:dcydr/logger/logger.dart';
 
 class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   final rng = Random();
-  String _pickedItem;
 
   @override
   PickPageState get initialState => Uninitialized();
@@ -16,16 +17,7 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   @override
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
     if (event is PickItem) {
-      // filter
-      List list = event.items.where((e) => e.selected).toList();
-      if (list.length == 0)
-        yield NoItemToPickState();
-      else if (list.length == 1)
-        yield CannotPickState();
-      else {
-        this._pickedItem = _pickItem(list);
-        yield PickedItemState(pick: this._pickedItem);
-      }
+      yield* _pickItem(event.list);
     } else if (event is Reinitialize) {
       yield Uninitialized();
     } else {
@@ -33,12 +25,25 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
     }
   }
 
-  String _pickItem(List list) {
-    String pick;
-    // prevent conscutieve
-    do {
-      pick = list.elementAt(rng.nextInt(list.length)).name;
-    } while (pick == this._pickedItem);
-    return pick;
+  Stream<PickPageState> _pickItem(RandomList randomlist) async* {
+    // filter
+    List filteredlist = randomlist.items.where((e) => e.selected).toList();
+    if (filteredlist.length == 0) {
+      yield NoItemToPickState();
+    } else if (filteredlist.length == 1) {
+      yield CannotPickState();
+    } else {
+      // prevent consecutive
+      String lastPicked = await PickedItemsDao().getLastPicked(randomlist.key);
+      String pick;
+      do {
+        pick = filteredlist.elementAt(rng.nextInt(filteredlist.length)).name;
+      } while (pick == lastPicked);
+      // store picked
+      lastPicked == null
+          ? PickedItemsDao().insert(randomlist.key, pick)
+          : PickedItemsDao().update(randomlist.key, pick);
+      yield PickedItemState(pick: pick);
+    }
   }
 }
