@@ -56,7 +56,7 @@ class SampleData {
     );
     await RandomListDao().insert(
       RandomList(
-        name: 'English words',
+        name: 'Random words',
         type: 'megaphone',
         items: <RandomListItem>[
           RandomListItem(name: 'AB', selected: true),
@@ -73,12 +73,12 @@ class SampleData {
         name: 'Innovation ideas',
         type: 'idea',
         items: <RandomListItem>[
-          RandomListItem(name: 'Kill yourself', selected: true),
-          RandomListItem(name: 'Rob a bank', selected: true),
-          RandomListItem(name: 'Fuck a whore', selected: true),
-          RandomListItem(name: 'Drink gasoline', selected: true),
-          RandomListItem(name: 'Drive off a cliff', selected: true),
-          RandomListItem(name: 'Slap your boss', selected: true),
+          RandomListItem(name: 'A', selected: true),
+          RandomListItem(name: 'B', selected: true),
+          RandomListItem(name: 'C', selected: true),
+          RandomListItem(name: 'D', selected: true),
+          RandomListItem(name: 'E', selected: true),
+          RandomListItem(name: 'F', selected: true),
         ],
       ),
     );
