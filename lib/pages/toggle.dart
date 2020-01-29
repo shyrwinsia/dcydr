@@ -1,6 +1,7 @@
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/switchtile.dart';
 import 'package:dcydr/data/types.dart';
+import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class TogglePage extends StatelessWidget {
@@ -26,6 +27,15 @@ class TogglePage extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Toggle choices',
         hasBackButton: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              FlatIcons.success,
+              size: 18,
+            ),
+            onPressed: () {},
+          )
+        ],
       ),
       body: ListView(children: divided),
     );
