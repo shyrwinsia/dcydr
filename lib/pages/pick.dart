@@ -5,6 +5,7 @@ import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/fade.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +34,17 @@ class _PickPageState extends State<PickPage> {
         hasBackButton: true,
         actions: <Widget>[
           IconButton(
-            iconSize: 18,
+            iconSize: 16,
+            padding: EdgeInsets.all(16),
+            alignment: Alignment.centerRight,
             icon: Icon(
-              FlatIcons.settings_5,
+              FlatIcons.more_1,
             ),
-            onPressed: () =>
-                _routerBloc.add(MoveToTogglePage(list: widget.list)),
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) =>
+                  _buildActionsDialog(this.widget.list),
+            ),
           ),
         ],
       ),
@@ -147,5 +153,41 @@ class _PickPageState extends State<PickPage> {
             return Container();
           }
         },
+      );
+
+  Widget _buildActionsDialog(RandomList list) => Dialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8))),
+        child: Container(
+          padding: EdgeInsets.all(8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(FlatIcons.switch_5),
+                title: Text('Toggle items'),
+                onTap: () => _routerBloc.add(MoveToTogglePage(list: list)),
+              ),
+              ListTile(
+                leading: Icon(FlatIcons.edit),
+                title: Text('Edit this list'),
+                onTap: () => _routerBloc.add(MoveToEditPage(list: list)),
+              ),
+              ListTile(
+                leading: Icon(FlatIcons.trash, color: Colors.red),
+                title: Text(
+                  'Delete this list',
+                  style: TextStyle(color: Colors.red),
+                ),
+                onTap: () => RandomListDao()
+                    .delete(list)
+                    .then((e) => _pageBloc.add(Reinitialize()))
+                    .then((e) => Navigator.pop(context)),
+              ),
+            ],
+          ),
+        ),
       );
 }

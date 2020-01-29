@@ -78,7 +78,6 @@ class _DcydrState extends State<Dcydr> {
               create: (BuildContext context) => ListPageBloc(),
             ),
             () {
-              _homePageBloc.add(LoadLists());
               Navigator.pop(context);
             },
           );
