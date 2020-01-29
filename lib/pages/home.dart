@@ -101,6 +101,10 @@ class _HomePageState extends State<HomePage> {
               title: Text(
                 item.name,
               ),
+              trailing: Icon(
+                FlatIcons.con_right_arrow_1_a,
+                color: const Color(0x22000000),
+              ),
               onTap: () => _routerBloc.add(MoveToPickPage(list: item)),
             ),
           ),
