@@ -29,9 +29,10 @@ class TogglePage extends StatelessWidget {
         hasBackButton: true,
         actions: <Widget>[
           IconButton(
+            padding: EdgeInsets.all(16),
             icon: Icon(
-              FlatIcons.success,
-              size: 18,
+              FlatIcons.switch_,
+              size: 22,
             ),
             onPressed: () {},
           )
