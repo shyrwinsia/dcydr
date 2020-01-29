@@ -70,18 +70,16 @@ class _DcydrState extends State<Dcydr> {
                 create: (BuildContext context) => ListPageBloc(),
               ),
               () => _homePageBloc.add(LoadLists()));
-        else if (state is RouterEditPage)
+        else if (state is RouterEditPage) {
+          Navigator.pop(context);
           _pushPage(
             context,
             BlocProvider(
               child: EditListPage(list: state.list),
               create: (BuildContext context) => ListPageBloc(),
             ),
-            () {
-              Navigator.pop(context);
-            },
           );
-        else if (state is RouterPickPage)
+        } else if (state is RouterPickPage)
           _pushPage(
             context,
             BlocProvider(
@@ -89,11 +87,13 @@ class _DcydrState extends State<Dcydr> {
               create: (BuildContext context) => PickPageBloc(),
             ),
           );
-        else if (state is RouterTogglePage)
+        else if (state is RouterTogglePage) {
+          Navigator.pop(context);
           _pushPage(
             context,
             TogglePage(list: state.list),
           );
+        }
       },
       child: BlocProvider(
         child: HomePage(),
