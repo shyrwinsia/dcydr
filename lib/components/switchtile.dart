@@ -28,17 +28,15 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
                 toAlpha: 0.4,
               ),
         trailing: widget.item.selected
-            ? FadeIn(
-                child: Icon(
-                  FlatIcons.success,
-                  color: const Color(0xff2a86cb),
-                ),
+            ? Icon(
+                FlatIcons.switch_1,
+                color: const Color(0xff2a86cb),
+                size: 22,
               )
-            : FadeOut(
-                child: Icon(
-                  FlatIcons.success,
-                  color: const Color(0xff2a86cb),
-                ),
+            : Icon(
+                FlatIcons.switch_,
+                color: const Color(0x66000000),
+                size: 22,
               ),
         onTap: () => {
           setState(() {
