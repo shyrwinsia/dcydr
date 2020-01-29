@@ -1,3 +1,4 @@
+import 'package:dcydr/data/types.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -7,14 +8,14 @@ abstract class PickPageEvent extends Equatable {
 }
 
 class PickItem extends PickPageEvent {
-  final List items;
-  PickItem({@required this.items});
+  final RandomList list;
+  PickItem({@required this.list});
 
   @override
   String toString() => '[Event] PickPageEvent: PickItem';
 
   @override
-  List<Object> get props => [this.items];
+  List<Object> get props => [this.list];
 }
 
 class Reinitialize extends PickPageEvent {

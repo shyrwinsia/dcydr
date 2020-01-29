@@ -17,7 +17,7 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   Stream<PickPageState> mapEventToState(PickPageEvent event) async* {
     if (event is PickItem) {
       // filter
-      List list = event.items.where((e) => e.selected).toList();
+      List list = event.list.items.where((e) => e.selected).toList();
       if (list.length == 0)
         yield NoItemToPickState();
       else if (list.length == 1)

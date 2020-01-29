@@ -50,7 +50,7 @@ class _PickPageState extends State<PickPage> {
             child: FadeIn(
               child: InkWell(
                 onTap: () => _pageBloc.add(
-                  PickItem(items: this.widget.list.items),
+                  PickItem(list: this.widget.list),
                 ),
                 child: Center(
                   child: Padding(
