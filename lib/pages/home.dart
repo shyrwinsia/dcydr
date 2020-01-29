@@ -1,5 +1,4 @@
 import 'package:dcydr/bloc/homepage/bloc.dart';
-import 'package:dcydr/bloc/homepage/event.dart';
 import 'package:dcydr/bloc/homepage/state.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
@@ -22,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     _routerBloc = BlocProvider.of<RouterBloc>(context);
+    _pageBloc = BlocProvider.of<HomePageBloc>(context);
 
     return Scaffold(
       appBar: CustomAppBar(
