@@ -4,12 +4,12 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:dcydr/bloc/pickpage/event.dart';
 import 'package:dcydr/bloc/pickpage/state.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:dcydr/logger/logger.dart';
 
 class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   final rng = Random();
-  String _pickedItem;
 
   @override
   PickPageState get initialState => Uninitialized();
@@ -33,12 +33,16 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
     } else if (filteredlist.length == 1) {
       yield CannotPickState();
     } else {
-      String pick;
       // prevent consecutive
+      String lastPicked = await PickedItemsDao().getLastPicked(randomlist.key);
+      String pick;
       do {
         pick = filteredlist.elementAt(rng.nextInt(filteredlist.length)).name;
-      } while (pick == this._pickedItem);
-
+      } while (pick == lastPicked);
+      // store picked
+      lastPicked == null
+          ? PickedItemsDao().insert(randomlist.key, pick)
+          : PickedItemsDao().update(randomlist.key, pick);
       yield PickedItemState(pick: pick);
     }
   }
