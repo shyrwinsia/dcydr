@@ -4,16 +4,21 @@ import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
-class TogglePage extends StatelessWidget {
+class TogglePage extends StatefulWidget {
   final RandomList list;
 
   TogglePage({this.list});
 
   @override
+  State<TogglePage> createState() => _TogglePageState();
+}
+
+class _TogglePageState extends State<TogglePage> {
+  @override
   Widget build(BuildContext context) {
-    final Iterable<CustomSwitchTile> tiles = list.items.map(
+    final Iterable<CustomSwitchTile> tiles = widget.list.items.map(
       (RandomListItem item) => CustomSwitchTile(
-        list: list,
+        list: widget.list,
         item: item,
       ),
     );
