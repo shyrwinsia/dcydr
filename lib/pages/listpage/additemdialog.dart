@@ -63,7 +63,11 @@ class _AddItemDialogState extends State<AddItemDialog> {
               this._isAddAllowed = false;
           });
         },
-        decoration: InputDecoration.collapsed(hintText: 'Enter item name'),
+        decoration: InputDecoration(
+          hintText: 'Enter item name',
+          border: InputBorder.none,
+          isDense: true,
+        ),
       );
 
   Widget _buildAddButton() => _isAddAllowed
