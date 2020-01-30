@@ -1,5 +1,6 @@
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/switchtile.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,13 @@ class _TogglePageState extends State<TogglePage> {
   Widget build(BuildContext context) {
     final Iterable<CustomSwitchTile> tiles = this.items.map(
           (RandomListItem item) => CustomSwitchTile(
-            list: widget.list,
-            item: item,
-          ),
+              list: widget.list, item: item, callback: _toggleSwitch),
         );
 
     final List<Widget> divided = ListTile.divideTiles(
       context: context,
       tiles: tiles,
     ).toList();
-
-    _toggleSwitch();
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -58,9 +55,7 @@ class _TogglePageState extends State<TogglePage> {
                           FlatIcons.switch_,
                           size: 22,
                         ),
-                  onPressed: () => setState(() {
-                    this.toggleAll = !toggleAll;
-                  }),
+                  onPressed: () => _toggleItems(),
                 )
               ],
       ),
@@ -71,5 +66,16 @@ class _TogglePageState extends State<TogglePage> {
   void _toggleSwitch() {
     setState(
         () => this.toggleAll = items.fold(true, (v, e) => v && e.selected));
+  }
+
+  void _toggleItems() {
+    setState(() {
+      this.toggleAll = !toggleAll;
+      this.items.forEach((item) {
+        print(item.selected);
+        item.selected = this.toggleAll;
+      });
+    });
+    RandomListDao().update(this.widget.list);
   }
 }
