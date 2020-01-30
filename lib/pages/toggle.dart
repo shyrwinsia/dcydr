@@ -1,8 +1,8 @@
 import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/components/customswitch.dart';
 import 'package:dcydr/components/switchtile.dart';
 import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
-import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class TogglePage extends StatefulWidget {
@@ -29,7 +29,9 @@ class _TogglePageState extends State<TogglePage> {
   Widget build(BuildContext context) {
     final Iterable<CustomSwitchTile> tiles = this.items.map(
           (RandomListItem item) => CustomSwitchTile(
-              list: widget.list, item: item, callback: _toggleSwitch),
+              list: widget.list,
+              item: item,
+              onChanged: (value) => _toggleSwitch()),
         );
 
     final List<Widget> divided = ListTile.divideTiles(
@@ -44,19 +46,28 @@ class _TogglePageState extends State<TogglePage> {
         actions: this.items.isEmpty
             ? null
             : <Widget>[
-                IconButton(
-                  padding: EdgeInsets.all(16),
-                  icon: this.toggleAll
-                      ? Icon(
-                          FlatIcons.switch_1,
-                          size: 22,
-                        )
-                      : Icon(
-                          FlatIcons.switch_,
-                          size: 22,
-                        ),
-                  onPressed: () => _toggleItems(),
-                )
+                Padding(
+                  padding: EdgeInsets.only(right: 16),
+                  child: CustomSwitch(
+                    value: this.toggleAll,
+                    activeGradient: const LinearGradient(
+                      colors: [
+                        const Color(0xFFFFFFFF),
+                        const Color(0xFFFFFFFF),
+                      ],
+                    ),
+                    inactiveGradient: const LinearGradient(
+                      colors: [
+                        const Color(0xFFFFFFFF),
+                        const Color(0xFFFFFFFF),
+                      ],
+                    ),
+                    activeColor: const Color(0xFF2A86CB),
+                    inactiveColor: const Color(0xFF2A86CB),
+                    width: 33,
+                    onChanged: (value) => _toggleItems(value),
+                  ),
+                ),
               ],
       ),
       body: ListView(children: divided),
@@ -64,17 +75,18 @@ class _TogglePageState extends State<TogglePage> {
   }
 
   void _toggleSwitch() {
+    // print('Toggle called ${value}');
     setState(
         () => this.toggleAll = items.fold(true, (v, e) => v && e.selected));
+    print('Toggle called ${this.toggleAll}');
   }
 
-  void _toggleItems() {
+  void _toggleItems(bool value) {
     setState(() {
-      this.toggleAll = !toggleAll;
       this.items.forEach((item) {
-        print(item.selected);
-        item.selected = this.toggleAll;
+        item.selected = value;
       });
+      this.toggleAll = value;
     });
     RandomListDao().update(this.widget.list);
   }

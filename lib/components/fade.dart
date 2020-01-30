@@ -8,7 +8,7 @@ class FadeIn extends StatefulWidget {
   FadeIn({@required this.child, fromAlpha, toAlpha, duration})
       : this.fromAlpha = fromAlpha ?? 0.0,
         this.toAlpha = toAlpha ?? 1.0,
-        this.duration = duration ?? 200;
+        this.duration = duration ?? 100;
 
   @override
   createState() => _FadeInState();

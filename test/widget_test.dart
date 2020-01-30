@@ -35,9 +35,6 @@ void main() {
 
     expect(find.text('Build new list'), findsOneWidget);
     expect(find.byIcon(FlatIcons.add), findsOneWidget);
-    // print(find.byIcon(FlatIcons.add).at(0));
-    // print(find.widgetWithIcon(FlatButton, FlatIcons.add).description);
-    // expect(find.widgetWithIcon(FlatButton, FlatIcons.add), findsOneWidget);
     expect(find.widgetWithText(TextField, 'Enter list name'), findsOneWidget);
 
     await tester.tap(find.byIcon(FlatIcons.add));

@@ -1,15 +1,18 @@
+import 'package:dcydr/components/customswitch.dart';
 import 'package:dcydr/components/fade.dart';
-import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
-import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class CustomSwitchTile extends StatefulWidget {
   final RandomListItem item;
   final RandomList list;
-  final Function callback;
+  final ValueChanged<bool> onChanged;
 
-  CustomSwitchTile({this.list, this.item, this.callback});
+  CustomSwitchTile({
+    this.list,
+    this.item,
+    this.onChanged,
+  });
 
   @override
   _CustomSwitchTileState createState() => _CustomSwitchTileState();
@@ -28,23 +31,23 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
                 fromAlpha: 1.0,
                 toAlpha: 0.4,
               ),
-        trailing: widget.item.selected
-            ? Icon(
-                FlatIcons.switch_1,
-                color: const Color(0xff2a86cb),
-                size: 24,
-              )
-            : Icon(
-                FlatIcons.switch_,
-                color: const Color(0x66000000),
-                size: 24,
-              ),
-        onTap: () => {
-          RandomListDao()
-              .update(this.widget.list)
-              .then((onValue) =>
-                  setState(() => widget.item.selected = !widget.item.selected))
-              .then((onValue) => this.widget.callback()),
-        },
+        trailing: CustomSwitch(
+          value: this.widget.item.selected,
+          onChanged: (value) => _update(value),
+        ),
+        onTap: () => _update(!this.widget.item.selected),
       );
+
+  void _update(bool value) {
+    // value ? widget.onChanged(false) : widget.onChanged(true);
+    setState(() => widget.item.selected = value);
+// RandomListDao()
+//       .update(this.widget.list)
+//       .then((onValue) =>
+//           )
+    // .then((onValue) => this.widget.callback());
+  }
+
+  // TODO Update main switch with the state of the main switch
+  // TODO Something is seriously wrong with the main switch
 }
