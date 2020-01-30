@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 class CustomSwitchTile extends StatefulWidget {
   final RandomListItem item;
   final RandomList list;
+  final Function callback;
 
-  CustomSwitchTile({this.list, this.item});
+  CustomSwitchTile({this.list, this.item, this.callback});
 
   @override
   _CustomSwitchTileState createState() => _CustomSwitchTileState();
@@ -28,23 +29,22 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
                 toAlpha: 0.4,
               ),
         trailing: widget.item.selected
-            ? FadeIn(
-                child: Icon(
-                  FlatIcons.success,
-                  color: const Color(0xff2a86cb),
-                ),
+            ? Icon(
+                FlatIcons.switch_1,
+                color: const Color(0xff2a86cb),
+                size: 24,
               )
-            : FadeOut(
-                child: Icon(
-                  FlatIcons.success,
-                  color: const Color(0xff2a86cb),
-                ),
+            : Icon(
+                FlatIcons.switch_,
+                color: const Color(0x66000000),
+                size: 24,
               ),
         onTap: () => {
-          setState(() {
-            widget.item.selected = !widget.item.selected;
-            RandomListDao().update(this.widget.list);
-          })
+          RandomListDao()
+              .update(this.widget.list)
+              .then((onValue) =>
+                  setState(() => widget.item.selected = !widget.item.selected))
+              .then((onValue) => this.widget.callback()),
         },
       );
 }

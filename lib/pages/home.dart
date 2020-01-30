@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               ),
               trailing: Icon(
                 FlatIcons.con_right_arrow_1_a,
-                color: const Color(0x22000000),
+                color: const Color(0x44000000),
               ),
               onTap: () => _routerBloc.add(MoveToPickPage(list: item)),
             ),
