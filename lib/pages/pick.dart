@@ -176,11 +176,8 @@ class _PickPageState extends State<PickPage> {
                 onTap: () => _routerBloc.add(MoveToEditPage(list: list)),
               ),
               ListTile(
-                leading: Icon(FlatIcons.trash, color: Colors.red),
-                title: Text(
-                  'Delete this list',
-                  style: TextStyle(color: Colors.red),
-                ),
+                leading: Icon(FlatIcons.trash),
+                title: Text('Delete this list'),
                 onTap: () => RandomListDao()
                     .delete(list)
                     .then((e) => _pageBloc.add(Reinitialize()))
