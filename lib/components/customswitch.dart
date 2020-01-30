@@ -54,7 +54,7 @@ class _CustomSwitchState extends State<CustomSwitch>
       end: widget.value ? 0 : this.widget.distance,
     ).animate(CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeInOut,
+      curve: Curves.easeOut,
     ));
   }
 
@@ -64,49 +64,44 @@ class _CustomSwitchState extends State<CustomSwitch>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
-        return InkWell(
-          onTap: () {
-            widget.value ? widget.onChanged(false) : widget.onChanged(true);
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: this.widget.width,
-                height: this.widget.height,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(this.widget.height),
-                  gradient: _animation.value == 0
-                      ? this.widget.inactiveGradient
-                      : this.widget.activeGradient,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: _animation.value,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(this.widget.padding),
-                      child: Container(
-                        height: this.widget.height - this.widget.padding,
-                        width: this.widget.height - this.widget.padding,
-                        alignment: Alignment.centerLeft,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: this.widget.value
-                              ? this.widget.activeColor
-                              : this.widget.inactiveColor,
-                        ),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: this.widget.width,
+              height: this.widget.height,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(this.widget.height),
+                gradient: _animation.value == 0
+                    ? this.widget.inactiveGradient
+                    : this.widget.activeGradient,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: _animation.value,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(this.widget.padding),
+                    child: Container(
+                      height: this.widget.height - this.widget.padding,
+                      width: this.widget.height - this.widget.padding,
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: this.widget.value
+                            ? this.widget.activeColor
+                            : this.widget.inactiveColor,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
@@ -121,12 +116,10 @@ class _CustomSwitchState extends State<CustomSwitch>
   @override
   void didUpdateWidget(CustomSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.value) {
-      if (_controller.isCompleted) {
-        _controller.reverse();
-      }
-    } else {
+    if (widget.value) {
       _controller.forward();
+    } else {
+      _controller.reverse();
     }
   }
 }
