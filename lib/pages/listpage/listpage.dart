@@ -116,7 +116,7 @@ class _ListPageState extends State<ListPage> {
           padding: EdgeInsets.all(0),
           alignment: Alignment.centerRight,
           icon: Icon(
-            FlatIcons.more,
+            FlatIcons.menu_4,
             color: const Color(0xFF2A86CB),
           ), // TOTO doble loading
           onPressed: () => showDialog(
