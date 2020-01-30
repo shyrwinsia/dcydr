@@ -31,12 +31,12 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
             ? Icon(
                 FlatIcons.switch_1,
                 color: const Color(0xff2a86cb),
-                size: 22,
+                size: 24,
               )
             : Icon(
                 FlatIcons.switch_,
                 color: const Color(0x66000000),
-                size: 22,
+                size: 24,
               ),
         onTap: () => {
           RandomListDao().update(this.widget.list).then((onValue) =>
