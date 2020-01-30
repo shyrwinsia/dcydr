@@ -39,10 +39,8 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
                 size: 22,
               ),
         onTap: () => {
-          setState(() {
-            widget.item.selected = !widget.item.selected;
-            RandomListDao().update(this.widget.list);
-          })
+          RandomListDao().update(this.widget.list).then((onValue) =>
+              setState(() => widget.item.selected = !widget.item.selected)),
         },
       );
 }
