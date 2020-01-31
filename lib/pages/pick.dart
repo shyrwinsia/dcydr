@@ -5,7 +5,6 @@ import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/fade.dart';
-import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -48,26 +47,32 @@ class _PickPageState extends State<PickPage> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: FadeIn(
-              child: InkWell(
-                onTap: () => _pageBloc.add(
-                  PickItem(list: this.widget.list),
-                ),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(40),
-                    child: _blocBuilder(context),
+      body: BlocListener<PickPageBloc, PickPageState>(
+        bloc: _pageBloc,
+        listener: (context, state) {
+          if (state is Saved) Navigator.pop(context);
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: FadeIn(
+                child: InkWell(
+                  onTap: () => _pageBloc.add(
+                    PickItem(list: this.widget.list),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(40),
+                      child: _blocBuilder(context),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -178,13 +183,11 @@ class _PickPageState extends State<PickPage> {
               ListTile(
                 leading: Icon(FlatIcons.trash),
                 title: Text('Delete this list'),
-                onTap: () => RandomListDao()
-                    .delete(list)
-                    .then((e) => _pageBloc.add(
-                        Reinitialize())) // TODO problem is here, reintialize. but not this page then double pop to go out
-                    .then((e) => Navigator.pop(context))
-                    .then((e) => Navigator.pop(context)),
-              ),
+                onTap: () {
+                  _pageBloc.add(DeleteList(list: list));
+                  Navigator.pop(context);
+                },
+              )
             ],
           ),
         ),

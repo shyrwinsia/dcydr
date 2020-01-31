@@ -13,11 +13,3 @@ class LoadLists extends HomePageEvent {
   @override
   List<Object> get props => null;
 }
-
-class Reinitialize extends HomePageEvent {
-  @override
-  String toString() => '[Event] HomePageEvent: Reinitialize';
-
-  @override
-  List<Object> get props => null;
-}

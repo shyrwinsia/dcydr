@@ -36,3 +36,19 @@ class CannotPickState extends PickPageState {
   @override
   String toString() => '[State] PickPageState: CannotPickState';
 }
+
+class Saving extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: Saving';
+}
+
+class Saved extends PickPageState {
+  @override
+  List<Object> get props => null;
+
+  @override
+  String toString() => '[State] PickPageState: Saved';
+}

@@ -20,6 +20,10 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
       yield* _pickItem(event.list);
     } else if (event is Reinitialize) {
       yield Uninitialized();
+    } else if (event is DeleteList) {
+      yield Saving();
+      await RandomListDao().delete(event.list);
+      yield Saved();
     } else {
       getLogger().wtf('Something went wrong.');
     }

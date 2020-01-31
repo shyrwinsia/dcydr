@@ -25,3 +25,14 @@ class Reinitialize extends PickPageEvent {
   @override
   List<Object> get props => null;
 }
+
+class DeleteList extends PickPageEvent {
+  final RandomList list;
+  DeleteList({this.list});
+
+  @override
+  String toString() => '[Event] PickPageEvent: DeleteList';
+
+  @override
+  List<Object> get props => [this.list];
+}
