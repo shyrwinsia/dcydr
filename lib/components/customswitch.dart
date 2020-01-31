@@ -117,9 +117,12 @@ class _CustomSwitchState extends State<CustomSwitch>
   void didUpdateWidget(CustomSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.value) {
-      _controller.forward();
+      if (!_animation.isCompleted) {
+        _controller.forward();
+      } else
+        _controller.reverse();
     } else {
-      _controller.reverse();
+      _controller.forward();
     }
   }
 }
