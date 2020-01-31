@@ -111,5 +111,7 @@ class _DcydrState extends State<Dcydr> {
       )
           .then((onValue) => BlocProvider.of<RouterBloc>(context)
               .add(PopPage(from: page.hashCode.toString())))
-          .then((onValue) => callback());
+          .then((onValue) {
+        if (callback != null) callback();
+      });
 }
