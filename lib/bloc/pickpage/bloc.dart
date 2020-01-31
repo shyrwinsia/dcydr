@@ -32,10 +32,10 @@ class PickPageBloc extends Bloc<PickPageEvent, PickPageState> {
   Stream<PickPageState> _pickItem(RandomList randomlist) async* {
     // filter
     List filteredlist = randomlist.items.where((e) => e.selected).toList();
-    if (filteredlist.length == 0) {
-      yield NoItemToPickState();
-    } else if (filteredlist.length == 1) {
-      yield CannotPickState();
+    if (randomlist.items.length < 2) {
+      yield TooFewItemsState();
+    } else if (filteredlist.length < 2) {
+      yield TooManyToggledState();
     } else {
       // prevent consecutive
       String lastPicked = await PickedItemsDao().getLastPicked(randomlist.key);

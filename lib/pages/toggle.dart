@@ -38,7 +38,7 @@ class _TogglePageState extends State<TogglePage> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Toggle choices',
+        title: 'Toggle items',
         hasBackButton: true,
       ),
       body: ListView(children: divided),

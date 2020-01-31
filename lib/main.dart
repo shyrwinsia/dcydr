@@ -71,7 +71,6 @@ class _DcydrState extends State<Dcydr> {
               ),
               () => _homePageBloc.add(LoadLists()));
         else if (state is RouterEditPage) {
-          Navigator.pop(context);
           _pushPage(
             context,
             BlocProvider(
@@ -88,7 +87,6 @@ class _DcydrState extends State<Dcydr> {
               ),
               () => _homePageBloc.add(LoadLists()));
         else if (state is RouterTogglePage) {
-          Navigator.pop(context);
           _pushPage(
             context,
             TogglePage(list: state.list),
