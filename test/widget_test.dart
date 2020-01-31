@@ -20,7 +20,7 @@ void main() {
     // expect to be in the add page
     expect(find.text('Build new list'), findsOneWidget);
     await tester.enterText(find.byType(TextField), 'List 0');
-    await tester.tap(find.byIcon(FlatIcons.save));
+    await tester.tap(find.text('Save'));
     // wait for the animation to complete
     await tester.pumpAndSettle();
     expect(find.text('List 0'), findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
 
     await tester.enterText(
         find.widgetWithText(TextField, 'Enter list name'), 'List 1');
-    await tester.tap(find.byIcon(FlatIcons.save));
+    await tester.tap(find.text('Save'));
     await tester.pumpAndSettle();
     expect(find.text('List 1'), findsOneWidget);
   });
