@@ -180,7 +180,9 @@ class _PickPageState extends State<PickPage> {
                 title: Text('Delete this list'),
                 onTap: () => RandomListDao()
                     .delete(list)
-                    .then((e) => _pageBloc.add(Reinitialize()))
+                    .then((e) => _pageBloc.add(
+                        Reinitialize())) // TODO problem is here, reintialize. but not this page then double pop to go out
+                    .then((e) => Navigator.pop(context))
                     .then((e) => Navigator.pop(context)),
               ),
             ],
