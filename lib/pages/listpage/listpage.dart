@@ -72,27 +72,29 @@ class _ListPageState extends State<ListPage> {
   }
 
   Widget _buildSaveButton() => isSaveAllowed
-      ? IconButton(
-          iconSize: 18,
-          onPressed: () => this.widget.onSave(
-                RandomList(
-                    key: this.widget.list?.key,
-                    name: titleTextController.text,
-                    type: this.icon,
-                    items: this.items),
-              ),
-          icon: Icon(
-            FlatIcons.save,
+      ? FlatButton(
+          onPressed: () {
+            this.widget.onSave(RandomList(
+                key: this.widget.list?.key,
+                name: titleTextController.text,
+                type: this.icon,
+                items: this.items));
+          },
+          child: Text(
+            'Save',
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         )
-      : IconButton(
-          iconSize: 18,
-          onPressed: null,
-          icon: Icon(
-            FlatIcons.save,
-            color: const Color(0x66FFFFFF),
+      : FlatButton(
+          child: Text(
+            'Save',
+            style: TextStyle(
+              color: const Color(0x66FFFFFF),
+            ),
           ),
-        );
+          onPressed: null);
 
   Widget _buildListMetaInfo() => ListTile(
         leading: RandomList.iconFromType(this.icon),
