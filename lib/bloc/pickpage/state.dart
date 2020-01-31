@@ -21,20 +21,20 @@ class PickedItemState extends PickPageState {
   String toString() => '[State] PickPageState: PickedItemState ${this.pick}';
 }
 
-class NoItemToPickState extends PickPageState {
+class TooFewItemsState extends PickPageState {
   @override
   List<Object> get props => null;
 
   @override
-  String toString() => '[State] PickPageState: NoItemToPickState';
+  String toString() => '[State] PickPageState: TooFewItemsState';
 }
 
-class CannotPickState extends PickPageState {
+class TooManyToggledState extends PickPageState {
   @override
   List<Object> get props => null;
 
   @override
-  String toString() => '[State] PickPageState: CannotPickState';
+  String toString() => '[State] PickPageState: TooManyToggledState';
 }
 
 class Saving extends PickPageState {

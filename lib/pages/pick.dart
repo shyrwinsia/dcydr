@@ -4,6 +4,7 @@ import 'package:dcydr/bloc/pickpage/state.dart';
 import 'package:dcydr/bloc/router/bloc.dart';
 import 'package:dcydr/bloc/router/event.dart';
 import 'package:dcydr/components/appbar.dart';
+import 'package:dcydr/components/custombutton.dart';
 import 'package:dcydr/components/fade.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flat_icons_flutter/flat_icons_flutter.dart';
@@ -90,63 +91,29 @@ class _PickPageState extends State<PickPage> {
                 color: const Color(0x66000000),
               ),
             );
-          } else if (state is NoItemToPickState) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  '🤷‍♂️',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: const Color(0x66000000),
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "Can't pick. Your list is empty.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: const Color(0x66000000),
-                  ),
-                ),
-                SizedBox(
-                  height: 32,
-                ),
-              ],
+          } else if (state is TooFewItemsState) {
+            return _buildErrorMessage(
+              '🤷‍♂️',
+              "Nothing to pick!",
+              "Put least two items and tap again.",
+              CustomFlatIconButton(
+                icon: FlatIcons.edit,
+                label: 'Edit this list',
+                callback: () =>
+                    _routerBloc.add(MoveToEditPage(list: this.widget.list)),
+              ),
             );
-          } else if (state is CannotPickState) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  '🙄',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: const Color(0x66000000),
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "Can't pick. There's only one choice.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: const Color(0x66000000),
-                  ),
-                ),
-                SizedBox(
-                  height: 32,
-                ),
-              ],
+          } else if (state is TooManyToggledState) {
+            return _buildErrorMessage(
+              '😒',
+              "Too few items.",
+              "Activate at least two items and tap again.",
+              CustomFlatIconButton(
+                icon: FlatIcons.switch_5,
+                label: 'Toggle items',
+                callback: () =>
+                    _routerBloc.add(MoveToTogglePage(list: this.widget.list)),
+              ),
             );
           } else if (state is PickedItemState) {
             return GradientText(state.pick,
@@ -173,23 +140,79 @@ class _PickPageState extends State<PickPage> {
               ListTile(
                 leading: Icon(FlatIcons.switch_5),
                 title: Text('Toggle items'),
-                onTap: () => _routerBloc.add(MoveToTogglePage(list: list)),
+                onTap: () {
+                  _routerBloc.add(MoveToTogglePage(list: list));
+                  // get out of the dialog box
+                  Navigator.pop(context);
+                },
               ),
               ListTile(
                 leading: Icon(FlatIcons.edit),
                 title: Text('Edit this list'),
-                onTap: () => _routerBloc.add(MoveToEditPage(list: list)),
+                onTap: () {
+                  _routerBloc.add(MoveToEditPage(list: list));
+                  // get out of the dialog box
+                  Navigator.pop(context);
+                },
               ),
               ListTile(
                 leading: Icon(FlatIcons.trash),
                 title: Text('Delete this list'),
                 onTap: () {
                   _pageBloc.add(DeleteList(list: list));
+                  // get out of the dialog box
                   Navigator.pop(context);
                 },
-              )
+              ),
             ],
           ),
         ),
       );
+
+  Widget _buildErrorMessage(
+      String emoji, String title, String subtitle, Widget button) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Text(
+          emoji,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 40,
+            color: const Color(0x66000000),
+          ),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 32,
+            color: const Color(0x66000000),
+          ),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          subtitle,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16,
+            color: const Color(0x66000000),
+          ),
+        ),
+        SizedBox(
+          height: 32,
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: button,
+        ),
+      ],
+    );
+  }
 }

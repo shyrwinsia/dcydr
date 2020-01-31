@@ -66,13 +66,13 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(
-            height: 12,
+            height: 16,
           ),
           Text(
             "You don't have any lists.",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               color: const Color(0x66000000),
             ),
           ),
