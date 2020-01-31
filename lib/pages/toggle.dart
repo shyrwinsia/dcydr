@@ -1,6 +1,5 @@
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/switchtile.dart';
-import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
