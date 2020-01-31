@@ -1,5 +1,6 @@
 import 'package:dcydr/components/appbar.dart';
 import 'package:dcydr/components/switchtile.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,6 @@ class _TogglePageState extends State<TogglePage> {
   @override
   void initState() {
     this.items = widget.list.items;
-    // _toggleSwitch();
     super.initState();
   }
 
@@ -41,51 +41,8 @@ class _TogglePageState extends State<TogglePage> {
       appBar: CustomAppBar(
         title: 'Toggle choices',
         hasBackButton: true,
-        // actions: this.items.isEmpty
-        //     ? null
-        //     : <Widget>[
-        //         Padding(
-        //           padding: EdgeInsets.only(right: 16),
-        //           child: CustomSwitch(
-        //             value: this.toggleAll,
-        //             activeGradient: const LinearGradient(
-        //               colors: [
-        //                 const Color(0xFFFFFFFF),
-        //                 const Color(0xFFFFFFFF),
-        //               ],
-        //             ),
-        //             inactiveGradient: const LinearGradient(
-        //               colors: [
-        //                 const Color(0xFFFFFFFF),
-        //                 const Color(0xFFFFFFFF),
-        //               ],
-        //             ),
-        //             activeColor: const Color(0xFF2A86CB),
-        //             inactiveColor: const Color(0xFF2A86CB),
-        //             width: 33,
-        //             onChanged: (value) => _toggleItems(value),
-        //           ),
-        //         ),
-        // ],
       ),
       body: ListView(children: divided),
     );
   }
-
-  // void _toggleSwitch() {
-  //   // print('Toggle called ${value}');
-  //   setState(
-  //       () => this.toggleAll = items.fold(true, (v, e) => v && e.selected));
-  //   print('Toggle called ${this.toggleAll}');
-  // }
-
-  // void _toggleItems(bool value) {
-  //   setState(() {
-  //     this.items.forEach((item) {
-  //       item.selected = value;
-  //     });
-  //     this.toggleAll = value;
-  //   });
-  //   // TODO Save only when popped RandomListDao().update(this.widget.list);
-  // }
 }

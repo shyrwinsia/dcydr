@@ -1,5 +1,6 @@
 import 'package:dcydr/components/customswitch.dart';
 import 'package:dcydr/components/fade.dart';
+import 'package:dcydr/data/dao.dart';
 import 'package:dcydr/data/types.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +24,12 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
   Widget build(BuildContext context) => ListTile(
         title: widget.item.selected
             ? FadeIn(
-                child: Text(widget.item.name), fromAlpha: 0.4, toAlpha: 1.0)
+                child: Text(widget.item.name),
+                fromAlpha: 0.4,
+                toAlpha: 1.0,
+              )
             : FadeOut(
-                child: Text(
-                  widget.item.name,
-                ),
+                child: Text(widget.item.name),
                 fromAlpha: 1.0,
                 toAlpha: 0.4,
               ),
@@ -39,15 +41,7 @@ class _CustomSwitchTileState extends State<CustomSwitchTile> {
       );
 
   void _update(bool value) {
-    // value ? widget.onChanged(false) : widget.onChanged(true);
     setState(() => widget.item.selected = value);
-// RandomListDao()
-//       .update(this.widget.list)
-//       .then((onValue) =>
-//           )
-    // .then((onValue) => this.widget.callback());
+    RandomListDao().update(widget.list);
   }
-
-  // TODO Update main switch with the state of the main switch
-  // TODO Something is seriously wrong with the main switch
 }
