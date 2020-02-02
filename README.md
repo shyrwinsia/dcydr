@@ -1,56 +1,14 @@
 ![logo](img/banner.png)
 
-![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) ![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr)
+![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) ![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr) ![Releases](https://img.shields.io/github/v/release/shyrwinsia/dcydr?include_prereleases) ![Website](https://img.shields.io/website/http/dcydr.app/index.html.svg)
 
-Can't decide...
+## Website
 
-- Where to eat?
-- Who to throw under the bus?
-- Bus or train?
-- Left or Right?
-- Rock, Paper or Scissors?
+https://dcydr.app
 
-Let Dcydr help you!
-
-![Rock was chosen](img/screen1.png)
-
-### No more indecision
-
-Dcydr helps you, a victim of analysis paralysis pick a random choice from a list that you can customize. You may add as many choices as you like for each list and choose icons to match it.
-
-![Showing a list](img/screen2.png)
-
-### Fit for every situation
-
-When picking for specific occasions, like maybe its a Sunday and some of your favorite restaurants in the list are closed. You can restrict Dcydr by disabling some choices. No need remove and add them back again.
-
-![Disabled Lizard and Spock](img/screen3.png)
-
-### Clean and straightforward interface
-
-Unlike other randomizing apps, Dcydr does not have needless fancy animations, cartoonish graphics or complicated interfaces. It decides for you in the simplest and fastest way possible. Just tap the screen.
-
-![Asking user to tap screen](img/screen4.png)
-
-### Save them brain juices
-
-Decisions, no matter how small, take mental effort. An average person makes 35,000 decision per day. This can lead to Decision Fatigue: a state when you are so tired after making a gazillion choices, you become impulsive or refrain from deciding altogether.
-
-So don't waste precious brain power deciding on those small everyday mundane things. Save them for bigger decisions like your next career or which new city to go next! For your trivial decisions, let Dcydr decide for you.
-
-### No Ads, No Begging for Ratings
-
-You hate ads as much as I do. They are obtrusive and annoying. They always come in your way when you're about to do something. This app will let you do what you need to do. It will not have ads and not ask you to rate it.
-
-![Please rate my app](img/no.png)
-
-The source code is open and always be free forever (free lunch and free speech).
-
-## Get it
+## Releases
 
 Check out the [Releases](https://github.com/shyrwinsia/dcydr/releases) page.
-
-To be uploaded to App Store and Google Play soon.
 
 ## Disclaimer
 
