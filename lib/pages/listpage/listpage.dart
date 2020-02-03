@@ -120,7 +120,7 @@ class _ListPageState extends State<ListPage> {
           icon: Icon(
             FlatIcons.menu_4,
             color: const Color(0xFF2A86CB),
-          ), // TOTO doble loading
+          ),
           onPressed: () => showDialog(
             context: context,
             builder: (BuildContext context) =>

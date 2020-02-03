@@ -92,7 +92,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
+    // clean up the controller when the widget is disposed.
     controller.dispose();
     super.dispose();
   }

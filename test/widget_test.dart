@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Smoke Test: Check if it loads', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+    // build our app and trigger a frame.
     await tester.pumpWidget(Dcydr());
     expect(find.text('Dcydr'), findsOneWidget);
   });
