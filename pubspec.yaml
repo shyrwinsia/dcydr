@@ -1,6 +1,6 @@
 name: dcydr
 description: Randomized picker for victims of analysis paralysis
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: '>=2.2.0 <3.0.0'
