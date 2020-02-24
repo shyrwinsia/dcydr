@@ -6,6 +6,10 @@
 
 https://dcydr.app
 
+## Download
+
+Link to [Google Play Store](https://play.google.com/store/apps/details?id=dev.ssia.dcydr). iOS is coming soon.
+
 ## Releases
 
 Check out the [Releases](https://github.com/shyrwinsia/dcydr/releases) page.
