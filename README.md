@@ -1,6 +1,6 @@
 ![logo](img/banner.png)
 
-![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) ![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr) ![Releases](https://img.shields.io/github/v/release/shyrwinsia/dcydr?include_prereleases) ![Website](https://img.shields.io/website/http/dcydr.app/index.html.svg)
+![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) ![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr) ![Releases](https://img.shields.io/github/v/release/shyrwinsia/dcydr?include_prereleases) ![Website](https://img.shields.io/website/http/dcydr.app/index.html.svg) [![Nyancat](https://img.shields.io/badge/nyancat-approved-ff69b4.svg)](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 
 ## Website
 
