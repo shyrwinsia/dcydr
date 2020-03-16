@@ -1,7 +1,12 @@
 ![logo](img/banner.png)
 
-![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg) [![Website](https://img.shields.io/website/http/dcydr.app/index.html.svg)](https://dcydr.app) ![License](https://img.shields.io/github/license/shyrwinsia/dcydr) 
-![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr) [![Nyancat](https://img.shields.io/badge/nyancat-approved-ff69b4.svg)](https://www.youtube.com/watch?v=QH2-TGUlwu4) ![Releases](https://img.shields.io/github/v/release/shyrwinsia/dcydr?include_prereleases) [![Playstore](https://img.shields.io/badge/download-playstore-689f38.svg)](https://play.google.com/store/apps/details?id=dev.ssia.dcydr&hl=en)
+[![Build Status](https://github.com/shyrwinsia/dcydr/workflows/build/badge.svg)](https://github.com/shyrwinsia/dcydr/actions)
+[![Website](https://img.shields.io/website/http/dcydr.app/index.html.svg)](https://dcydr.app) 
+[![License](https://img.shields.io/github/license/shyrwinsia/dcydr)](https://github.com/shyrwinsia/dcydr/blob/master/LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/shyrwinsia/dcydr)](https://github.com/shyrwinsia/dcydr/commits/master)
+[![Nyancat](https://img.shields.io/badge/nyancat-approved-ff69b4.svg)](https://www.youtube.com/watch?v=QH2-TGUlwu4)
+[![Releases](https://img.shields.io/github/v/release/shyrwinsia/dcydr?include_prereleases)](https://github.com/shyrwinsia/dcydr/releases)
+[![Playstore](https://img.shields.io/badge/download-playstore-689f38.svg)](https://play.google.com/store/apps/details?id=dev.ssia.dcydr&hl=en)
 
 ## Website
 
